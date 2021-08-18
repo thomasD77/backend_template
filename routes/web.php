@@ -36,6 +36,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('roles', App\Http\Controllers\AdminRolesController::class);
     Route::resource('billing', App\Http\Controllers\AdminBillingController::class);
     Route::resource('products', App\Http\Controllers\AdminProductsController::class);
+    Route::resource('posts', App\Http\Controllers\AdminPostController::class);
     Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
     Route::get('archive/submissions', 'App\Http\Controllers\AdminSubmissionController@archive')->name('submission.archive');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
