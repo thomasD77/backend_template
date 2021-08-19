@@ -52,8 +52,9 @@
               </div>
               <div class="form-group  mb-4">
                   {!! Form::label('body', 'Description:') !!}
-                  {!! Form::textarea('body',$post->body,['class'=>'form-control']) !!}
+                  {!! Form::textarea('body', $post->body,['class'=>'form-control','id'=>'js-ckeditor5-classic']) !!}
               </div>
+
 
               <div class="mb-4">
                   <label class="form-label">Photo</label>
@@ -80,6 +81,14 @@
   <!-- END User Profile -->
 
 
+    <!-- Page JS Plugins -->
+
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
+
+<?php $one->get_js('js/plugins/ckeditor5-classic/build/ckeditor.js'); ?>
+
+<!-- Page JS Helpers (CKEditor 5 plugins) -->
+    <script>One.helpersOnLoad(['js-ckeditor5']);</script>
+
 <?php require '../resources/inc/_global/views/footer_end.php'; ?>

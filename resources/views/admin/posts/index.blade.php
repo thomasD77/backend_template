@@ -90,7 +90,7 @@
                                 <td><i class="fa fa-dot-circle text-success"></i></td>
                             @endif
 
-                            <td>{{$post->email_verified_at ? $post->email_verified_at : 'Not Verified'}}</td>
+                            <td>{{$post->created_at ? $post->created_at->diffForHumans() : 'Not Verified'}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{route('posts.edit', $post->id)}}">
