@@ -60,9 +60,24 @@
 
               <div class="mb-4">
                   <label class="form-label">Photo</label>
-                  <div class="form-group mb-4">
+                  <div class="form-group mb-4 col-4">
                       {!! Form::label('photo_id', 'Choose a new photo:') !!}
                       {!! Form::file('photo_id',['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group col-4 mb-4">
+                      {!! Form::label('default', 'Default size (500x450px):') !!}
+                      {!! Form::checkbox('default','default', true) !!}
+                  </div>
+
+                  <div class="form-group col-4 mb-4">
+                      {!! Form::label('x-as', 'Width:') !!}
+                      {!! Form::number('pictWidth',null,['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group col-4 mb-4">
+                      {!! Form::label('y-as', 'Height:') !!}
+                      {!! Form::number('pictHeight',null,['class'=>'form-control']) !!}
                   </div>
               </div>
 

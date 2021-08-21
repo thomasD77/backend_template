@@ -1,8 +1,14 @@
 <?php require '../resources/inc/_global/config.php'; ?>
 <?php require '../resources/inc/backend/config.php'; ?>
 <?php require '../resources/inc/_global/views/head_start.php'; ?>
+
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/cropperjs/cropper.min.css'); ?>
+
 <?php require '../resources/inc/_global/views/head_end.php'; ?>
 <?php require '../resources/inc/_global/views/page_start.php'; ?>
+
+
 
 <!-- Hero -->
 <div class="bg-image" style="background-image: url('http://localhost/backend_template/public/media/photos/photo10@2x.jpg');">
@@ -55,17 +61,32 @@
                   {!! Form::textarea('body', $post->body,['class'=>'form-control','id'=>'js-ckeditor5-classic']) !!}
               </div>
 
-
               <div class="mb-4">
-                  <label class="form-label">Photo</label>
+              <label class="form-label">Photo</label>
                   <div class="mb-4">
-                      <img class="rounded" height="150" width="150" src="{{$post->photo ? asset('images/posts') . $post->photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->photo}}">
+                      <img class="rounded"  src="{{$post->photo ? asset('images/posts') . $post->photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->photo}}">
                   </div>
-                  <div class="form-group mb-4">
+
+                  <div class="form-group mb-4 col-4">
                       {!! Form::label('photo_id', 'Choose a new photo:') !!}
                       {!! Form::file('photo_id',['class'=>'form-control']) !!}
                   </div>
-              </div>
+
+                  <div class="form-group col-4 mb-4">
+                      {!! Form::label('default', 'Default size (500x450px):') !!}
+                      {!! Form::checkbox('default','default', true) !!}
+                  </div>
+
+                  <div class="form-group col-4 mb-4">
+                      {!! Form::label('x-as', 'Width:') !!}
+                      {!! Form::number('pictWidth',null,['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group col-4 mb-4">
+                      {!! Form::label('y-as', 'Height:') !!}
+                      {!! Form::number('pictHeight',null,['class'=>'form-control']) !!}
+                  </div>
+
 
               <div class="d-flex justify-content-between">
                   <div class="form-group mr-1">
@@ -73,12 +94,15 @@
                   </div>
                   {!! Form::close() !!}
               </div>
-
           </div>
         </div>
       </div>
   </div>
   <!-- END User Profile -->
+
+
+
+
 
 
     <!-- Page JS Plugins -->
@@ -90,5 +114,11 @@
 
 <!-- Page JS Helpers (CKEditor 5 plugins) -->
     <script>One.helpersOnLoad(['js-ckeditor5']);</script>
+
+    <!-- Page JS Plugins -->
+<?php $one->get_js('js/plugins/cropperjs/cropper.min.js'); ?>
+
+<!-- Page JS Code -->
+<?php $one->get_js('js/pages/be_comp_image_cropper.js'); ?>
 
 <?php require '../resources/inc/_global/views/footer_end.php'; ?>

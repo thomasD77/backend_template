@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Image;
 
 class AdminPostController extends Controller
 {
@@ -69,9 +70,25 @@ class AdminPostController extends Controller
             $name = time(). $file->getClientOriginalName();
             $file->move('images/posts', $name);
 
-            $photo = Photo::create(['file'=>$name]);
-            $post->photo_id = $photo->id;
+            if($request->default == 'default'){
+                $path =  'images/posts/' . $name;
+                $image = Image::make($path);
+                $image->resize(500,450);
+                $image->save('images/posts/' . $name);
+                $photo = Photo::create(['file'=>$name]);
+                $post->photo_id = $photo->id;
+            }else{
+                $path =  'images/posts/' . $name;
+                $image = Image::make($path);
+                $image->resize($request->pictWidth,$request->pictHeight);
+                $image->save('images/posts/' . $name);
+                $photo = Photo::create(['file'=>$name]);
+                $post->photo_id = $photo->id;
+            }
         }
+
+
+
         $post['slug'] = Str::slug($request->title, '-');
 
         $post->save();
@@ -88,6 +105,7 @@ class AdminPostController extends Controller
     public function show($id)
     {
         //
+        return view('admin.posts.show');
     }
 
     /**
@@ -117,18 +135,36 @@ class AdminPostController extends Controller
     public function update(Request $request, $id)
     {
         //
+
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->body = $request->body;
         $post->postcategory_id = $request->postcategory_id;
         $post->book = $request->datePost;
 
+
+
         if($file = $request->file('photo_id')){
             $name = time(). $file->getClientOriginalName();
             $file->move('images/posts', $name);
-            $photo = Photo::create(['file'=>$name]);
-            $post->photo_id = $photo->id;
+
+            if($request->default == 'default'){
+                $path =  'images/posts/' . $name;
+                $image = Image::make($path);
+                $image->resize(500,450);
+                $image->save('images/posts/' . $name);
+                $photo = Photo::create(['file'=>$name]);
+                $post->photo_id = $photo->id;
+            }else{
+                $path =  'images/posts/' . $name;
+                $image = Image::make($path);
+                $image->resize($request->pictWidth,$request->pictHeight);
+                $image->save('images/posts/' . $name);
+                $photo = Photo::create(['file'=>$name]);
+                $post->photo_id = $photo->id;
+            }
         }
+
         $post['slug'] = Str::slug($request->title, '-');
 
         $post->update();

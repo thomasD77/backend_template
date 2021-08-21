@@ -180,6 +180,9 @@ return [
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+
+
 
     ],
 
@@ -238,6 +241,7 @@ return [
          */
         'Form' => Collective\Html\FormFacde::class,
         'Html' => Collective\Html\HtmlFacde::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
