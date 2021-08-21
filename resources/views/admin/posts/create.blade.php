@@ -40,10 +40,16 @@
               <div class="col-6 form-group mb-4">
                   {!! Form::label('title', 'Title:') !!}
                   {!! Form::text('title',null,['class'=>'form-control']) !!}
+                  @error('title')
+                  <p class="text-danger mt-2"> {{ $message }}</p>
+                  @enderror
               </div>
               <div class="col-6 form-group  mb-4">
                   {!! Form::label('Select Category:') !!}
-                  {!! Form::select('postcategories[]',$postcategories,null,['class'=>'form-control'])!!}
+                  {!! Form::select('postcategory_id',$postcategories,null,['class'=>'form-control', 'placeholder'=>'...'])!!}
+                  @error('postcategory_id')
+                  <p class="text-danger mt-2"> {{ $message }}</p>
+                  @enderror
               </div>
 
               <div class="col-6 form-group mb-4">
@@ -56,6 +62,9 @@
               <div class="form-group  mb-4">
                   {!! Form::label('body', 'Description:') !!}
                   {!! Form::textarea('body',null,['class'=>'form-control', 'id'=>'js-ckeditor5-classic']) !!}
+                  @error('body')
+                  <p class="text-danger mt-2"> {{ $message }}</p>
+                  @enderror
               </div>
 
               <div class="mb-4">
@@ -67,21 +76,28 @@
 
                   <div class="form-group col-4 mb-4">
                       {!! Form::label('default', 'Default size (500x450px):') !!}
-                      {!! Form::checkbox('default','default', true) !!}
+                      {!! Form::checkbox ('default','default', false ) !!}
                   </div>
 
-                  <div class="form-group col-4 mb-4">
-                      {!! Form::label('x-as', 'Width:') !!}
-                      {!! Form::number('pictWidth',null,['class'=>'form-control']) !!}
-                  </div>
+                  <p>
+                      <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                          customize
+                      </button>
+                  </p>
+                  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                      <div class="form-group col-4 mb-4">
+                          {!! Form::label('x-as', 'Width:') !!}
+                          {!! Form::number('pictWidth',null,['class'=>'form-control']) !!}
+                      </div>
 
-                  <div class="form-group col-4 mb-4">
-                      {!! Form::label('y-as', 'Height:') !!}
-                      {!! Form::number('pictHeight',null,['class'=>'form-control']) !!}
+                      <div class="form-group col-4 mb-4">
+                          {!! Form::label('y-as', 'Height:') !!}
+                          {!! Form::number('pictHeight',null,['class'=>'form-control']) !!}
+                      </div>
                   </div>
               </div>
 
-              <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-end">
                   <div class="form-group mr-1">
                       {!! Form::submit('Create',['class'=>'btn btn-alt-primary']) !!}
                   </div>
