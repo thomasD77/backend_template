@@ -90,6 +90,7 @@
                       <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                           customize
                       </button>
+
                   </p>
                   <div class="collapse collapse-horizontal" id="collapseWidthExample">
                       <div class="form-group col-4 mb-4">
@@ -102,7 +103,6 @@
                           {!! Form::number('pictHeight',null,['class'=>'form-control']) !!}
                       </div>
                   </div>
-
 
               <div class="d-flex justify-content-end">
                   <div class="form-group mr-1">

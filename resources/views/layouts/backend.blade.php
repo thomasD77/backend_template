@@ -289,12 +289,6 @@
                                             <span class="nav-main-link-name">List</span>
                                         </a>
                                     </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('submission.archive')}}">
-                                            <span class="nav-main-link-name">Archive</span>
-                                        </a>
-                                    </li>
-
                                 </ul>
                             </li>
 

@@ -56,18 +56,12 @@
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Posts
+                    Archive Posts
                 </h3>
-                <a href="{{route('posts.create')}}"><button data-bs-toggle="tooltip" title="New Post" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
-                <a href="{{route('post.archive')}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
-                    </button>
-                </a>
             </div>
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('posts')
+                @livewire('unarchive-posts')
             </div>
         </div>
         <!-- END Dynamic Table Full -->

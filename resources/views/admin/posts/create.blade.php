@@ -76,8 +76,12 @@
 
                   <div class="form-group col-4 mb-4">
                       {!! Form::label('default', 'Default size (500x450px):') !!}
-                      {!! Form::checkbox ('default','default', false ) !!}
+                      {!! Form::checkbox ('default','default', true ) !!}
                   </div>
+
+                  @if(Session::has('post_crop'))
+                      <p class="alert alert-danger my-2">{{session('post_crop')}}</p>
+                  @endif
 
                   <p>
                       <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">

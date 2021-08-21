@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Image;
 
@@ -23,13 +24,7 @@ class AdminPostController extends Controller
     public function index()
     {
         //
-        $posts = Post::with(['photo', 'user', 'postcategory'])
-            ->latest()
-            ->paginate(5);
-
-        $timeNow = Carbon::now()->toDateString();
-
-        return view('admin.posts.index', compact('posts', 'timeNow'));
+        return view('admin.posts.index');
 
     }
 
@@ -74,17 +69,20 @@ class AdminPostController extends Controller
             if($request->default == 'default'){
                 $path =  'images/posts/' . $name;
                 $image = Image::make($path);
-                $image->resize(500,450);
+                $image->resize(850,500);
                 $image->save('images/posts/' . $name);
                 $photo = Photo::create(['file'=>$name]);
                 $post->photo_id = $photo->id;
-            }else{
+            }elseif($request->pictWidth != null && $request->pictHeight != null ){
                 $path =  'images/posts/' . $name;
                 $image = Image::make($path);
                 $image->resize($request->pictWidth,$request->pictHeight);
                 $image->save('images/posts/' . $name);
                 $photo = Photo::create(['file'=>$name]);
                 $post->photo_id = $photo->id;
+            }elseif ($request->default != 'default' && $request->pictWidth == null && $request->pictHeight == null ){
+                Session::flash('post_crop', 'You need to fill in one of the size requirements. Please try again.');
+                return redirect()->back();
             }
         }
 
@@ -106,7 +104,9 @@ class AdminPostController extends Controller
     public function show($id)
     {
         //
-        return view('admin.posts.show');
+        $post = Post::findOrfail($id);
+
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -147,15 +147,14 @@ class AdminPostController extends Controller
         if($file = $request->file('photo_id')){
             $name = time(). $file->getClientOriginalName();
             $file->move('images/posts', $name);
-
             if($request->default == 'default'){
                 $path =  'images/posts/' . $name;
                 $image = Image::make($path);
-                $image->resize(500,450);
+                $image->resize(850,500);
                 $image->save('images/posts/' . $name);
                 $photo = Photo::create(['file'=>$name]);
                 $post->photo_id = $photo->id;
-            }else{
+            }elseif($request->pictWidth != null && $request->pictHeight != null ){
                 $path =  'images/posts/' . $name;
                 $image = Image::make($path);
                 $image->resize($request->pictWidth,$request->pictHeight);
@@ -180,5 +179,13 @@ class AdminPostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function archive()
+    {
+        $posts = Post::where('archived', 1)
+            ->latest()
+            ->get();
+        return view('admin.posts.archive', compact('posts'));
     }
 }

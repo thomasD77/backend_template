@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('slug')->default("");
             $table->text('body');
             $table->string('book')->nullable();
+            $table->boolean('archived')->default(0);
             $table->timestamps();
         });
     }

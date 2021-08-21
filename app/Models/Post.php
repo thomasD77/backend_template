@@ -18,6 +18,7 @@ class Post extends Model
         'slug',
         'body',
         'book',
+        'archived',
     ];
 
     public function postcategory()
