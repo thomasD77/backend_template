@@ -16,7 +16,11 @@
             @foreach($posts as $post)
                 <tr>
                     <td>{{$post->id ? $post->id : 'No ID'}}</td>
-                    <td><img class="rounded" height="62" width="62" src="{{$post->photo ? asset('images/posts') . $post->photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->title}}"></td>
+                    <td>
+                        @foreach($post->photos->take(1) as $photo)
+                            <img class="rounded" height="62" width="62" src="{{$photo ? asset('images/posts') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->title}}">
+                        @endforeach
+                    </td>
                     <td>{{$post->title ? $post->title : 'No Title'}}</td>
                     <td>{{$post->user ? $post->user->name : 'No Author'}}</td>
 

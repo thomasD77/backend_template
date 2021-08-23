@@ -10,7 +10,13 @@ class Photo extends Model
     use HasFactory;
     protected $fillable = [
         'file',
+        'post_id',
     ];
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 
     protected $uploads = '/';
     public function getFileAttribute($photo)

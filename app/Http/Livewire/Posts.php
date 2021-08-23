@@ -17,13 +17,12 @@ class Posts extends Component
 
     public function render()
     {
-        $posts = Post::with(['photo', 'user', 'postcategory'])
+        $posts = Post::with([ 'user', 'postcategory'])
             ->where('archived', 0)
             ->latest()
             ->paginate(5);
 
         $timeNow = Carbon::now()->toDateString();
-
         return view('livewire.posts', compact('posts', 'timeNow'));
     }
 }

@@ -61,8 +61,13 @@ class AdminPostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->book = $request->datePost;
 
+        $post->save();
 
-        if($file = $request->file('photo_id')){
+
+        if($files = $request->file('photos')){
+
+            foreach ($files as $file){
+
             $name = time(). $file->getClientOriginalName();
             $file->move('images/posts', $name);
 
@@ -71,26 +76,28 @@ class AdminPostController extends Controller
                 $image = Image::make($path);
                 $image->resize(850,500);
                 $image->save('images/posts/' . $name);
-                $photo = Photo::create(['file'=>$name]);
-                $post->photo_id = $photo->id;
+                $photos = array();
+                $photos[] = Photo::create(['file'=>$name, 'post_id'=>$post->id]);
+
             }elseif($request->pictWidth != null && $request->pictHeight != null ){
                 $path =  'images/posts/' . $name;
                 $image = Image::make($path);
                 $image->resize($request->pictWidth,$request->pictHeight);
                 $image->save('images/posts/' . $name);
-                $photo = Photo::create(['file'=>$name]);
-                $post->photo_id = $photo->id;
+                $photos = array();
+                $photos[] = Photo::create(['file'=>$name, 'post_id'=>$post->id]);
+
             }elseif ($request->default != 'default' && $request->pictWidth == null && $request->pictHeight == null ){
                 Session::flash('post_crop', 'You need to fill in one of the size requirements. Please try again.');
                 return redirect()->back();
             }
+            }
         }
-
 
 
         $post['slug'] = Str::slug($request->title, '-');
 
-        $post->save();
+
 
         return redirect('admin/posts');
     }
@@ -141,32 +148,46 @@ class AdminPostController extends Controller
         $post->body = $request->body;
         $post->postcategory_id = $request->postcategory_id;
         $post->book = $request->datePost;
+        $post->update();
 
 
+        if($files = $request->file('photos')){
 
-        if($file = $request->file('photo_id')){
-            $name = time(). $file->getClientOriginalName();
-            $file->move('images/posts', $name);
-            if($request->default == 'default'){
-                $path =  'images/posts/' . $name;
-                $image = Image::make($path);
-                $image->resize(850,500);
-                $image->save('images/posts/' . $name);
-                $photo = Photo::create(['file'=>$name]);
-                $post->photo_id = $photo->id;
-            }elseif($request->pictWidth != null && $request->pictHeight != null ){
-                $path =  'images/posts/' . $name;
-                $image = Image::make($path);
-                $image->resize($request->pictWidth,$request->pictHeight);
-                $image->save('images/posts/' . $name);
-                $photo = Photo::create(['file'=>$name]);
-                $post->photo_id = $photo->id;
+            $oldPhotos = Photo::where('post_id', $post->id)->get();
+            foreach ($oldPhotos as $photo){
+                $photo->delete();
+            }
+
+            foreach ($files as $file){
+
+                $name = time(). $file->getClientOriginalName();
+                $file->move('images/posts', $name);
+
+                if($request->default == 'default'){
+                    $path =  'images/posts/' . $name;
+                    $image = Image::make($path);
+                    $image->resize(850,500);
+                    $image->save('images/posts/' . $name);
+                    $photos = array();
+                    $photos[] = Photo::create(['file'=>$name, 'post_id'=>$post->id]);
+
+                }elseif($request->pictWidth != null && $request->pictHeight != null ){
+                    $path =  'images/posts/' . $name;
+                    $image = Image::make($path);
+                    $image->resize($request->pictWidth,$request->pictHeight);
+                    $image->save('images/posts/' . $name);
+                    $photos = array();
+                    $photos[] = Photo::create(['file'=>$name, 'post_id'=>$post->id]);
+                }elseif ($request->default != 'default' && $request->pictWidth == null && $request->pictHeight == null ){
+                    Session::flash('post_crop', 'You need to fill in one of the size requirements. Please try again.');
+                    return redirect()->back();
+                }
             }
         }
 
         $post['slug'] = Str::slug($request->title, '-');
 
-        $post->update();
+
         return redirect('admin/posts');
     }
 

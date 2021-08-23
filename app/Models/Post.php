@@ -11,7 +11,6 @@ class Post extends Model
 
     protected $fillable = [
         'name',
-        'photo_id',
         'postcategory_id',
         'user_id',
         'title',
@@ -26,9 +25,9 @@ class Post extends Model
         return $this->belongsTo(PostCategory::class);
     }
 
-    public function photo()
+    public function photos()
     {
-        return $this->belongsTo(Photo::class);
+        return $this->hasMany(Photo::class);
     }
 
     public function user()

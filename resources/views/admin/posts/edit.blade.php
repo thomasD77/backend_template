@@ -72,19 +72,26 @@
 
               <div class="mb-4">
               <label class="form-label">Photo</label>
-                  <div class="mb-4">
-                      <img class="rounded"  src="{{$post->photo ? asset('images/posts') . $post->photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->photo}}">
+
+                  <div class="mb-4 row">
+                      @foreach($post->photos as $photo)
+                          <img class="rounded col-4 mb-4 img-fluid"  src="{{$photo ? asset('images/posts') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->title}}">
+                      @endforeach
                   </div>
 
                   <div class="form-group mb-4 col-4">
-                      {!! Form::label('photo_id', 'Choose a new photo:') !!}
-                      {!! Form::file('photo_id',['class'=>'form-control']) !!}
+                      {!! Form::label('photos', 'Choose new photo(s):') !!}
+                      {!! Form::file('photos[]',['class'=>'form-control','multiple'=>'multiple']) !!}
                   </div>
 
                   <div class="form-group col-4 mb-4">
-                      {!! Form::label('default', 'Default size (500x450px):') !!}
+                      {!! Form::label('default', 'Default size (850x500px):') !!}
                       {!! Form::checkbox('default','default', false) !!}
                   </div>
+
+                  @if(Session::has('post_crop'))
+                      <p class="alert alert-danger my-2">{{session('post_crop')}}</p>
+                  @endif
 
                   <p>
                       <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">

@@ -24,20 +24,37 @@
             <!-- Story -->
             <div class="push">
                 <a class="block block-rounded block-link-pop overflow-hidden" href="be_pages_blog_story.php">
-                        <img class="rounded" src="{{$post->photo ? asset('images/posts') . $post->photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->title}}">
-                        <div class="block-content">
-                        <h4 class="mb-1">
-                            {{ $post->title }}
-                        </h4>
-                        <p class="fs-sm fw-medium mb-2">
-                            <span class="text-primary">{{  $post->postcategory->name }}</span>
-                        </p>
-                        <p class="fs-sm text-muted">
-                            {!! $post->body  !!}
-                        </p>
-                        <p class="fs-sm fw-medium mb-2">
-                            <span class="text-primary">{{  $post->user->name }}</span><span class="text-muted mx-4">{{ $post->created_at->diffForHumans() }}</span>
-                        </p>
+
+                    <div id="carouselExampleControls" class="carousel slide mb-md-5" data-bs-ride="carousel" data-innterval="100">
+                        <div class="carousel-inner">
+                            @foreach($post->photos as $photo)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                <img class="d-block w-100"  src="{{$photo ? asset('images/posts') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->title}}">
+                            </div>
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="block-content">
+                    <h4 class="mb-1">
+                        {{ $post->title }}
+                    </h4>
+                    <p class="fs-sm fw-medium mb-2">
+                        <span class="text-primary">{{  $post->postcategory->name }}</span>
+                    </p>
+                    <p class="fs-sm text-muted">
+                        {!! $post->body  !!}
+                    </p>
+                    <p class="fs-sm fw-medium mb-2">
+                        <span class="text-primary">{{  $post->user->name }}</span><span class="text-muted mx-4">{{ $post->created_at->diffForHumans() }}</span>
+                    </p>
                     </div>
                 </a>
             </div>
