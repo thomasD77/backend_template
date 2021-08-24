@@ -38,6 +38,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('products', App\Http\Controllers\AdminProductsController::class);
     Route::resource('posts', App\Http\Controllers\AdminPostController::class);
     Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
+    Route::resource('postcategories', App\Http\Controllers\AdminPostCategoryController::class);
     Route::get('archive/submissions', 'App\Http\Controllers\AdminSubmissionController@archive')->name('submission.archive');
     Route::get('archive/posts', 'App\Http\Controllers\AdminPostController@archive')->name('post.archive');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');

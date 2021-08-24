@@ -305,7 +305,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('submission.archive')}}">
+                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('postcategories.index')}}">
                                             <span class="nav-main-link-name">Category</span>
                                         </a>
                                     </li>
