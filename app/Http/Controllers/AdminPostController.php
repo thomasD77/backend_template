@@ -66,6 +66,11 @@ class AdminPostController extends Controller
 
         if($files = $request->file('photos')){
 
+            if(count($files) > 5 ){
+                Session::flash('photo_upload', 'You can only upload 5 files. Please try again.');
+                return redirect()->back();
+            }
+
             foreach ($files as $file){
 
             $name = time(). $file->getClientOriginalName();
@@ -152,6 +157,12 @@ class AdminPostController extends Controller
 
 
         if($files = $request->file('photos')){
+
+
+            if(count($files) > 5 ){
+                Session::flash('photo_upload', 'You can only upload 5 files. Please try again.');
+                return redirect()->back();
+            }
 
             $oldPhotos = Photo::where('post_id', $post->id)->get();
             foreach ($oldPhotos as $photo){

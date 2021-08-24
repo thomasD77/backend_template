@@ -35,6 +35,10 @@
 
           <div class="col-12">
 
+              @if(Session::has('photo_upload'))
+                  <p class="alert alert-danger my-2">{{session('photo_upload')}}</p>
+              @endif
+
               {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\AdminPostController@store','files'=>true]) !!}
 
               <div class="col-6 form-group mb-4">
