@@ -73,6 +73,10 @@ class AdminRolesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $role = Role::findOrFail($id);
+        $role->name = $request->name;
+        $role->update();
+        return redirect('admin/roles');
     }
 
     /**

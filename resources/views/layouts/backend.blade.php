@@ -309,7 +309,11 @@
                                             <span class="nav-main-link-name">Category</span>
                                         </a>
                                     </li>
-
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('post.gallery')}}">
+                                            <span class="nav-main-link-name">Gallery</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -572,7 +576,7 @@
         <!-- <script src="{{ asset('/js/laravel.app.js') }}"></script> -->
 
         @yield('js_after')
-        @livewire('role-emit')
+
         @livewireScripts
     </body>
 </html>
