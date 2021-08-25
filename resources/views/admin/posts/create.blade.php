@@ -128,6 +128,7 @@
 <!-- Page JS Helpers (CKEditor 5 plugins) -->
     <script>One.helpersOnLoad(['js-ckeditor5']);</script>
 
+
 <?php require '../resources/inc/_global/views/footer_end.php'; ?>
 
 

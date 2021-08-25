@@ -53,7 +53,7 @@
                         {!! $post->body  !!}
                     </p>
                     <p class="fs-sm fw-medium mb-2">
-                        <span class="text-primary">{{  $post->user->name }}</span><span class="text-muted mx-4">{{ $post->created_at->diffForHumans() }}</span>
+                        <span class="text-primary">{{  $post->user ? $post->user->name : 'No Author' }}</span><span class="text-muted mx-4">{{ $post->created_at->diffForHumans() }}</span>
                     </p>
                     </div>
                 </a>
@@ -64,7 +64,114 @@
 </div>
 <!-- END Page Content -->
 
+<!-- Page Content -->
+<div class="content">
+    <!-- Discussion -->
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">Hey you! My post with all his Comments and Replies!</h3>
+            <div class="block-options">
+                <a class="btn-block-option me-2" href="#forum-reply-form">
+                    <i class="fa fa-reply me-1"></i> Reply
+                </a>
+                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                    <i class="si si-refresh"></i>
+                </button>
+            </div>
+        </div>
+        <div class="block-content">
+            <table class="table table-borderless">
+                <tbody>
+                <tr class="bg-body-light">
+                    <td class="d-none d-sm-table-cell"></td>
+                    <td class="fs-sm text-muted">
+                        <a class="fw-semibold" href="be_pages_generic_profile.php">{{ $post->title }}/a> on <span class="text-muted">July 1, 2019 16:15</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
+                        <p>
+                            <a href="be_pages_generic_profile.php">
+                                <?php $one->get_avatar('', 'female'); ?>
+                            </a>
+                        </p>
+                        <p class="fs-sm fw-medium"><?php echo rand(100, 500); ?> Posts<br>Level <?php echo rand(1, 10); ?></p>
+                    </td>
+                    <td>
+                        <?php $one->get_text('medium', 2); ?>
+                        <hr>
+                        <p class="fs-sm text-muted">There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END Discussion -->
+
+    <!-- Comment -->
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">Please share your thoughts with us!</h3>
+            <div class="block-options">
+                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+            </div>
+        </div>
+        <div class="block-content">
+            <table class="table table-borderless">
+                <tbody>
+                <tr class="table-active" id="forum-reply-form">
+                    <td class="d-none d-sm-table-cell"></td>
+                    <td class="fs-sm text-muted">
+                        <a class="fw-semibold" href="be_pages_generic_profile.php"><?php echo Auth::user()->name ?></a> type your comment
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-none d-sm-table-cell text-center">
+                        <p>
+                            <img class="rounded-circle" height="62" width="62" src="<?php echo Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62' ?>" alt="">
+
+                        </p>
+                        <p class="fs-sm fw-medium"><?php echo (Auth::user()->posts->count() . " " . 'Posts') ?></p>
+                    </td>
+                    <td>
+                        {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\AdminCommentController@store']) !!}
+                        <div class="form-group  mb-4">
+                            {!! Form::textarea('body',null,['class'=>'form-control', 'id'=>'js-ckeditor5-classic']) !!}
+                            @error('body')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                            {{ Form::hidden('post_id', $post->id) }}
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class="form-group mr-1">
+                                {!! Form::button('<i class="fa fa-reply me-1 opacity-50"></i> Reply',['type'=>'submit','class'=>'btn btn-alt-primary']) !!}
+                            </div>
+                        {!! Form::close() !!}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END Discussion -->
+</div>
+<!-- END Page Content -->
+
+
+
+
+
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
+
+<!-- Page JS Plugins -->
+<?php $one->get_js('js/plugins/ckeditor5-classic/build/ckeditor.js'); ?>
+
+<!-- Page JS Helpers (CKEditor 5 plugins) -->
+<script>One.helpersOnLoad(['js-ckeditor5']);</script>
+
+
 <?php require '../resources/inc/_global/views/footer_end.php'; ?>
