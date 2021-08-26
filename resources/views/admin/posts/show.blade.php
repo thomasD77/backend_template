@@ -69,10 +69,10 @@
     <!-- Discussion -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Hey you! My post with all his Comments and Replies!</h3>
+            <h3 class="block-title">Post with all Comments!</h3>
             <div class="block-options">
                 <a class="btn-block-option me-2" href="#forum-reply-form">
-                    <i class="fa fa-reply me-1"></i> Reply
+                    <i class="far fa-comment"></i> Comment
                 </a>
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
@@ -83,31 +83,93 @@
         <div class="block-content">
             <table class="table table-borderless">
                 <tbody>
-                <tr class="bg-body-light">
+                @foreach($post->comments->where('reply_id', null) as $comment)
+                <tr class="bg-body-dark mt-5">
                     <td class="d-none d-sm-table-cell"></td>
                     <td class="fs-sm text-muted">
-                        <a class="fw-semibold" href="be_pages_generic_profile.php">{{ $post->title }}/a> on <span class="text-muted">July 1, 2019 16:15</span>
+                        <a class="fw-semibold" href="be_pages_generic_profile.php">{{ $comment->user->name }} on <span class="text-muted ms-4">{{ $comment->created_at->diffForHumans() }}</span></a>
                     </td>
                 </tr>
                 <tr>
                     <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
-                        <p>
-                            <a href="be_pages_generic_profile.php">
-                                <?php $one->get_avatar('', 'female'); ?>
-                            </a>
-                        </p>
-                        <p class="fs-sm fw-medium"><?php echo rand(100, 500); ?> Posts<br>Level <?php echo rand(1, 10); ?></p>
+
+                        <img class="rounded-circle" height="62" width="62" src="{{ $comment->user->avatar ? asset('/') . $comment->user->avatar->file : 'http://placehold.it/62x62'  }}" alt="">
+
+                        <p class="fs-sm fw-medium mt-3">{{ $comment->user->posts->count() . 'Posts' }}</p>
                     </td>
                     <td>
-                        <?php $one->get_text('medium', 2); ?>
+                        {!! $comment->body !!}
                         <hr>
-                        <p class="fs-sm text-muted">There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
+                        <div class="d-flex justify-content-between">
+                            <p class="fs-sm text-muted">There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
+                            <button type="button" class="btn btn-alt-primary push" data-bs-toggle="modal" data-bs-target="#modal-block-large"><i class="fa fa-reply me-1"></i>Reply</button>
+                        </div>
                     </td>
                 </tr>
+
+                <table class="table table-borderless row">
+                    <tbody class="col-lg-10 offset-lg-1">
+                    @foreach($post->comments->where('reply_id', $comment->id) as $commentReply)
+                        <tr class="bg-body-light mt-5">
+                            <td class="d-none d-sm-table-cell"></td>
+                            <td class="fs-sm text-muted">
+                                <a class="fw-semibold" href="be_pages_generic_profile.php">{{ $commentReply->user->name }} on <span class="text-muted ms-4">{{ $commentReply->created_at->diffForHumans() }}</span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
+
+                                <img class="rounded-circle" height="62" width="62" src="{{ $commentReply->user->avatar ? asset('/') . $commentReply->user->avatar->file : 'http://placehold.it/62x62'  }}" alt="">
+
+                                <p class="fs-sm fw-medium mt-3">{{ $commentReply->user->posts->count() . 'Posts' }}</p>
+                            </td>
+                            <td>
+                                {!! $commentReply->body !!}
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <p class="fs-sm text-muted">There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+
+
+                <!-- Large Block Modal -->
+                <div class="modal" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="block block-rounded block-transparent mb-0">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">Place your comment reply here...</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                            <i class="fa fa-fw fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="block-content fs-sm">
+                                    {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\AdminCommentController@storeReply']) !!}
+                                    {!! Form::textarea('body',null,['class'=>'form-control']) !!}
+                                    {{ Form::hidden('comment_id', $comment->id) }}
+                                    {{ Form::hidden('post_id', $post->id) }}
+                                    {!! Form::button('<i class="fa fa-reply me-1"></i>Reply',['type'=>'submit','class'=>'btn btn-alt-primary my-3']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Large Block Modal -->
+                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+
+
     <!-- END Discussion -->
 
     <!-- Comment -->
@@ -146,7 +208,7 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <div class="form-group mr-1">
-                                {!! Form::button('<i class="fa fa-reply me-1 opacity-50"></i> Reply',['type'=>'submit','class'=>'btn btn-alt-primary']) !!}
+                                {!! Form::button('<i class="far fa-comment me-1 opacity-50"></i> Comment',['type'=>'submit','class'=>'btn btn-alt-primary']) !!}
                             </div>
                         {!! Form::close() !!}
                     </td>
