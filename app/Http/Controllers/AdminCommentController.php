@@ -95,7 +95,7 @@ class AdminCommentController extends Controller
     public function storeReply(Request $request)
     {
         //
-        dd($request);
+
         $comment = new comment();
         $comment->user_id = Auth::user()->id;
         $comment->post_id = $request->post_id;
