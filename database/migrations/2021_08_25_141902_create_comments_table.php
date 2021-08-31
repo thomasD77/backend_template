@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('post_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->integer('reply_id')->unsigned()->index()->nullable();
+            $table->boolean('is_active')->default(0);
             $table->text('body');
             $table->timestamps();
         });

@@ -14,6 +14,7 @@ class Comment extends Model
         'user_id',
         'reply_id',
         'body',
+        'is_active'
     ];
 
     public function post()
