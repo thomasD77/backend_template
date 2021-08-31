@@ -15,6 +15,7 @@
             </div>
         </div>
         <div class="block-content">
+
             @foreach($comments->where('reply_id', null)->sortByDesc('created_at') as $comment)
                 <table class="table table-borderless">
                     <tbody>
@@ -46,9 +47,6 @@
                             </div>
                         </td>
                     </tr>
-
-
-
                     </tbody>
                 </table>
 
@@ -56,8 +54,13 @@
                     <table class="block-content ">
                         <tbody class="col-md-10 offset-md-1">
 
-                        <div class="btn-alt-secondary py-2 my-5">
+                        <div class="btn-alt-secondary py-2 my-5 d-flex justify-content-between">
                             <a class="fw-semibold fs-sm text-muted py-2 mx-5" href="be_pages_generic_profile.php"><span class="text-muted me-4 py-1">Reply from</span> {{ $commentReply->user->name }} on <span class="text-muted ms-4">{{ $commentReply->created_at->diffForHumans() }}</span></a>
+                            <span>
+                                <div class="form-check form-switch me-2">
+                                    <input wire:click="click({{$commentReply->id}})" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($commentReply->is_active == true) checked @endif>
+                                </div>
+                            </span>
                         </div>
                         <tr>
                             <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
@@ -79,11 +82,11 @@
                 @endforeach
 
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-alt-success mb-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <a class="btn btn-alt-success mb-5" data-bs-toggle="collapse" href="#collapseExample{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ $comment->id }}">
                         <i class="far fa-comment me-1 opacity-50"></i>Reply
                     </a>
                 </div>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="collapseExample{{ $comment->id }}">
                     <div class="card card-body border-0">
                         <div class="">
                             <article class="col-md-10 offset-md-1">
@@ -94,7 +97,7 @@
                                         {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\AdminCommentController@storeReply']) !!}
                                         <div class="form-group  mb-4 d-flex justify-content-end">
                                             {!! Form::textarea('body',null,['class'=>'form-control', ]) !!}
-                                            {{ Form::hidden('post_id', $post = App\Models\Post::find(1)) }}
+                                            {{ Form::hidden('post_id', $post = Route::current()->post) }}
                                             {{ Form::hidden('comment_id', $comment->id) }}
                                         </div>
                                         <div class="d-flex justify-content-end">
@@ -115,6 +118,4 @@
         </div>
     </div>
     <!-- END Comments -->
-
-
 </div>
