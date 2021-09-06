@@ -4,10 +4,15 @@ namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+
 
 class Posts extends Component
 {
+    public $postID;
+
+
     public function archivePost($id)
     {
         $post = Post::findOrFail($id);

@@ -1,3 +1,6 @@
+
+
+
 <div>
     <!-- Comments -->
     <div class="block block-rounded">
@@ -14,9 +17,17 @@
                 </button>
             </div>
         </div>
-        <div class="block-content">
 
-            @foreach($comments->where('reply_id', null)->sortByDesc('created_at') as $comment)
+        @php
+            use App\Models\Post;
+            use Illuminate\Support\Facades\Session;
+
+               $id = Session::get('post_id');
+               $post = Post::findOrFail($id);
+        @endphp
+
+        <div class="block-content">
+            @foreach($post->comments->where('reply_id', null)->sortByDesc('created_at') as $comment)
                 <table class="table table-borderless">
                     <tbody>
                     <tr class="btn-alt-primary mt-5">
