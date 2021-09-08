@@ -11,7 +11,6 @@ class RoleTable extends Component
 {
     public $role;
     public $name;
-    public $role_id;
 
 
     protected $listeners = [
@@ -32,28 +31,6 @@ class RoleTable extends Component
     protected $rules = [
         'name' => 'required',
     ];
-
-    public function submitFormRole($id)
-    {
-        $this->role_id = $id;
-        $this->emit('emitRole', $id);
-
-        $this->validate();
-
-        $data = [
-            'name' => $this->name,
-        ];
-
-
-        $role = Role::findOrFail($id);
-        $role->name = $this->name;
-
-        $role->update();
-
-        $this->reset([
-            'name',
-        ]);
-    }
 
 
     public function render()

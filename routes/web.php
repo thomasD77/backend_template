@@ -37,6 +37,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('billing', App\Http\Controllers\AdminBillingController::class);
     Route::resource('products', App\Http\Controllers\AdminProductsController::class);
     Route::resource('posts', App\Http\Controllers\AdminPostController::class);
+    Route::resource('faqs', App\Http\Controllers\AdminFaqController::class);
     Route::get('gallery', 'App\Http\Controllers\AdminPostController@gallery')->name('post.gallery');
     Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
     Route::resource('postcategories', App\Http\Controllers\AdminPostCategoryController::class);
