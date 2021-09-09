@@ -8,6 +8,7 @@ use Livewire\Component;
 class FaqsTable extends Component
 {
     public $question;
+    public $answer;
 
 
 
@@ -19,9 +20,10 @@ class FaqsTable extends Component
     {
         $this->question = $question;
 
+
     }
 
-    public function removeRole($id)
+    public function removeFaq($id)
     {
         $faq = faq::findOrFail($id);
         $faq->delete();
@@ -31,6 +33,26 @@ class FaqsTable extends Component
         'question' => 'required',
 
     ];
+
+    public function updateFaq($id)
+    {
+        $data = [
+           'question' => $this->question,
+            'answer' => $this->answer,
+        ];
+
+        dd($this->question);
+
+
+        $role = Role::findOrFail($id);
+        $role->name = $this->name;
+
+        $role->update();
+
+        $this->reset([
+            'name',
+        ]);
+    }
 
 
 

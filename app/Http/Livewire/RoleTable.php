@@ -32,6 +32,28 @@ class RoleTable extends Component
         'name' => 'required',
     ];
 
+    public function submitFormRole($id)
+    {
+        $this->role_id = $id;
+        $this->emit('emitRole', $id);
+
+        $this->validate();
+
+        $data = [
+            'name' => $this->name,
+        ];
+
+
+        $role = Role::findOrFail($id);
+        $role->name = $this->name;
+
+        $role->update();
+
+        $this->reset([
+            'name',
+        ]);
+    }
+
 
     public function render()
     {

@@ -30,7 +30,7 @@
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$faq->id}}">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button wire:click="removefaq({{$faq->id}})" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
+                                <button wire:click="removeFaq({{$faq->id}})" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </div>
@@ -58,6 +58,17 @@
                                             {!! Form::submit('Update Faq',['class'=>'btn btn-secondary']) !!}
                                         </div>
                                         {!! Form::close() !!}
+{{--                                        <form wire:submit.prevent="updateFaq({{$faq->id}})" method="POST" class="row mb-0 ">--}}
+{{--                                            <div class="input-group border border-1 px-0">--}}
+{{--                                                <input wire:model="question" type="text" class="form-control form-control-alt" id="example-group3-input3-alt2" placeholder="{{$faq->question}}" name="question">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="input-group border border-1 px-0">--}}
+{{--                                                <input wire:model="answer" type="text" class="form-control form-control-alt" id="example-group3-input3-alt2" name="answer" placeholder="{{$faq->answer}}">--}}
+{{--                                            </div>--}}
+{{--                                                <button  type="submit" class="btn btn-secondary">--}}
+{{--                                                    Submit--}}
+{{--                                                </button>--}}
+{{--                                        </form>--}}
                                     </div>
                                 </div>
                             </div>

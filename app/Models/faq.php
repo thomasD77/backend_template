@@ -13,4 +13,8 @@ class faq extends Model
       'question',
       'answer',
     ];
+
+    public static function latest()
+    {
+    }
 }
