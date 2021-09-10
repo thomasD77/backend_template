@@ -34,9 +34,6 @@ class RoleTable extends Component
 
     public function submitFormRole($id)
     {
-        $this->role_id = $id;
-        $this->emit('emitRole', $id);
-
         $this->validate();
 
         $data = [
@@ -52,6 +49,8 @@ class RoleTable extends Component
         $this->reset([
             'name',
         ]);
+
+        $this->dispatchBrowserEvent('closeModal');
     }
 
 

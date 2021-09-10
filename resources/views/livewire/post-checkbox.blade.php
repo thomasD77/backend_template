@@ -18,16 +18,9 @@
             </div>
         </div>
 
-        @php
-            use App\Models\Post;
-            use Illuminate\Support\Facades\Session;
-
-               $id = Session::get('post_id');
-               $post = Post::findOrFail($id);
-        @endphp
-
         <div class="block-content">
-            @foreach($post->comments->where('reply_id', null)->sortByDesc('created_at') as $comment)
+            @if($post)
+            @foreach($post->comments->where('reply_id', null) as $comment)
                 <table class="table table-borderless">
                     <tbody>
                     <tr class="btn-alt-primary mt-5">
@@ -61,6 +54,9 @@
                     </tbody>
                 </table>
 
+
+
+                @if($comments)
                 @foreach($comments->where('reply_id', $comment->id) as $commentReply)
                     <table class="block-content ">
                         <tbody class="col-md-10 offset-md-1">
@@ -91,6 +87,8 @@
                         </tbody>
                     </table>
                 @endforeach
+                @endif
+
 
                 <div class="d-flex justify-content-end">
                     <a class="btn btn-alt-success mb-5" data-bs-toggle="collapse" href="#collapseExample{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ $comment->id }}">
@@ -126,6 +124,7 @@
                     </div>
                 </div>
             @endforeach
+            @endif
         </div>
     </div>
     <!-- END Comments -->

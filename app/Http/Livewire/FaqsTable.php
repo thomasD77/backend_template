@@ -7,21 +7,45 @@ use Livewire\Component;
 
 class FaqsTable extends Component
 {
+
+
+    public $faqs;
+    public $test = 'bla bla';
+
     public $question;
-    public $answer;
 
 
 
-    protected $listeners = [
-        'updateFaqsTable',
-    ];
+    public function mount(){
+        $this->faqs = faq::all();
+        $this->test = 'jaja';
+    }
 
-    public function updateFaqsTable($question)
+
+    public function submit()
     {
-        $this->question = $question;
+        $this->validate();
+        $data = [
+            'question' => $this->question,
+
+        ];
+
+        \App\Models\faq::create([
+            'question' => $this->question,
+        ]);
+
+
+        $this->reset([
+            'question',
+        ]);
+
+        $this->faqs = faq::all();
 
 
     }
+
+
+
 
     public function removeFaq($id)
     {
@@ -41,7 +65,7 @@ class FaqsTable extends Component
             'answer' => $this->answer,
         ];
 
-        dd($this->question);
+
 
 
         $role = Role::findOrFail($id);
@@ -58,8 +82,8 @@ class FaqsTable extends Component
 
     public function render()
     {
-        $faqs = faq::all();
 
+        $faqs = $this->faqs;
         return view('livewire.faqs-table', compact('faqs'));
     }
 }

@@ -69,7 +69,7 @@
 <div class="content">
 
 
-        @livewire('post-checkbox')
+        @livewire('post-checkbox', ['post' => $post])
 
 
 

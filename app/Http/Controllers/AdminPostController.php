@@ -117,9 +117,6 @@ class AdminPostController extends Controller
     {
         //
         $post = Post::findOrfail($id);
-        Session::remove('post_id');
-        Session::put('post_id', $id);
-
         return view('admin.posts.show', compact('post'));
     }
 

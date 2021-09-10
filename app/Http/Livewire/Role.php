@@ -25,6 +25,7 @@ class Role extends Component
 
         $this->emit('updateRolesTable', $this->name);
 
+
         $this->reset([
             'name',
         ]);

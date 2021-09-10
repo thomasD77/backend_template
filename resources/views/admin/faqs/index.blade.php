@@ -54,11 +54,9 @@
 
         <div class="mb-4 d-flex justify-content-end">
 
-            <div class="mb-4 col-6">
-                @livewire('faqs')
-            </div>
-
         </div>
+
+
         @livewire('faqs-table')
 
 

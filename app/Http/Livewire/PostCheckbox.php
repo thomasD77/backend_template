@@ -13,6 +13,17 @@ use Livewire\Request;
 
 class PostCheckbox extends Component
 {
+    public $post;
+    public $comments;
+
+
+    public function mount($post)
+    {
+        $this->post = $post;
+
+        $comments = Comment::all();
+        $this->comments = $comments;
+    }
 
 
     public function click($id)
@@ -20,7 +31,6 @@ class PostCheckbox extends Component
         $comment = Comment::findOrFail($id);
 
         if($comment->is_active == true){
-
             $comment->is_active = false;
             $comment->update();
 
@@ -38,12 +48,14 @@ class PostCheckbox extends Component
             $comment->update();
 
         }
+
+        $this->comments = Comment::all();
     }
 
     public function render()
     {
-        $comments = Comment::all();
-        return view('livewire.post-checkbox', compact( 'comments'));
+       $comments = $this->comments;
+        return view('livewire.post-checkbox', compact('comments'));
     }
 
 }

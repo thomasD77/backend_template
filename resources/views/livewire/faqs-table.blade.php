@@ -1,3 +1,21 @@
+<div class="mb-4 col-6">
+    <div>
+        <form wire:submit.prevent="submit" method="POST" class="row mb-0 ">
+            <div class="input-group border border-1 px-0">
+                <button  class="btn btn-alt-primary">
+                    <i class="fa fa-plus"></i>
+                </button>
+                <input wire:model="question"
+                       type="text" class="form-control form-control-alt" id="example-group3-input3-alt2" name="question" placeholder="New Faq">
+                <button  type="submit" class="btn btn-secondary">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <div class="block block-rounded">
     <div class="block-header block-header-default">
         <h3 class="block-title">
@@ -17,6 +35,7 @@
             </tr>
             </thead>
             <tbody>
+            {{ $test }}
             @if($faqs)
                 @foreach($faqs as $faq)
                     <tr>

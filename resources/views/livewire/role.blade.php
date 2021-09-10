@@ -6,7 +6,7 @@
             </button>
             <input wire:model="name"
                 type="text" class="form-control form-control-alt" id="example-group3-input3-alt2" name="role" placeholder="New Role">
-            <button  type="submit" class="btn btn-secondary">
+            <button type="submit" class="btn btn-secondary">
                 Submit
             </button>
         </div>
