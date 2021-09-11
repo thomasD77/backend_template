@@ -15,8 +15,7 @@ class AdminRolesController extends Controller
     public function index()
     {
         //
-        $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.roles.index');
     }
 
     /**
@@ -38,7 +37,10 @@ class AdminRolesController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request);
+        $role = new Role();
+        $role->name = $request->name;
+        $role->save();
+        return redirect('admin/roles');
     }
 
     /**

@@ -9,17 +9,47 @@ use Livewire\Component;
 
 class RoleTable extends Component
 {
-    public $role;
-    public $name;
+
+    public $role_name;
+    public $newRole;
 
 
     protected $listeners = [
         'updateRolesTable',
+        'editRole',
+        'removeRole',
     ];
 
     public function updateRolesTable($name)
     {
-        $this->role = $name;
+      //
+        $this->newRole = $name;
+    }
+
+    protected $rules = [
+        'role_name' => 'required',
+    ];
+
+    public function submitFormRole($id)
+    {
+        $this->validate();
+
+        $data = [
+            'role_name' => $this->role_name,
+        ];
+
+
+        $role = Role::findOrFail($id);
+
+        $role->name = $this->role_name;
+
+        $role->update();
+
+        $this->reset([
+            'role_name',
+        ]);
+
+        $this->dispatchBrowserEvent('closeModal');
     }
 
     public function removeRole($id)
@@ -28,36 +58,10 @@ class RoleTable extends Component
         $role->delete();
     }
 
-    protected $rules = [
-        'name' => 'required',
-    ];
-
-    public function submitFormRole($id)
-    {
-        $this->validate();
-
-        $data = [
-            'name' => $this->name,
-        ];
-
-
-        $role = Role::findOrFail($id);
-        $role->name = $this->name;
-
-        $role->update();
-
-        $this->reset([
-            'name',
-        ]);
-
-        $this->dispatchBrowserEvent('closeModal');
-    }
-
 
     public function render()
     {
-        $roles = Role::all();
-        $role = $this->role;
-        return view('livewire.role-table', compact('role', 'roles'));
+        $roles = Role::orderBy('id', 'DESC')->get();
+        return view('livewire.role-table', compact( 'roles'));
     }
 }

@@ -2,6 +2,7 @@
 
 
 <div>
+@if($post->comments->isNotEmpty())
     <!-- Comments -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
@@ -19,7 +20,6 @@
         </div>
 
         <div class="block-content">
-            @if($post)
             @foreach($post->comments->where('reply_id', null) as $comment)
                 <table class="table table-borderless">
                     <tbody>
@@ -29,11 +29,11 @@
                             <div>
                                 <span class="text-muted me-4 fw-semibold">Message from</span> {{ $comment->user->name }} on <span class="text-muted ms-4">{{ $comment->created_at->diffForHumans() }}</span>
                             </div>
-                            <span>
-                                <div class="form-check form-switch">
-                                    <input wire:click="click({{$comment->id}})" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($comment->is_active == true) checked @endif>
-                                </div>
-                            </span>
+                            @livewire('toggle-button',
+                            [
+                                'model' => $comment,
+                                'field' => 'is_active'
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -55,21 +55,20 @@
                 </table>
 
 
-
-                @if($comments)
-                @foreach($comments->where('reply_id', $comment->id) as $commentReply)
+                @foreach($post->comments->where('reply_id', $comment->id) as $commentReply)
                     <table class="block-content ">
                         <tbody class="col-md-10 offset-md-1">
 
                         <div class="btn-alt-secondary py-2 my-5 d-flex justify-content-between">
                             <a class="fw-semibold fs-sm text-muted py-2 mx-5" href="be_pages_generic_profile.php"><span class="text-muted me-4 py-1">Reply from</span> {{ $commentReply->user->name }} on <span class="text-muted ms-4">{{ $commentReply->created_at->diffForHumans() }}</span></a>
-                            <span>
-                                <div class="form-check form-switch me-2">
-                                    <input wire:click="click({{$commentReply->id}})" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($commentReply->is_active == true) checked @endif>
-                                </div>
-                            </span>
+                            @livewire('toggle-button-reply',
+                            [
+                            'model' => $commentReply,
+                            'field' => 'is_active'
+                            ])
                         </div>
                         <tr>
+
                             <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
 
                                 <img class="rounded-circle" height="62" width="62" src="{{ $commentReply->user->avatar ? asset('/') . $commentReply->user->avatar->file : 'http://placehold.it/62x62'  }}" alt="">
@@ -87,7 +86,6 @@
                         </tbody>
                     </table>
                 @endforeach
-                @endif
 
 
                 <div class="d-flex justify-content-end">
@@ -124,8 +122,8 @@
                     </div>
                 </div>
             @endforeach
-            @endif
         </div>
     </div>
     <!-- END Comments -->
+    @endif
 </div>

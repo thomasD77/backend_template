@@ -35,7 +35,6 @@
             </tr>
             </thead>
             <tbody>
-            {{ $test }}
             @if($faqs)
                 @foreach($faqs as $faq)
                     <tr>

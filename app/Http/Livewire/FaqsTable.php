@@ -10,7 +10,7 @@ class FaqsTable extends Component
 
 
     public $faqs;
-    public $test = 'bla bla';
+
 
     public $question;
 
@@ -18,7 +18,7 @@ class FaqsTable extends Component
 
     public function mount(){
         $this->faqs = faq::all();
-        $this->test = 'jaja';
+
     }
 
 
