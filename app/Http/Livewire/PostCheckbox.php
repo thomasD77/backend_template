@@ -27,7 +27,8 @@ class PostCheckbox extends Component
 
     public function render()
     {
-        return view('livewire.post-checkbox');
+        $comments = Comment::all();
+        return view('livewire.post-checkbox', compact('comments'));
     }
 
 }

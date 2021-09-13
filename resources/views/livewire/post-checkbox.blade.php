@@ -1,7 +1,6 @@
 
-
-
 <div>
+
 @if($post->comments->isNotEmpty())
     <!-- Comments -->
     <div class="block block-rounded">
@@ -20,7 +19,10 @@
         </div>
 
         <div class="block-content">
-            @foreach($post->comments->where('reply_id', null) as $comment)
+
+        @foreach($post->comments as $comment)
+
+                @if($comment->reply_id == null)
                 <table class="table table-borderless">
                     <tbody>
                     <tr class="btn-alt-primary mt-5">
@@ -29,11 +31,13 @@
                             <div>
                                 <span class="text-muted me-4 fw-semibold">Message from</span> {{ $comment->user->name }} on <span class="text-muted ms-4">{{ $comment->created_at->diffForHumans() }}</span>
                             </div>
+
                             @livewire('toggle-button',
                             [
                                 'model' => $comment,
                                 'field' => 'is_active'
                             ])
+
                         </td>
                     </tr>
                     <tr>
@@ -41,7 +45,7 @@
 
                             <img class="rounded-circle" height="62" width="62" src="{{ $comment->user->avatar ? asset('/') . $comment->user->avatar->file : 'http://placehold.it/62x62'  }}" alt="">
 
-                            <p class="fs-sm fw-medium mt-3">{{ $comment->user->posts->count() . 'Posts' }}</p>
+                            <p class="fs-sm fw-medium mt-3 mx-1">{{ $comment->user->posts->count() . 'Posts' }}</p>
                         </td>
                         <td>
                             {!! $comment->body !!}
@@ -55,37 +59,41 @@
                 </table>
 
 
-                @foreach($post->comments->where('reply_id', $comment->id) as $commentReply)
-                    <table class="block-content ">
-                        <tbody class="col-md-10 offset-md-1">
+                    @foreach($comment->where('reply_id', $comment->id)->get() as $commentReply)
 
-                        <div class="btn-alt-secondary py-2 my-5 d-flex justify-content-between">
-                            <a class="fw-semibold fs-sm text-muted py-2 mx-5" href="be_pages_generic_profile.php"><span class="text-muted me-4 py-1">Reply from</span> {{ $commentReply->user->name }} on <span class="text-muted ms-4">{{ $commentReply->created_at->diffForHumans() }}</span></a>
-                            @livewire('toggle-button-reply',
-                            [
-                            'model' => $commentReply,
-                            'field' => 'is_active'
-                            ])
-                        </div>
-                        <tr>
+                        @if($commentReply)
+                            <table class="block-content ">
+                                <tbody class="col-md-10 offset-md-1">
 
-                            <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
-
-                                <img class="rounded-circle" height="62" width="62" src="{{ $commentReply->user->avatar ? asset('/') . $commentReply->user->avatar->file : 'http://placehold.it/62x62'  }}" alt="">
-
-                                <p class="fs-sm fw-medium mt-3">{{ $commentReply->user->posts->count() . 'Posts' }}</p>
-                            </td>
-                            <td>
-                                {!! $commentReply->body !!}
-                                <hr>
-                                <div class="d-flex justify-content-between">
-                                    <p class="fs-sm text-muted">There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
+                                <div class="btn-alt-secondary py-2 my-5 d-flex justify-content-between">
+                                    <a class="fw-semibold fs-sm text-muted py-2 mx-5" href="be_pages_generic_profile.php"><span class="text-muted me-4 py-1">Reply from</span> {{ $commentReply->user->name }} on <span class="text-muted ms-4">{{ $commentReply->created_at->diffForHumans() }}</span></a>
+                                    @livewire('toggle-button-reply',
+                                    [
+                                    'model' => $commentReply,
+                                    'field' => 'is_active'
+                                    ])
                                 </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                @endforeach
+                                <tr>
+
+                                    <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
+
+                                        <img class="rounded-circle" height="62" width="62" src="{{ $commentReply->user->avatar ? asset('/') . $commentReply->user->avatar->file : 'http://placehold.it/62x62'  }}" alt="">
+
+                                        <p class="fs-sm fw-medium mt-3 mx-1">{{ $commentReply->user->posts->count() . 'Posts' }}</p>
+                                    </td>
+                                    <td>
+                                        {!! $commentReply->body !!}
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="fs-sm text-muted">There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        @endif
+                    @endforeach
+
 
 
                 <div class="d-flex justify-content-end">
@@ -121,7 +129,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
+
         </div>
     </div>
     <!-- END Comments -->
