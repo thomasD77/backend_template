@@ -11,6 +11,7 @@ class Photo extends Model
     protected $fillable = [
         'file',
         'post_id',
+        'credential_id'
     ];
 
     public function post()

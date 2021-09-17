@@ -23,7 +23,7 @@
         <div class="row items-push justify-content-center">
             <div class="col-md-10 col-xl-5">
                 <form class="row mb-0" name="contactformulier"
-                      action="{{action('App\Http\Controllers\AdminCompanyCredentialsController@store')}}" method="post">
+                      action="{{action('App\Http\Controllers\AdminCompanyCredentialsController@store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

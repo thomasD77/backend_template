@@ -27,7 +27,6 @@ class CreateCompanyCredentialsTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('tagline')->nullable();
             $table->string('remarks')->nullable();
-            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

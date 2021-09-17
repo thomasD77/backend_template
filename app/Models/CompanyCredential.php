@@ -22,6 +22,5 @@ class CompanyCredential extends Model
           'mobile',
           'tagline',
           'remarks',
-          'logo',
     ];
 }
