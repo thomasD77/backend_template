@@ -37,29 +37,49 @@
                             </div>
                         </td>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal{{$postcategory->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div wire:ignore.self class="modal fade" id="exampleModal{{$postcategory->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
+                                    <div class="modal-header ">
+                                        <h5 class="modal-title d-flex align-items-center text-dark" id="exampleModalLabel">Edit postcategory</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body text-left">
-                                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminPostCategoryController@update',$postcategory->id],
-                                            'files'=>false])!!}
-                                        <div class="form-group mb-3">
-                                            {!! Form::label('Name', 'Name:',['class'=>'mb-3']) !!}
-                                            {!! Form::text('name',$postcategory->name,['class'=>'form-control']) !!}
-                                        </div>
-                                        <div class="form-group mr-1 mb-3">
-                                            {!! Form::submit('Update Category',['class'=>'btn btn-secondary']) !!}
-                                        </div>
-                                        {!! Form::close() !!}
-                                    </div>
+                                    <div class="modal-body">
+                                        <form wire:submit.prevent="submitFormCategory({{$postcategory->id}})">
+                                            <div class="modal-body">
+                                                <div  class="row">
+                                                    <div class="col-12">
 
+                                                        <input id="input1"
+                                                               type="text"
+                                                               class="form-control my-1 styleinput"
+                                                               aria-label="Username"
+                                                               aria-describedby="basic-addon1"
+                                                               wire:model="name"
+                                                               placeholder="{{$postcategory->name}}"
+                                                        >
+                                                        @error('name')
+                                                        <p class="text-danger"> {{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-dark">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <script>
+                            window.addEventListener('closeModal', event => {
+                                $("#exampleModal{{$postcategory->id}}").modal('hide');
+                            })
+                        </script>
+
                     </tr>
                 @endforeach
             @endif

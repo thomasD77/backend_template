@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FaqRequest;
 use App\Models\faq;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class AdminFaqController extends Controller
     public function index()
     {
         //
-
-        return view('admin.faqs.index');
+        $faqs = faq::all();
+        return view('admin.faqs.index', compact('faqs'));
     }
 
     /**
@@ -27,6 +28,7 @@ class AdminFaqController extends Controller
     public function create()
     {
         //
+        return view('admin.faqs.create');
     }
 
     /**
@@ -35,9 +37,14 @@ class AdminFaqController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FaqRequest $request)
     {
         //
+        $faq = new faq();
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        $faq->save();
+        return redirect('admin/faqs');
     }
 
     /**
@@ -60,6 +67,8 @@ class AdminFaqController extends Controller
     public function edit($id)
     {
         //
+        $faq = faq::findOrFail($id);
+        return view('admin.faqs.edit', compact('faq'));
     }
 
     /**
@@ -69,7 +78,7 @@ class AdminFaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FaqRequest $request, $id)
     {
         //
         $faq = faq::findOrFail($id);
@@ -88,5 +97,8 @@ class AdminFaqController extends Controller
     public function destroy($id)
     {
         //
+        $faq = faq::findOrFail($id);
+        $faq->delete();
+        return redirect('admin/faqs');
     }
 }

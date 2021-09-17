@@ -16,8 +16,6 @@ class RoleTable extends Component
 
     protected $listeners = [
         'updateRolesTable',
-        'editRole',
-        'removeRole',
     ];
 
     public function updateRolesTable($name)

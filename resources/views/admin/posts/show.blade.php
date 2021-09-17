@@ -72,13 +72,9 @@
     <!-- Page Content -->
     <div class="content">
 
-
-
         @livewire('post-checkbox', ['post' => $post])
 
-
-
-        <!-- Comment -->
+        <!-- Comment Section -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Please share your thoughts with us!</h3>

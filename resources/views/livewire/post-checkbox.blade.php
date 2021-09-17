@@ -20,8 +20,12 @@
 
         <div class="block-content">
 
-        @foreach($post->comments as $comment)
+        @php
+        $comments = $post->comments->sortByDesc("id");
+        @endphp
 
+        @if($comments)
+        @foreach($comments as $comment)
                 @if($comment->reply_id == null)
                 <table class="table table-borderless">
                     <tbody>
@@ -58,15 +62,48 @@
                     </tbody>
                 </table>
 
+                <div class="d-flex justify-content-end">
+                    <a class="btn btn-alt-success" data-bs-toggle="collapse" href="#collapseExample{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ $comment->id }}">
+                        <i class="far fa-comment me-1 opacity-50"></i>Reply on Message
+                    </a>
+                </div>
+                <div class="collapse" id="collapseExample{{ $comment->id }}">
+                    <div class="card card-body border-0">
+                        <div class="">
+                            <article class="col-md-10 offset-md-1">
+                                <tr>
+                                    <td class="d-none d-sm-table-cell text-center">
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\AdminCommentController@storeReply']) !!}
+                                        <div class="form-group  mb-4 d-flex justify-content-end">
+                                            {!! Form::textarea('body',null,['class'=>'form-control', ]) !!}
+                                            {{ Form::hidden('post_id', $post = Route::current()->post) }}
+                                            {{ Form::hidden('comment_id', $comment->id) }}
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <div class="mx-5">
+                                                <a class="fw-semibold text-success" href="be_pages_generic_profile.php"><?php echo Auth::user()->name ?></a> type your reply
+                                            </div>
+                                            <div class="form-group mr-1">
+                                                {!! Form::button('<i class="far fa-comment me-1 opacity-50"></i> Submit',['type'=>'submit','class'=>'btn btn-alt-primary mb-5']) !!}
+                                            </div>
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            </article>
+                        </div>
+                    </div>
+                </div>
 
-                    @foreach($comment->where('reply_id', $comment->id)->get() as $commentReply)
-
+                    <!-- Replies on the Comments Section-->
+                    @foreach($comment->where('reply_id', $comment->id)->latest()->get() as $commentReply)
                         @if($commentReply)
-                            <table class="block-content ">
-                                <tbody class="col-md-10 offset-md-1">
+                            <table class="block-content w-75 mb-4">
+                                <tbody class="col-md-10 offset-md-1 w-75">
 
-                                <div class="btn-alt-secondary py-2 my-5 d-flex justify-content-between">
-                                    <a class="fw-semibold fs-sm text-muted py-2 mx-5" href="be_pages_generic_profile.php"><span class="text-muted me-4 py-1">Reply from</span> {{ $commentReply->user->name }} on <span class="text-muted ms-4">{{ $commentReply->created_at->diffForHumans() }}</span></a>
+                                <div class="btn-alt-secondary py-2 my-5 d-flex justify-content-between ms-5 ps-5">
+                                    <a class="fw-semibold fs-sm text-muted py-2 mx-5 ps-5" href="be_pages_generic_profile.php"><span class="text-muted me-4 py-1">Reply from</span> {{ $commentReply->user->name }} on <span class="text-muted ms-4">{{ $commentReply->created_at->diffForHumans() }}</span></a>
                                     @livewire('toggle-button-reply',
                                     [
                                     'model' => $commentReply,
@@ -93,44 +130,11 @@
                             </table>
                         @endif
                     @endforeach
+                    <!-- END Replies on the Comments Section-->
 
-
-
-                <div class="d-flex justify-content-end">
-                    <a class="btn btn-alt-success mb-5" data-bs-toggle="collapse" href="#collapseExample{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ $comment->id }}">
-                        <i class="far fa-comment me-1 opacity-50"></i>Reply
-                    </a>
-                </div>
-                <div class="collapse" id="collapseExample{{ $comment->id }}">
-                    <div class="card card-body border-0">
-                        <div class="">
-                            <article class="col-md-10 offset-md-1">
-                                <tr>
-                                    <td class="d-none d-sm-table-cell text-center">
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\AdminCommentController@storeReply']) !!}
-                                        <div class="form-group  mb-4 d-flex justify-content-end">
-                                            {!! Form::textarea('body',null,['class'=>'form-control', ]) !!}
-                                            {{ Form::hidden('post_id', $post = Route::current()->post) }}
-                                            {{ Form::hidden('comment_id', $comment->id) }}
-                                        </div>
-                                        <div class="d-flex justify-content-end">
-                                            <div class="mx-5">
-                                                <a class="fw-semibold text-success" href="be_pages_generic_profile.php"><?php echo Auth::user()->name ?></a> type your comment
-                                            </div>
-                                            <div class="form-group mr-1">
-                                                {!! Form::button('<i class="far fa-comment me-1 opacity-50"></i> Submit',['type'=>'submit','class'=>'btn btn-alt-primary mb-5']) !!}
-                                            </div>
-                                        {!! Form::close() !!}
-                                    </td>
-                                </tr>
-                            </article>
-                        </div>
-                    </div>
-                </div>
                 @endif
             @endforeach
+            @endif
 
         </div>
     </div>

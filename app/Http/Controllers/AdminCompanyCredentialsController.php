@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PostCategory;
 use Illuminate\Http\Request;
 
-class AdminPostCategoryController extends Controller
+class AdminCompanyCredentialsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class AdminPostCategoryController extends Controller
     public function index()
     {
         //
-        $postcategories = PostCategory::all();
-        return view('admin.postcategories.index', compact('postcategories'));
+        return view('admin.forms.company_footer');
     }
 
     /**
@@ -38,11 +36,7 @@ class AdminPostCategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $category = new PostCategory();
-        $category->name = $request->name;
-        $category->save();
-
-        return redirect('admin/postcategories');
+        dd($request);
     }
 
     /**
@@ -77,10 +71,6 @@ class AdminPostCategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $postcategory = PostCategory::findOrFail($id);
-        $postcategory->name = $request->name;
-        $postcategory->update();
-        return redirect('admin/postcategories');
     }
 
     /**

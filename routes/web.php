@@ -38,6 +38,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('products', App\Http\Controllers\AdminProductsController::class);
     Route::resource('posts', App\Http\Controllers\AdminPostController::class);
     Route::resource('faqs', App\Http\Controllers\AdminFaqController::class);
+    Route::get('faqs/delete/{id}', 'App\Http\Controllers\AdminFaqController@destroy')->name('faqs.delete');
     Route::get('gallery', 'App\Http\Controllers\AdminPostController@gallery')->name('post.gallery');
     Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
     Route::resource('postcategories', App\Http\Controllers\AdminPostCategoryController::class);
@@ -48,4 +49,5 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('mailchimp', 'App\Http\Controllers\MailChimpController@index')->name('mailchimp.form');
     Route::get('mailchimp/contact', 'App\Http\Controllers\MailChimpController@contact')->name('mailchimp.contact');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
+    Route::resource('companyCredentials', App\Http\Controllers\AdminCompanyCredentialsController::class);
 });

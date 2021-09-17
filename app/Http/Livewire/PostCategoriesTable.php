@@ -9,7 +9,6 @@ class PostCategoriesTable extends Component
 {
     public $postcategory;
     public $name;
-    public $postcategory_id;
 
 
     protected $listeners = [
@@ -49,12 +48,14 @@ class PostCategoriesTable extends Component
         $this->reset([
             'name',
         ]);
+
+        $this->dispatchBrowserEvent('closeModal');
     }
 
 
     public function render()
     {
-        $postcategories = PostCategory::all();
+        $postcategories = PostCategory::latest()->get();
         $postcategory = $this->postcategory;
         return view('livewire.post-categories-table', compact('postcategories', 'postcategory'));
     }

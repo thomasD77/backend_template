@@ -28,12 +28,6 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                <div class="flex-grow-1">
-                    <h1 class="h3 fw-bold mb-2">
-                        DataTable Faqs
-                    </h1>
-
-                </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
@@ -51,15 +45,52 @@
 
     <!-- Page Content -->
     <div class="content">
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">
+                    Faqs
+                </h3>
+                <a href="{{route('faqs.create')}}"><button data-bs-toggle="tooltip" title="New Faq" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
+            </div>
+            <div class="block-content block-content-full overflow-scroll">
+                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                <table class="table table-striped table-hover table-vcenter  fs-sm">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="d-none d-sm-table-cell" >Question</th>
+                        <th class="d-none d-sm-table-cell" >Created</th>
+                        <th class="d-none d-sm-table-cell" >Updated</th>
+                        <th class="d-none d-sm-table-cell text-center" >Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-        <div class="mb-4 d-flex justify-content-end">
-
+                    @if($faqs)
+                        @foreach($faqs as $faq)
+                            <tr>
+                                <td class="text-center">{{$faq->id ? $faq->id : 'No ID'}}</td>
+                                <td>{{$faq->question ? $faq->question : 'No question'}}</td>
+                                <td>{{$faq->created_at->diffForHumans()}}</td>
+                                <td>{{$faq->updated_at->diffForHumans()}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <!-- Button trigger modal -->
+                                        <a href="{{route('faqs.edit', $faq->id)}}"><button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Faq">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button></a>
+                                        <a href="{{route('faqs.delete', $faq->id)}}"><button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Faq">
+                                                <i class="fa fa-fw fa-times"></i>
+                                        </button></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-
-        @livewire('faqs-table')
-
-
 
     </div>
     <!-- END Page Content -->

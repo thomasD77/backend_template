@@ -18,6 +18,7 @@ class CreateFaqsTable extends Migration
             $table->string('question');
             $table->text('answer')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

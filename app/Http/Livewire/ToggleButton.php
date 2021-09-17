@@ -27,17 +27,19 @@ class ToggleButton extends Component
 
     public function updating($field, $value)
     {
-       $this->model->setAttribute($this->field, $value)->save();
+       $this->model->setAttribute($this->field, $value)->save();                                   //We save the change of the toggle button here
 
-       if($this->model->is_active == 0 ){
-           $commentReplies = Comment::where('reply_id', $this->model->id)->get();
+       if($this->model->is_active == 0 ){                                                         // We change the status of the toggle button from the comment replies when we
+           $commentReplies = Comment::where('reply_id', $this->model->id)->get();                 // we set the comment value on non-active
 
            foreach ($commentReplies as $commentReply){
                $commentReply->is_active = 0;
                $commentReply->save();
            }
-           $this->emit('updateStatus', $this->value);
-           $this->emit('updateDisabled', true);
+           $this->emit('updateStatus', $this->value);                                       // We emit the status to 'ToggleButtonReply class'
+           $this->emit('updateDisabled', true);                                    // We emit the disabled value to 'ToggleButtonReply class'
+       }else{
+           $this->emit('updateDisabled', false);                                   // We emit the disabled value to 'ToggleButtonReply class'
        }
 
     }
