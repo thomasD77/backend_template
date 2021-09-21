@@ -109,6 +109,12 @@
                                    value="{{ $credential->linkedin }}">
                         </div>
 
+                        <div class="mb-4">
+                            <label class="form-label" for="frontend-contact-email">VAT </label>
+                            <input type="text" class="form-control" name="company_VAT"
+                                   value="{{ $credential->VAT }}">
+                        </div>
+
 
                         <div class="mb-4">
                             <label class="form-label" for="frontend-contact-msg">Remarks</label>
@@ -140,6 +146,7 @@
     </div>
 </div>
 <!-- END Page Content -->
+
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>

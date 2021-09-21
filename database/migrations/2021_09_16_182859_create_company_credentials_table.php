@@ -32,6 +32,7 @@ class CreateCompanyCredentialsTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('VAT')->nullable();
             $table->timestamps();
         });
 
@@ -52,6 +53,7 @@ class CreateCompanyCredentialsTable extends Migration
             'instagram' => "",
             'twitter' => "",
             'linkedin' => "",
+            'VAT' => "",
         ]);
     }
 

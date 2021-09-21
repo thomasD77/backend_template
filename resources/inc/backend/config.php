@@ -349,7 +349,7 @@ $one->main_nav                   = array(
             ),
             array(
                 'name'  => 'Plugins',
-                'url'   => 'index.blade.php'
+                'url'   => 'home.blade.php'
             ),
             array(
                 'name'  => 'Editors',

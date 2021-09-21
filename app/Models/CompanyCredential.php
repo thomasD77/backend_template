@@ -26,6 +26,7 @@ class CompanyCredential extends Model
           'instagram',
           'twitter',
           'linkedin',
+          'VAT',
     ];
 
     public function photo()

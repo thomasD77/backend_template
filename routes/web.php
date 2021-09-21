@@ -50,4 +50,5 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('mailchimp/contact', 'App\Http\Controllers\MailChimpController@contact')->name('mailchimp.contact');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
     Route::resource('credentials', App\Http\Controllers\AdminCompanyCredentialsController::class);
+    Route::resource('homePage', App\Http\Controllers\HomePageController::class);
 });

@@ -96,6 +96,7 @@ class AdminCompanyCredentialsController extends Controller
         $creditential->instagram = $request->company_instagram;
         $creditential->twitter = $request->company_twitter;
         $creditential->linkedin = $request->company_linkedin;
+        $creditential->VAT = $request->company_VAT;
         $creditential->update();
 
 
