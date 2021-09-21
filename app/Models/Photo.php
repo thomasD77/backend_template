@@ -19,6 +19,11 @@ class Photo extends Model
         return $this->belongsTo(Post::class);
     }
 
+    public function companycredential()
+    {
+        return $this->belongsTo(CompanyCredential::class);
+    }
+
     protected $uploads = '/';
     public function getFileAttribute($photo)
     {

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCompanyCredentialsTable extends Migration
@@ -27,8 +28,31 @@ class CreateCompanyCredentialsTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('tagline')->nullable();
             $table->string('remarks')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
             $table->timestamps();
         });
+
+        DB::table('company_credentials')->insert([
+            'firstname' => "",
+            'lastname' => "",
+            'companyName' => "",
+            'address' => "",
+            'zip' => null,
+            'city' => "",
+            'country' => "",
+            'phone' => "",
+            'email' => "",
+            'mobile' => "",
+            'tagline' => "",
+            'remarks' => "",
+            'facebook' => "",
+            'instagram' => "",
+            'twitter' => "",
+            'linkedin' => "",
+        ]);
     }
 
     /**

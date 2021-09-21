@@ -22,5 +22,14 @@ class CompanyCredential extends Model
           'mobile',
           'tagline',
           'remarks',
+          'facebook',
+          'instagram',
+          'twitter',
+          'linkedin',
     ];
+
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
+    }
 }
