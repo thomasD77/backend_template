@@ -11,7 +11,10 @@ class Photo extends Model
     protected $fillable = [
         'file',
         'post_id',
-        'credential_id'
+        'credential_id',
+        'home_page_id',
+
+
     ];
 
     public function post()
@@ -23,6 +26,12 @@ class Photo extends Model
     {
         return $this->belongsTo(CompanyCredential::class);
     }
+
+    public function homePage()
+    {
+        return $this->belongsTo(HomePage::class);
+    }
+
 
     protected $uploads = '/';
     public function getFileAttribute($photo)

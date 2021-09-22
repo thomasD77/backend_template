@@ -125,21 +125,140 @@
                     </div>
 
 
+                    <div class="mb-4">
+                        <label class="form-label">Photo 1</label>
+                        @if(isset($photos[0]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[0] ? asset('images/form_credentials') . $photos[0]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_1">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Photo 2</label>
+                        @if(isset($photos[1]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[1] ? asset('images/form_credentials') . $photos[1]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_2">
+                        </div>
+                    </div>
 
 
-{{--                <div class="mb-4">--}}
-{{--                    <label class="form-label">Company Logo</label>--}}
-{{--                    <div class="mb-4">--}}
-{{--                        @if($photo)--}}
-{{--                            <input type="hidden" name="photo" value="{{$photo->id}}">--}}
-{{--                        @endif--}}
-{{--                        <img class="rounded" height="150" width="150" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$credential->firstname}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="form-group mb-4">--}}
-{{--                        <label class="form-label" for="frontend-contact-email">New Logo? </label>--}}
-{{--                        <input type="file" class="form-control" id="frontend-contact-tagline" name="company_logo">--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                    <div class="mb-4">
+                        <label class="form-label">Photo 3</label>
+                        @if(isset($photos[2]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[2] ? asset('images/form_credentials') . $photos[2]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_3">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Photo 4</label>
+                        @if(isset($photos[3]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[3] ? asset('images/form_credentials') . $photos[3]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_4">
+                        </div>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <label class="form-label">Photo 5</label>
+                        @if(isset($photos[4]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[4] ? asset('images/form_credentials') . $photos[4]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_5">
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-4">
+                        <label class="form-label">Photo 6</label>
+                        @if(isset($photos[5]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[5] ? asset('images/form_credentials') . $photos[5]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_6">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Photo 7</label>
+                        @if(isset($photos[6]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[6] ? asset('images/form_credentials') . $photos[6]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_7">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Photo 8</label>
+                        @if(isset($photos[7]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[7] ? asset('images/form_credentials') . $photos[7]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_8">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Photo 9</label>
+                        @if(isset($photos[8]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[8] ? asset('images/form_credentials') . $photos[8]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_9">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Photo 10</label>
+                        @if(isset($photos[9]))
+                        <div class="mb-4">
+                            <img class="rounded" height="150" width="150" src="{{$photos[9] ? asset('images/form_credentials') . $photos[9]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                        </div>
+                        @endif
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="frontend-contact-email">New Photo? </label>
+                            <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_10">
+                        </div>
+                    </div>
+
 
                 <div class="mb-4">
                     <button type="submit" class="btn btn-alt-primary">

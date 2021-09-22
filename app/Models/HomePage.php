@@ -34,4 +34,10 @@ class HomePage extends Model
         'text_11',
 
     ];
+
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
+    }
+
 }

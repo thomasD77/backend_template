@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\CompanyCredential;
 use App\Models\HomePage;
+use App\Models\Photo;
 use Illuminate\Http\Request;
+use Image;
 
 class HomePageController extends Controller
 {
@@ -17,7 +19,8 @@ class HomePageController extends Controller
     {
         //
         $credential = HomePage::latest()->first();
-        return view('admin.pages.home', compact('credential'));
+        $photos = Photo::where('home_page_id', $credential->id)->get();
+        return view('admin.pages.home', compact('credential', 'photos'));
     }
 
     /**
@@ -74,6 +77,7 @@ class HomePageController extends Controller
     {
         //
         $creditential = HomePage::findOrFail($id);
+
         $creditential->input_1 = $request->input_1;
         $creditential->input_2 = $request->input_2;
         $creditential->input_3 = $request->input_3;
@@ -95,7 +99,37 @@ class HomePageController extends Controller
         $creditential->text_8 = $request->text_8;
         $creditential->text_9 = $request->text_9;
         $creditential->text_10 = $request->text_10;
+
+        $creditential->photo_1 = $request->photo_1;
+        $creditential->photo_2 = $request->photo_2;
+        $creditential->photo_3 = $request->photo_3;
+        $creditential->photo_4 = $request->photo_4;
+        $creditential->photo_5 = $request->photo_5;
+        $creditential->photo_6 = $request->photo_6;
+        $creditential->photo_7 = $request->photo_7;
+        $creditential->photo_8 = $request->photo_8;
+        $creditential->photo_9 = $request->photo_9;
+        $creditential->photo_10 = $request->photo_10;
+
         $creditential->update();
+
+        $photos = Photo::where('home_page_id', $creditential->id)->get();
+        foreach ($photos as $photo){
+            $photo->delete();
+        }
+
+        for ($i = 1; $i <= 10; $i++ ){
+            if($file = $request->file('photo_' . $i)){
+                $name = time(). $file->getClientOriginalName();
+                $file->move('images/form_credentials', $name);
+                $path =  'images/form_credentials/' . $name;
+                $image = Image::make($path);
+                $image->resize(250,250);
+                $image->save('images/form_credentials/' . $name);
+                Photo::create(['file'=>$name, 'home_page_id'=>$creditential->id]);
+            }
+        }
+
 
         return redirect('/admin');
     }
