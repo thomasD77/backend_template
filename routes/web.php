@@ -51,4 +51,5 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
     Route::resource('credentials', App\Http\Controllers\AdminCompanyCredentialsController::class);
     Route::resource('homePage', App\Http\Controllers\HomePageController::class);
+    Route::resource('disclaimer', App\Http\Controllers\DisclaimerController::class);
 });
