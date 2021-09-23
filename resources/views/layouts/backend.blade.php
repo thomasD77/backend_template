@@ -252,6 +252,13 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <ul class="nav-main-submenu">
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('privacy.index')}}">
+                                            <span class="nav-main-link-name">Privacy Policy</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
 
                             <li class="nav-main-heading text-uppercase">USER INTERFACE</li>

@@ -8,10 +8,10 @@
 <div class="bg-primary-dark">
     <div class="content content-full text-center pt-7 pb-5">
         <h1 class="h2 text-white mb-2">
-            Disclaimer Page Builder
+            Privacy Policy Page Builder
         </h1>
         <h2 class="h4 fw-normal text-white-75">
-            Here you can Build & Change the Content of your Disclaimer Page!
+            Here you can Build & Change the Content of your Privacy Policy Page!
         </h2>
     </div>
 </div>
@@ -21,7 +21,7 @@
 <div class="bg-body-extra-light">
     <div class="content">
         <div class="row items-push justify-content-center">
-                {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\DisclaimerController@update',$credential->id],'files'=>true])!!}
+                {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\PrivacyController@update',$credential->id],'files'=>true])!!}
                 <div class="row">
 
                     <div class="mb-4">

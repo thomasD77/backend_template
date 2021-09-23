@@ -52,4 +52,5 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('credentials', App\Http\Controllers\AdminCompanyCredentialsController::class);
     Route::resource('homePage', App\Http\Controllers\HomePageController::class);
     Route::resource('disclaimer', App\Http\Controllers\DisclaimerController::class);
+    Route::resource('privacy', App\Http\Controllers\PrivacyController::class);
 });
