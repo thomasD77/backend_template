@@ -137,7 +137,7 @@
                             <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_1">
                         </div>
                     </div>
-                    {{ dd('test') }}
+                   
                     <div class="mb-4">
                         <label class="form-label">Photo 2</label>
                         @if(isset($photos[1]))
