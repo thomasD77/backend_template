@@ -96,18 +96,19 @@
                             </div>
                         </div>
 
-
                         <script>
                             window.addEventListener('closeModal', event => {
                                 $("#exampleModal{{$role->id}}").modal('hide');
                             })
                         </script>
-
                     </tr>
                 @endforeach
             @endif
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+            {!! $roles->links()  !!}
+        </div>
     </div>
 </div>
 

@@ -103,24 +103,52 @@ class HomePageController extends Controller
 
         $creditential->update();
 
-//        $photos = Photo::where('home_page_id', $creditential->id)->get();
-//        foreach ($photos as $photo){
-//            $photo->delete();
-//        }
+        $photos = Photo::where('home_page_id', $creditential->id)
+            ->get();
 
-        for ($i = 1; $i <= 10; $i++ ){
-            if($file = $request->file('photo_' . $i)){
-                $name = time(). $file->getClientOriginalName();
-                $file->move('images/form_credentials', $name);
-                $path =  'images/form_credentials/' . $name;
-                $image = Image::make($path);
-                $image->resize(250,250);
-                $image->save('images/form_credentials/' . $name);
-                Photo::create(['file'=>$name, 'home_page_id'=>$creditential->id]);
-            }elseif($file = $request->file('photo_' . $i) == null){
-                Photo::create(['file'=>'http://placehold.it/62x62', 'home_page_id'=>$creditential->id]);
+        if($photos->isEmpty())                                                      //When we don't have any files we make them
+        {
+            for ($i = 1; $i <= 10; $i++ )
+            {
+                if ($file = $request->file('photo_' . $i))
+                {
+                    $name = time() . $file->getClientOriginalName();
+                    $file->move('images/form_credentials', $name);
+                    $path = 'images/form_credentials/' . $name;
+                    $image = Image::make($path);
+                    $image->resize(250, 250);
+                    $image->save('images/form_credentials/' . $name);
+                    Photo::create(['file' => $name, 'home_page_id' => $creditential->id]);
+                }
+                elseif ($file = $request->file('photo_' . $i) == null)
+                {
+                    Photo::create(['file' => 'http://placehold.it/62x62', 'home_page_id' => $creditential->id]);
+                }
             }
         }
+        else
+        {
+                for ($i = 1; $i <= 10; $i++)
+                {
+                    if ($file = $request->file('photo_' . $i))
+                    {
+                        $name = time() . $file->getClientOriginalName();
+                        $file->move('images/form_credentials', $name);
+                        $path = 'images/form_credentials/' . $name;
+                        $image = Image::make($path);
+                        $image->resize(250, 250);
+                        $image->save('images/form_credentials/' . $name);
+
+                        $photo = Photo::findOrFail($i);
+//                        $photo = (['file' => $name, 'home_page_id' => $creditential->id, 'id' => $i]);
+                        $photo->file = $name;
+                        $photo->home_page_id = $creditential->id;
+                        $photo->update();
+                    }
+                }
+
+        }
+
 
 
         return redirect('/admin');

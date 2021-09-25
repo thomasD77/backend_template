@@ -55,7 +55,7 @@ class PostCategoriesTable extends Component
 
     public function render()
     {
-        $postcategories = PostCategory::latest()->get();
+        $postcategories = PostCategory::latest()->paginate(10);
         $postcategory = $this->postcategory;
         return view('livewire.post-categories-table', compact('postcategories', 'postcategory'));
     }

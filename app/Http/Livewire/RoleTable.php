@@ -59,7 +59,7 @@ class RoleTable extends Component
 
     public function render()
     {
-        $roles = Role::orderBy('id', 'DESC')->get();
+        $roles = Role::orderBy('id', 'DESC')->paginate(5);
         return view('livewire.role-table', compact( 'roles'));
     }
 }

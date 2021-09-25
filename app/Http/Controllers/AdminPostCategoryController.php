@@ -15,7 +15,7 @@ class AdminPostCategoryController extends Controller
     public function index()
     {
         //
-        $postcategories = PostCategory::all();
+        $postcategories = PostCategory::paginate(10);
         return view('admin.postcategories.index', compact('postcategories'));
     }
 

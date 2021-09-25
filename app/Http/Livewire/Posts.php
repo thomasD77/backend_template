@@ -25,7 +25,7 @@ class Posts extends Component
         $posts = Post::with([ 'user', 'postcategory'])
             ->where('archived', 0)
             ->latest()
-            ->paginate(5);
+            ->paginate(10);
 
         $timeNow = Carbon::now()->toDateString();
         return view('livewire.posts', compact('posts', 'timeNow'));

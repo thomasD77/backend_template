@@ -129,7 +129,7 @@
                         <label class="form-label">Photo 1</label>
                         @if(isset($photos[0]))
                         <div class="mb-4">
-                            <img class="rounded" height="150" width="150" src="{{$photos[0] ? asset('images/form_credentials') . $photos[0]->file : 'http://placehold.it/62x62'}}" alt="{{$credential->id}}">
+                            <img class="rounded" height="150" width="150" src="{{$photos[0] ? asset('images/form_credentials') . $photos[0]->file   : 'http://placehold.it/62x62'}}" alt="photo">
                         </div>
                         @endif
                         <div class="form-group mb-4">
@@ -137,7 +137,7 @@
                             <input type="file" class="form-control" id="frontend-contact-tagline" name="photo_1">
                         </div>
                     </div>
-                   
+
                     <div class="mb-4">
                         <label class="form-label">Photo 2</label>
                         @if(isset($photos[1]))

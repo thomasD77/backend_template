@@ -63,7 +63,7 @@
                 </table>
 
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-alt-success" data-bs-toggle="collapse" href="#collapseExample{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ $comment->id }}">
+                    <a class="btn btn-alt-success mb-4" data-bs-toggle="collapse" href="#collapseExample{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ $comment->id }}">
                         <i class="far fa-comment me-1 opacity-50"></i>Reply on Message
                     </a>
                 </div>
@@ -135,7 +135,6 @@
                 @endif
             @endforeach
             @endif
-
         </div>
     </div>
     <!-- END Comments -->

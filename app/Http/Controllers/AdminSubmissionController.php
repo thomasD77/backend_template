@@ -18,7 +18,7 @@ class AdminSubmissionController extends Controller
         //
         $submissions = Submission::where('archived', 0)
             ->latest()
-            ->get();
+            ->paginate(10);
         return view('admin.submissions.index', compact('submissions'));
     }
 
@@ -94,7 +94,7 @@ class AdminSubmissionController extends Controller
     {
         $submissions = Submission::where('archived', 1)
             ->latest()
-            ->get();
+            ->paginate(10);
         return view('admin.submissions.archive', compact('submissions'));
     }
 

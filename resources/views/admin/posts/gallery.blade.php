@@ -64,6 +64,9 @@
         @endforeach
     </div>
     <!-- END Advanced Gallery -->
+    <div class="d-flex justify-content-center">
+        {!! $photos->links()  !!}
+    </div>
 </div>
 <!-- END Page Content -->
 

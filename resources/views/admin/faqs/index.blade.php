@@ -91,7 +91,9 @@
                 </table>
             </div>
         </div>
-
+        <div class="d-flex justify-content-center">
+            {!! $faqs->links()  !!}
+        </div>
     </div>
     <!-- END Page Content -->
 @endsection

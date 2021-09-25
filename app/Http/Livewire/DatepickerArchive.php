@@ -29,7 +29,7 @@ class DatepickerArchive extends Component
         {
             $submissions = Submission::where('archived', 1)
                 ->latest()
-                ->get();
+                ->paginate(10);
             return view('livewire.datepicker-archive', compact('submissions'));
         }
         else
@@ -45,7 +45,7 @@ class DatepickerArchive extends Component
             $submissions = Submission::where('archived', 1)
                 ->whereMonth('created_at', $month)
                 ->whereYear('created_at', $year)
-                ->get();
+                ->paginate(10);
 
 
             return view('livewire.datepicker-archive', compact('submissions'));

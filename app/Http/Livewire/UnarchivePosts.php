@@ -18,10 +18,10 @@ class UnarchivePosts extends Component
 
     public function render()
     {
-        $posts = Post::with(['photo', 'user', 'postcategory'])
+        $posts = Post::with(['user', 'postcategory'])
             ->where('archived', 1)
             ->latest()
-            ->paginate(5);
+            ->paginate(10);
 
         $timeNow = Carbon::now()->toDateString();
 

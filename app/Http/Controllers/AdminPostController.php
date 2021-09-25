@@ -216,13 +216,13 @@ class AdminPostController extends Controller
     {
         $posts = Post::where('archived', 1)
             ->latest()
-            ->get();
+            ->paginate(10);
         return view('admin.posts.archive', compact('posts'));
     }
 
     public function gallery()
     {
-        $photos = Photo::where('post_id', '!=', "")->get();
+        $photos = Photo::where('post_id', '!=', "")->paginate(60);
         return view('admin.posts.gallery', compact('photos'));
     }
 }
