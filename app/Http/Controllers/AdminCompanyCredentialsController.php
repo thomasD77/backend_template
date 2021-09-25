@@ -19,9 +19,9 @@ class AdminCompanyCredentialsController extends Controller
     {
         //
         $credential = CompanyCredential::latest()->first();
-        $photo = Photo::latest()->first();
+        $photos = Photo::all();
 
-        return view('admin.forms.company_footer', compact('credential', 'photo'));
+        return view('admin.forms.company_footer', compact('credential', 'photos'));
     }
 
     /**

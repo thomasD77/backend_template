@@ -123,10 +123,17 @@
                         <div class="mb-4">
                             <label class="form-label">Company Logo</label>
                             <div class="mb-4">
-                                @if($photo)
-                                <input type="hidden" name="photo" value="{{$photo->id}}">
-                                @endif
-                                <img class="rounded" height="150" width="150" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$credential->firstname}}">
+
+                                    @if($photos)
+                                        @php
+                                         $photo = \App\Models\Photo::where('credential_id', $credential->id)->first()
+                                         @endphp
+
+                                            @if($photo)
+                                                <input type="hidden" name="photo" value="{{$photo->id}}">
+                                            @endif
+                                    @endif
+                                    <img class="rounded" height="150" width="150" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$credential->firstname}}">
                             </div>
                             <div class="form-group mb-4">
                                 <label class="form-label" for="frontend-contact-email">New Logo? </label>
