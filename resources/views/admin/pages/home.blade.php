@@ -273,6 +273,7 @@
 <!-- END Page Content -->
 
 
+
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
 

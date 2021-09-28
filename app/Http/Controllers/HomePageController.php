@@ -154,6 +154,7 @@ class HomePageController extends Controller
         return redirect('/admin');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *

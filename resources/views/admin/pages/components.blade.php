@@ -1,6 +1,11 @@
 <?php require '../resources/inc/_global/config.php'; ?>
 <?php require '../resources/inc/backend/config.php'; ?>
 <?php require '../resources/inc/_global/views/head_start.php'; ?>
+
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/highlightjs/styles/atom-one-dark.css'); ?>
+
+
 <?php require '../resources/inc/_global/views/head_end.php'; ?>
 <?php require '../resources/inc/_global/views/page_start.php'; ?>
 
@@ -75,6 +80,64 @@
 
             </section>
 
+            <section>
+
+                <h2 class="my-5">Here you find the pop-up code</h2>
+                <style type="text/css">
+                    body,h1,h2,p{
+                        margin: 0px;
+                        padding: 0px;
+                    }
+                    .container{
+                        width:800px;
+                        margin: 0px auto;
+                        text-align: justify;
+                    }
+                    #main{
+                        width: 100%;
+                        height: 100vh;
+                        background: #0008;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        display: none;
+                    }
+                    #pop-up{
+                        text-align: center;
+                        background: #ffffff;
+                        box-sizing: border-box;
+                        padding: 20px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,-50%);
+                    }
+                </style>
+                <div id="main">
+                    <div id="pop-up">
+                        <div class="modal-header d-flex justify-content-between">
+                            <h1>This is our title.</h1>
+                            <button id='close-btn' class="btn btn-dark"><i class="fa fa-window-close"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque deleniti ratione ab quos, ad
+                                tempora, qui rem in debitis. Officiis aperiam quisquam eum explicabo recusandae officia commodi
+                                consequuntur pariatur, voluptate hic inventore quidem necessitatibus laudantium labore eaque
+                                reprehenderit animi et!</p>
+                        </div>
+                        <div class="modal-footer mb-3">
+                            Here we ask for action
+                        </div>
+                    </div>
+                </div>
+
+                <!-- jquery cdn for POPUP -->
+{{--                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
+                {{--    Javascript for POPUP--}}
+                <script src="{{ asset('js/plugins/popup/popup.js') }}"></script>
+
+            </section>
+
 
         </div>
 </div>
@@ -83,5 +146,6 @@
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
+
 <?php require '../resources/inc/_global/views/footer_end.php'; ?>
 

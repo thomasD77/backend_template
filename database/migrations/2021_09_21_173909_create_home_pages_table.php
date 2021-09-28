@@ -33,6 +33,7 @@ class CreateHomePagesTable extends Migration
         ]);
     }
 
+
     /**
      * Reverse the migrations.
      *
