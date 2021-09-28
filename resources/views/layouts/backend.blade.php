@@ -301,8 +301,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{ asset('pages/slick') }}">
-                                            <span class="nav-main-link-name">Slick Slider</span>
+                                        <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{ asset('services.index') }}">
+                                            <span class="nav-main-link-name">Services</span>
                                         </a>
                                     </li>
                                     <li class="nav-main-item">
