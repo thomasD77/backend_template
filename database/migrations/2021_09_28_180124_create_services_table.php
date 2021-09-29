@@ -17,8 +17,9 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
+            $table->text('slug')->nullable();
             $table->string('price')->nullable();
-            $table->integer('category_id')->index()->unsigned();
+            $table->integer('servicecategory_id')->index()->unsigned();
             $table->boolean('archived')->default(0);
             $table->timestamps();
         });

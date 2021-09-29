@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Service;
+use App\Models\ServiceCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminServiceController extends Controller
 {
@@ -25,7 +30,12 @@ class AdminServiceController extends Controller
     public function create()
     {
         //
-        return view('admin.services.create');
+        $servicecategories = ServiceCategory::pluck('name', 'id')
+            ->all();
+        $users = User::pluck('name', 'id')
+            ->all();
+
+        return view('admin.services.create',compact('servicecategories', 'users'));
     }
 
     /**
@@ -37,6 +47,15 @@ class AdminServiceController extends Controller
     public function store(Request $request)
     {
         //
+        $service = new Service();
+        $service->name = $request->name;
+        $service->price = $request->price;
+        $service->servicecategory_id = $request->servicecategory_id;
+        $service->description = $request->description;
+        $service['slug'] = Str::slug($request->name, '-');
+
+        $service->save();
+        return redirect('admin/services');
     }
 
     /**
