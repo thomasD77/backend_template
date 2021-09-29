@@ -35,7 +35,6 @@
 
           <div class="col-12">
 
-
               {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\AdminServiceController@store','files'=>true]) !!}
 
               <div class="col-6 form-group mb-4">

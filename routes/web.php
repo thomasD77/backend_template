@@ -27,6 +27,10 @@ Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
 
+Route::get('/cronjob', function()
+{
+    Artisan::call('schedule:run', );
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -59,8 +63,4 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('service-categories', App\Http\Controllers\AdminServiceCategory::class);
     Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');
 
-    Route::get('/cronjob', function()
-    {
-        Artisan::call('schedule:run', );
-    });
 });

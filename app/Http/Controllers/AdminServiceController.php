@@ -67,6 +67,8 @@ class AdminServiceController extends Controller
     public function show($id)
     {
         //
+        $service = Service::findOrFail($id);
+        return view('admin.services.show', compact('service'));
     }
 
     /**
@@ -78,6 +80,11 @@ class AdminServiceController extends Controller
     public function edit($id)
     {
         //
+        $service = Service::findOrFail($id);
+        $servicecategories = ServiceCategory::pluck('name','id')
+            ->all();
+
+        return view('admin.services.edit', compact('service', 'servicecategories'));
     }
 
     /**
@@ -90,6 +97,14 @@ class AdminServiceController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $service = Service::findOrFail($id);
+        $service->name = $request->name;
+        $service->price = $request->price;
+        $service->description = $request->description;
+        $service->servicecategory_id = $request->servicecategory_id;
+        $service->update();
+
+        return redirect('/admin/services');
     }
 
     /**
