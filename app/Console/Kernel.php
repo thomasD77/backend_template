@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
         //$schedule->command('backup:run')
 
         //        ->daily();
+        $schedule->command('backup:clean')->everyMinute();
+        $schedule->command('backup:run')->everyMinute();
     }
 
     /**

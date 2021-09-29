@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -57,4 +58,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('services', App\Http\Controllers\AdminServiceController::class);
     Route::resource('service-categories', App\Http\Controllers\AdminServiceCategory::class);
     Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');
+
+    Route::get('/cronjob', function()
+    {
+        Artisan::call('schedule:run', );
+    });
 });
