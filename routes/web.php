@@ -61,6 +61,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('cookie', App\Http\Controllers\CookieController::class);
     Route::resource('services', App\Http\Controllers\AdminServiceController::class);
     Route::resource('service-categories', App\Http\Controllers\AdminServiceCategory::class);
+    Route::get('layout', 'App\Http\Controllers\AdminServiceController@layout');
+    Route::get('archive/services', 'App\Http\Controllers\AdminServiceController@archive')->name('services.archive');
     Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');
 
 });

@@ -5,23 +5,21 @@ namespace App\Http\Livewire;
 use App\Models\Service;
 use Livewire\Component;
 
-class Services extends Component
+class UnarchiveServices extends Component
 {
-    public $serviceID;
 
-
-    public function archiveService($id)
+    public function unArchiveService($id)
     {
         $service = Service::findOrFail($id);
-        $service->archived = 1;
+        $service->archived = 0;
         $service->update();
     }
 
     public function render()
     {
-        $services = Service::where('archived', 0)
+        $services = Service::where('archived', 1)
             ->latest()
             ->paginate(10);
-        return view('livewire.services', compact('services'));
+        return view('livewire.unarchive-services', compact('services'));
     }
 }

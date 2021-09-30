@@ -117,4 +117,18 @@ class AdminServiceController extends Controller
     {
         //
     }
+
+    public function archive()
+    {
+        $services = Service::where('archived', 1)
+            ->latest()
+            ->paginate(10);
+        return view('admin.services.archive', compact('services'));
+    }
+
+    public function layout()
+    {
+        $services = Service::all();
+        return view('admin.services.layout', compact('services'));
+    }
 }

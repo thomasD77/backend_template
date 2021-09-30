@@ -56,12 +56,12 @@
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Archive Posts
+                    Archive Services
                 </h3>
             </div>
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('unarchive-posts')
+                @livewire('unarchive-services')
             </div>
         </div>
         <!-- END Dynamic Table Full -->
