@@ -347,19 +347,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                                    <i class="nav-main-link-icon far fa-question-circle"></i>
-                                    <span class="nav-main-link-name">Faqs</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('faqs.index')}}">
-                                            <span class="nav-main-link-name">List</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
 
                             <li class="nav-main-heading">Publish</li>
                             <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
@@ -385,6 +372,19 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                                    <i class="nav-main-link-icon far fa-question-circle"></i>
+                                    <span class="nav-main-link-name">Faqs</span>
+                                </a>
+                                <ul class="nav-main-submenu">
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('faqs.index')}}">
+                                            <span class="nav-main-link-name">List</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
                             <li class="nav-main-heading">Marketing</li>
                             <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
@@ -404,6 +404,22 @@
                                         </a>
                                     </li>
 
+                                </ul>
+                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                                    <i class="nav-main-link-icon fa fa-comment-dots"></i>
+                                    <span class="nav-main-link-name">Testimonials</span>
+                                </a>
+                                <ul class="nav-main-submenu">
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('testimonials.index')}}">
+                                            <span class="nav-main-link-name">list</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('testimonials.form')}}">
+                                            <span class="nav-main-link-name">Form</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 

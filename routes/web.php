@@ -71,4 +71,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('addresses', App\Http\Controllers\AdminAddressesController::class);
     Route::resource('loyals', App\Http\Controllers\AdminLoyalController::class);
     Route::resource('sources', App\Http\Controllers\AdminSourceController::class);
+    Route::resource('testimonials', App\Http\Controllers\TestimonialController::class);
+    Route::get('testimonial/form', 'App\Http\Controllers\TestimonialController@form')->name('testimonials.form');
 });
