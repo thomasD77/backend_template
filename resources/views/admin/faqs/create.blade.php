@@ -11,8 +11,7 @@
 
 
 <!-- Hero -->
-<div class="bg-image" style="background-image: url('http://localhost/backend_template/public/media/photos/photo10@2x.jpg');">
-    <div class="bg-primary-dark-op">
+<div class="bg-primary-dark" style="background-image: url({{asset('images/general/banner6.png')}}); background-size: cover  ; background-repeat: no-repeat ">
         <div class="content content-full text-center">
             <div class="my-3">
                 <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
@@ -25,7 +24,6 @@
                 <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Faqs
             </a>
         </div>
-    </div>
 </div>
 <!-- END Hero -->
 

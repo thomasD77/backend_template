@@ -5,7 +5,7 @@
 <?php require '../resources/inc/_global/views/page_start.php'; ?>
 
 <!-- Hero Content -->
-<div class="bg-primary-dark">
+<div class="bg-primary-dark" style="background-image: url({{asset('images/general/banner6.png')}}); background-size: cover  ; background-repeat: no-repeat ">
     <div class="content content-full text-center pt-7 pb-5">
         <h1 class="h2 text-white mb-2">
             Home Page Builder
