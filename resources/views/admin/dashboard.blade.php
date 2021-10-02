@@ -53,24 +53,34 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Block Title</h3>
+                        <h3 class="block-title">Company</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
-                        <p>
-                            ...
-                        </p>
+                        <p>{{ $company->companyName }}</p>
+                        <p>{{ $company->firstname }}</p>
+                        <p>{{ $company->lastname }}</p>
+                        <p>{{ $company->email }}</p>
+                        <p>{{ $company->mobile }}</p>
+                        <p>{{ $company->tagline }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Block Title</h3>
+                        <h3 class="block-title">Logo</h3>
                     </div>
-                    <div class="block-content fs-sm text-muted">
-                        <p>
-                            ...
-                        </p>
+                    <div class="block-content d-flex justify-content-center align-items-center">
+                        @if($photos)
+                            @php
+                                $photo = \App\Models\Photo::where('credential_id', $company->id)->first()
+                            @endphp
+
+                            @if($photo)
+                                <input type="hidden" name="photo" value="{{$photo->id}}">
+                            @endif
+                        @endif
+                        <img class="rounded" height="250" width="250" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company->firstname}}">
                     </div>
                 </div>
             </div>

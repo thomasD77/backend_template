@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyCredential;
+use App\Models\Photo;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +30,9 @@ class AdminHomeController extends Controller
     {
         $user = Auth::user()->id;
         $test = Role::where('id', $user)->first();
-        return view('admin.dashboard', compact('test'));
+        $company = CompanyCredential::latest()->first();
+        $photos = Photo::all();
+        return view('admin.dashboard', compact('test', 'company', 'photos'));
     }
+
 }
