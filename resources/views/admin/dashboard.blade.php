@@ -56,12 +56,12 @@
                         <h3 class="block-title">Company</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
-                        <p>{{ $company->companyName }}</p>
-                        <p>{{ $company->firstname }}</p>
-                        <p>{{ $company->lastname }}</p>
-                        <p>{{ $company->email }}</p>
-                        <p>{{ $company->mobile }}</p>
-                        <p>{{ $company->tagline }}</p>
+                        <p class="fw-bold">{{ $company->companyName }}</p>
+                        <p class="fw-bold">{{ $company->firstname }}</p>
+                        <p class="fw-bold">{{ $company->lastname }}</p>
+                        <p class="fw-bold">{{ $company->email }}</p>
+                        <p class="fw-bold">{{ $company->mobile }}</p>
+                        <p class="fw-bold">{{ $company->tagline }}</p>
                     </div>
                 </div>
             </div>
@@ -80,12 +80,18 @@
                                 <input type="hidden" name="photo" value="{{$photo->id}}">
                             @endif
                         @endif
-                        <img class="rounded" height="250" width="250" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company->firstname}}">
+                        <img class="rounded mt-2" height="200" width="200" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company->firstname}}">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- END Page Content -->
+
+    @include('admin.includes.dash-blocks')
+
+
+
+
 
 @endsection
