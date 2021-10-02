@@ -66,5 +66,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');
     Route::resource('promos', App\Http\Controllers\AdminPromoController::class);
     Route::get('archive/promos', 'App\Http\Controllers\AdminPromoController@archive')->name('promos.archive');
+    Route::resource('clients', App\Http\Controllers\AdminClientController::class);
+    Route::get('archive/clients', 'App\Http\Controllers\AdminClientController@archive')->name('clients.archive');
+    Route::resource('addresses', App\Http\Controllers\AdminAddressesController::class);
 
 });
