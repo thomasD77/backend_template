@@ -61,12 +61,19 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('loyal','Select Loyalty:', ['class'=>'form-label']) !!}
+                        <div class="d-flex justify-content-between align-items-center">
+                            {!! Form::label('loyal','Select Loyalty:', ['class'=>'form-label']) !!}
+                            <a data-bs-toggle="tooltip" title="New Loyalty" class="btn btn-alt-primary mb-1" href="{{route('loyals.index')}}"><i class="fa fa-plus"></i></a>
+                        </div>
+
                         {!! Form::select('loyal_id',$loyals,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('source','Select Source:', ['class'=>'form-label']) !!}
+                        <div class="d-flex justify-content-between align-items-center">
+                            {!! Form::label('source','Select Source:', ['class'=>'form-label']) !!}
+                            <a data-bs-toggle="tooltip" title="New Source" class="btn btn-alt-primary mb-1" href="{{route('sources.index')}}"><i class="fa fa-plus"></i></a>
+                        </div>
                         {!! Form::select('source_id',$sources,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
                     </div>
 

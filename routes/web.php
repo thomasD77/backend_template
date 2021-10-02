@@ -69,5 +69,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('clients', App\Http\Controllers\AdminClientController::class);
     Route::get('archive/clients', 'App\Http\Controllers\AdminClientController@archive')->name('clients.archive');
     Route::resource('addresses', App\Http\Controllers\AdminAddressesController::class);
-
+    Route::resource('loyals', App\Http\Controllers\AdminLoyalController::class);
+    Route::resource('sources', App\Http\Controllers\AdminSourceController::class);
 });
