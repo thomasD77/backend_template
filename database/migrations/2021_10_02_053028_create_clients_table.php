@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateClientsTable extends Migration
@@ -26,6 +27,17 @@ class CreateClientsTable extends Migration
             $table->boolean('archived')->default(0);
             $table->timestamps();
         });
+
+        DB::table('clients')->insert([                                         // Delete for Live website
+            'firstname' => 'Frank',
+            'lastname' => 'Welvaert',
+            'email' => 'frank.welvaert@eigenkweek.be',
+            'remarks' => 'VRT',
+            'testimonial_send' => 'OK',
+            'loyal_id' => 1,
+            'address_id' => 1,
+            'source_id' => 1,
+        ]);
     }
 
 

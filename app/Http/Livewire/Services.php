@@ -24,4 +24,6 @@ class Services extends Component
             ->paginate(10);
         return view('livewire.services', compact('services'));
     }
+
+
 }

@@ -22,4 +22,11 @@ class Service extends Model
     {
         return $this->belongsTo(ServiceCategory::class);
     }
+
+    //Veel op Veel relaties
+
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class, 'booking_service');
+    }
 }

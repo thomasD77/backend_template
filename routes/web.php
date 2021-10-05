@@ -36,41 +36,67 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
+    //Page Routes
     Route::get('/', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
-    Route::resource('users', App\Http\Controllers\AdminUsersController::class);
-    Route::resource('roles', App\Http\Controllers\AdminRolesController::class);
-    Route::resource('billing', App\Http\Controllers\AdminBillingController::class);
-    Route::resource('products', App\Http\Controllers\AdminProductsController::class);
-    Route::resource('posts', App\Http\Controllers\AdminPostController::class);
-    Route::resource('faqs', App\Http\Controllers\AdminFaqController::class);
-    Route::get('faqs/delete/{id}', 'App\Http\Controllers\AdminFaqController@destroy')->name('faqs.delete');
-    Route::get('gallery', 'App\Http\Controllers\AdminPostController@gallery')->name('post.gallery');
-    Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
-    Route::resource('postcategories', App\Http\Controllers\AdminPostCategoryController::class);
-    Route::resource('comments', App\Http\Controllers\AdminCommentController::class);
-    Route::post('comments/reply', 'App\Http\Controllers\AdminCommentController@storeReply');
-    Route::get('archive/submissions', 'App\Http\Controllers\AdminSubmissionController@archive')->name('submission.archive');
-    Route::get('archive/posts', 'App\Http\Controllers\AdminPostController@archive')->name('post.archive');
-    Route::get('mailchimp', 'App\Http\Controllers\MailChimpController@index')->name('mailchimp.form');
-    Route::get('mailchimp/contact', 'App\Http\Controllers\MailChimpController@contact')->name('mailchimp.contact');
-    Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
     Route::resource('credentials', App\Http\Controllers\AdminCompanyCredentialsController::class);
     Route::resource('homePage', App\Http\Controllers\HomePageController::class);
     Route::resource('disclaimer', App\Http\Controllers\DisclaimerController::class);
     Route::resource('privacy', App\Http\Controllers\PrivacyController::class);
     Route::resource('cookie', App\Http\Controllers\CookieController::class);
-    Route::resource('services', App\Http\Controllers\AdminServiceController::class);
-    Route::resource('service-categories', App\Http\Controllers\AdminServiceCategory::class);
-    Route::get('layout', 'App\Http\Controllers\AdminServiceController@layout');
-    Route::get('archive/services', 'App\Http\Controllers\AdminServiceController@archive')->name('services.archive');
-    Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');
+
+    //User Routes
+    Route::resource('users', App\Http\Controllers\AdminUsersController::class);
+    Route::resource('roles', App\Http\Controllers\AdminRolesController::class);
+    Route::resource('billing', App\Http\Controllers\AdminBillingController::class);
+
+    //Shop Routes
+    Route::resource('products', App\Http\Controllers\AdminProductsController::class);
     Route::resource('promos', App\Http\Controllers\AdminPromoController::class);
     Route::get('archive/promos', 'App\Http\Controllers\AdminPromoController@archive')->name('promos.archive');
+
+    //FAQ Routes
+    Route::resource('faqs', App\Http\Controllers\AdminFaqController::class);
+    Route::get('faqs/delete/{id}', 'App\Http\Controllers\AdminFaqController@destroy')->name('faqs.delete');
+
+    //Submissions Routes
+    Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
+
+    // BLOG Routes
+    Route::get('gallery', 'App\Http\Controllers\AdminPostController@gallery')->name('post.gallery');
+    Route::resource('posts', App\Http\Controllers\AdminPostController::class);
+    Route::resource('postcategories', App\Http\Controllers\AdminPostCategoryController::class);
+    Route::resource('comments', App\Http\Controllers\AdminCommentController::class);
+    Route::post('comments/reply', 'App\Http\Controllers\AdminCommentController@storeReply');
+    Route::get('archive/submissions', 'App\Http\Controllers\AdminSubmissionController@archive')->name('submission.archive');
+    Route::get('archive/posts', 'App\Http\Controllers\AdminPostController@archive')->name('post.archive');
+
+
+    //General Routes
+    Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');
+
+    //Clients Routes
     Route::resource('clients', App\Http\Controllers\AdminClientController::class);
     Route::get('archive/clients', 'App\Http\Controllers\AdminClientController@archive')->name('clients.archive');
     Route::resource('addresses', App\Http\Controllers\AdminAddressesController::class);
     Route::resource('loyals', App\Http\Controllers\AdminLoyalController::class);
     Route::resource('sources', App\Http\Controllers\AdminSourceController::class);
+
+    //Testimonial Routes
     Route::resource('testimonials', App\Http\Controllers\TestimonialController::class);
     Route::get('testimonial/form', 'App\Http\Controllers\TestimonialController@form')->name('testimonials.form');
+
+    //Booking Routes
+    Route::resource('bookings', App\Http\Controllers\AdminBookingController::class);
+    Route::resource('booking-status', App\Http\Controllers\AdminBookingStatusController::class);
+    Route::resource('booking-location', App\Http\Controllers\AdminLocationController::class);
+    Route::resource('booking-timeslot', App\Http\Controllers\AdminTimeslotController::class);
+    Route::resource('services', App\Http\Controllers\AdminServiceController::class);
+    Route::resource('service-categories', App\Http\Controllers\AdminServiceCategory::class);
+    Route::get('archive/services', 'App\Http\Controllers\AdminServiceController@archive')->name('services.archive');
+    Route::get('layout', 'App\Http\Controllers\AdminServiceController@layout');
+
+    //MailChimp Routes
+    Route::get('mailchimp', 'App\Http\Controllers\MailChimpController@index')->name('mailchimp.form');
+    Route::get('mailchimp/contact', 'App\Http\Controllers\MailChimpController@contact')->name('mailchimp.contact');
+    Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
 });
