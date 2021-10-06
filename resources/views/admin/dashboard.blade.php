@@ -56,12 +56,14 @@
                         <h3 class="block-title">Company</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
-                        <p class="fw-bold">{{ $company->companyName }}</p>
-                        <p class="fw-bold">{{ $company->firstname }}</p>
-                        <p class="fw-bold">{{ $company->lastname }}</p>
-                        <p class="fw-bold">{{ $company->email }}</p>
-                        <p class="fw-bold">{{ $company->mobile }}</p>
-                        <p class="fw-bold">{{ $company->tagline }}</p>
+                        @if(isset($company))
+                            <p class="fw-bold">{{ $company->companyName }}</p>
+                            <p class="fw-bold">{{ $company->firstname }}</p>
+                            <p class="fw-bold">{{ $company->lastname }}</p>
+                            <p class="fw-bold">{{ $company->email }}</p>
+                            <p class="fw-bold">{{ $company->mobile }}</p>
+                            <p class="fw-bold">{{ $company->tagline }}</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -71,7 +73,7 @@
                         <h3 class="block-title">Logo</h3>
                     </div>
                     <div class="block-content d-flex justify-content-center align-items-center">
-                        @if($photos)
+                        @if(isset($photos))
                             @php
                                 $photo = \App\Models\Photo::where('credential_id', $company->id)->first()
                             @endphp
@@ -79,8 +81,8 @@
                             @if($photo)
                                 <input type="hidden" name="photo" value="{{$photo->id}}">
                             @endif
+                            <img class="rounded mt-2" height="200" width="200" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company->firstname}}">
                         @endif
-                        <img class="rounded mt-2" height="200" width="200" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company->firstname}}">
                     </div>
                 </div>
             </div>

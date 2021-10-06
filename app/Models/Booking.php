@@ -14,7 +14,9 @@ class Booking extends Model
         'user_id',
         'client_id',
         'bookingStatus_id',
-        'date'
+        'date',
+        'remarks',
+        'archived'
     ];
 
     // Een op Veel relaties
@@ -33,9 +35,9 @@ class Booking extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function bookingStatus()
+    public function status()
     {
-        return $this->belongsTo(BookingStatus::class);
+        return $this->belongsTo(Status::class);
     }
 
     //Veel op Veel relaties

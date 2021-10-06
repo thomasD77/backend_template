@@ -38,6 +38,17 @@ class CreateClientsTable extends Migration
             'address_id' => 1,
             'source_id' => 1,
         ]);
+
+        DB::table('clients')->insert([                                         // Delete for Live website
+            'firstname' => 'Paula',
+            'lastname' => 'Debruyne',
+            'email' => 'paula.debruyne@gmail.com',
+            'remarks' => 'fake',
+            'testimonial_send' => 'OK',
+            'loyal_id' => 1,
+            'address_id' => 1,
+            'source_id' => 1,
+        ]);
     }
 
 

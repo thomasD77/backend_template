@@ -5,20 +5,22 @@ namespace App\Http\Livewire;
 use App\Models\Booking;
 use Livewire\Component;
 
-class Bookings extends Component
+class UnarchiveBookings extends Component
 {
-    public function archiveBooking($id)
+    public function unArchiveBooking($id)
     {
         $booking = Booking::findOrFail($id);
-        $booking->archived = 1;
+        $booking->archived = 0;
         $booking->update();
     }
 
     public function render()
     {
-        $bookings = Booking::where('archived', 0)
+        $bookings = Booking::where('archived', 1)
             ->latest()
             ->paginate(20);
-        return view('livewire.bookings', compact('bookings'));
+
+        return view('livewire.unarchive-bookings', compact('bookings'));
     }
+
 }

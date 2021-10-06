@@ -55,7 +55,6 @@
                     <div class="form-group mb-4">
                         {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
                         {!! Form::text('email',$client->email,['class'=>'form-control']) !!}
-
                     </div>
 
                     <div class="form-group mb-4">

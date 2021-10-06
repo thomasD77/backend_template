@@ -1,12 +1,13 @@
-<div>
+<div class="block-content block-content-full overflow-scroll">
+    <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
     <table class="table table-striped table-hover table-vcenter fs-sm">
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Client</th>
-            <th scope="col">Service</th>
-            <th scope="col">Date</th>
-            <th scope="col">Status</th>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Email</th>
+            <th scope="col">Registered</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -27,16 +28,11 @@
                             {{$booking->status ? $booking->status->name : 'No Status'}}
                         </span>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <div class="btn-group">
-                            <a href="{{route('bookings.edit', $booking->id)}}">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit booking">
-                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                </button>
-                            </a>
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive booking" wire:click="archiveBooking({{$booking->id}})"><i class="fa fa-archive"></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset booking" wire:click="unArchiveBooking({{$booking->id}})"><i class="si si-refresh "></i></button>
                             <a href="{{route('bookings.show', $booking->id)}}">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show booking">
+                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit booking">
                                     <i class="far fa-eye"></i>
                                 </button>
                             </a>

@@ -60,7 +60,7 @@
                         {!! Form::label('date','Select Date:',['class'=>'form-label']) !!}
                         {!! Form::date('date',null ,['class'=>'form-control']) !!}
                     </div>
-                    
+
                     <div class="form-group mb-4">
                         {!! Form::label('timeslot','Select Timeslot(s):', ['class'=>'form-label']) !!}
                         {!! Form::select('timeslots[]',$timeslots,null,['class'=>'form-control', 'placeholder'=>'select...', 'multiple'=>'multiple'])!!}
@@ -68,7 +68,12 @@
 
                     <div class="form-group mb-4">
                         {!! Form::label('bookingStatus','Select Status:', ['class'=>'form-label']) !!}
-                        {!! Form::select('bookingStatus_id',$statuses,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                        {!! Form::select('status_id',$statuses,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                    </div>
+
+                    <div class="form-group  mb-4">
+                        {!! Form::label('remarks', 'Remarks:') !!}
+                        {!! Form::textarea('remarks',null,['class'=>'form-control']) !!}
                     </div>
 
                     <div class="d-flex justify-content-between">

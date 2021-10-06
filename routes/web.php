@@ -87,7 +87,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //Booking Routes
     Route::resource('bookings', App\Http\Controllers\AdminBookingController::class);
-    Route::resource('booking-status', App\Http\Controllers\AdminBookingStatusController::class);
+    Route::get('archive/bookings', 'App\Http\Controllers\AdminBookingController@archive')->name('bookings.archive');
+    Route::resource('booking-status', App\Http\Controllers\AdminStatusController::class);
     Route::resource('booking-location', App\Http\Controllers\AdminLocationController::class);
     Route::resource('booking-timeslot', App\Http\Controllers\AdminTimeslotController::class);
     Route::resource('services', App\Http\Controllers\AdminServiceController::class);

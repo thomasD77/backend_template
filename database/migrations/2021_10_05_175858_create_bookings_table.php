@@ -18,8 +18,10 @@ class CreateBookingsTable extends Migration
             $table->integer('location_id')->index();
             $table->integer('user_id')->index();
             $table->integer('client_id')->index();
-            $table->integer('bookingStatus_id')->index();
+            $table->integer('status_id')->index();
             $table->date('date');
+            $table->text('remarks');
+            $table->boolean('archived')->default(0);
             $table->timestamps();
         });
 
@@ -33,15 +35,6 @@ class CreateBookingsTable extends Migration
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
 
-        Schema::create('booking_timeslot', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('booking_id');
-            $table->unsignedBigInteger('timeslot_id');
-            $table->timestamps();
-
-            $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
-            $table->foreign('timeslot_id')->references('id')->on('timeslots')->onDelete('cascade');
-        });
     }
 
     /**

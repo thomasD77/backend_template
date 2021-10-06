@@ -20,7 +20,6 @@ class UnarchiveClients extends Component
         $clients = client::where('archived', 1)
             ->latest()
             ->paginate(20);
-
         return view('livewire.unarchive-clients', compact('clients'));
     }
 }
