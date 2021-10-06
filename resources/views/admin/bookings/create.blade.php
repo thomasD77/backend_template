@@ -27,57 +27,48 @@
     <!-- Client Profile -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Client Profile</h3>
+            <h3 class="block-title">Booking Profile</h3>
         </div>
         <div class="block-content">
             <div class="row push">
                 <div class="col-lg-4">
                     <p class="fs-sm text-muted">
-                        Here you can create a new Happy Client.
+                        Here you can create a new Booking.
                     </p>
                 </div>
                 <div class="col-lg-8 col-xl-5">
-                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminClientController@store'],
+                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminBookingController@store'],
                         'files'=>false])
                    !!}
 
                     <div class="form-group mb-4">
-                        {!! Form::label('firstname','First Name:',['class'=>'form-label']) !!}
-                        {!! Form::text('firstname',null ,['class'=>'form-control']) !!}
+                        {!! Form::label('client','Select Client:', ['class'=>'form-label']) !!}
+                        {!! Form::select('client_id',$clients,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('lastname','Last Name:',['class'=>'form-label']) !!}
-                        {!! Form::text('lastname',null ,['class'=>'form-control']) !!}
-
+                        {!! Form::label('service','Select Service:', ['class'=>'form-label']) !!}
+                        {!! Form::select('services[]',$services,null,['class'=>'form-control', 'placeholder'=>'select...', 'multiple'=>'multiple'])!!}
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
-                        {!! Form::text('email',null,['class'=>'form-control']) !!}
-
+                        {!! Form::label('location','Select Location:', ['class'=>'form-label']) !!}
+                        {!! Form::select('location_id',$locations,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
                     </div>
 
                     <div class="form-group mb-4">
-                        <div class="d-flex justify-content-between align-items-center">
-                            {!! Form::label('loyal','Select Loyalty:', ['class'=>'form-label']) !!}
-                            <a data-bs-toggle="tooltip" title="New Loyalty" class="btn btn-alt-primary mb-1" href="{{route('loyals.index')}}"><i class="fa fa-plus"></i></a>
-                        </div>
-
-                        {!! Form::select('loyal_id',$loyals,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                        {!! Form::label('date','Select Date:',['class'=>'form-label']) !!}
+                        {!! Form::date('date',null ,['class'=>'form-control']) !!}
+                    </div>
+                    
+                    <div class="form-group mb-4">
+                        {!! Form::label('timeslot','Select Timeslot(s):', ['class'=>'form-label']) !!}
+                        {!! Form::select('timeslots[]',$timeslots,null,['class'=>'form-control', 'placeholder'=>'select...', 'multiple'=>'multiple'])!!}
                     </div>
 
                     <div class="form-group mb-4">
-                        <div class="d-flex justify-content-between align-items-center">
-                            {!! Form::label('source','Select Source:', ['class'=>'form-label']) !!}
-                            <a data-bs-toggle="tooltip" title="New Source" class="btn btn-alt-primary mb-1" href="{{route('sources.index')}}"><i class="fa fa-plus"></i></a>
-                        </div>
-                        {!! Form::select('source_id',$sources,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
-                    </div>
-
-                    <div class="form-group mb-4">
-                        {!! Form::label('remarks','Remarks:',['class'=>'form-label']) !!}
-                        {!! Form::textarea('remarks',null ,['class'=>'form-control']) !!}
+                        {!! Form::label('bookingStatus','Select Status:', ['class'=>'form-label']) !!}
+                        {!! Form::select('bookingStatus_id',$statuses,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
                     </div>
 
                     <div class="d-flex justify-content-between">

@@ -32,6 +32,16 @@ class CreateBookingsTable extends Migration
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
+
+        Schema::create('booking_timeslot', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('booking_id');
+            $table->unsignedBigInteger('timeslot_id');
+            $table->timestamps();
+
+            $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
+            $table->foreign('timeslot_id')->references('id')->on('timeslots')->onDelete('cascade');
+        });
     }
 
     /**

@@ -20,7 +20,7 @@
                             {{$service->name ? $service->name : 'No Service'}}
                         @endforeach</td>
                     <td>{{$booking->date ? $booking->date : 'No Date'}}</td>
-                    <td>{{$booking->status ? $booking->status->name : 'No Status'}}</td>
+                    <td>{{$booking->bookingStatus ? $booking->bookingStatus->name : 'No Status'}}</td>
                     <td class="text-center">
                         <div class="btn-group">
                             <a href="{{route('bookings.edit', $booking->id)}}">

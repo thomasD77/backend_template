@@ -13,4 +13,11 @@ class Timeslot extends Model
         'time_from',
         'time_to'
     ];
+
+    //Veel op Veel relaties
+
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class, 'booking_timeslot');
+    }
 }

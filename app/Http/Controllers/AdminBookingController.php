@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\BookingStatus;
+use App\Models\Client;
+use App\Models\Location;
+use App\Models\Service;
+use App\Models\Timeslot;
 use Illuminate\Http\Request;
 
 class AdminBookingController extends Controller
@@ -27,6 +32,18 @@ class AdminBookingController extends Controller
     public function create()
     {
         //
+        $clients = Client::pluck('firstname', 'lastname', 'id')
+            ->all();
+        $services = Service::pluck('name', 'id')
+            ->all();
+        $locations = Location::pluck('name', 'id')
+            ->all();
+        $timeslots = Timeslot::pluck('time_from', 'time_to', 'id')
+            ->all();
+        $statuses = BookingStatus::pluck('name', 'id')
+            ->all();
+
+        return view('admin.bookings.create', compact('clients', 'services', 'locations', 'timeslots', 'statuses'));
     }
 
     /**
