@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\newBooking;
 use App\Models\Booking;
-use App\Models\BookingStatus;
 use App\Models\Client;
 use App\Models\Location;
 use App\Models\Service;
@@ -11,6 +11,7 @@ use App\Models\Status;
 use App\Models\Timeslot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdminBookingController extends Controller
 {
@@ -71,7 +72,15 @@ class AdminBookingController extends Controller
         $booking->services()->sync($request->services, false);
         $booking->timeslots()->sync($request->timeslots, false);
 
+
+        if($request->button_submit == 'sendMail')
+        {
+            $client = Client::findOrFail($booking->client_id);
+            Mail::to($client->email)->send(new newBooking($booking));
+        }
+
         return redirect('/admin/bookings');
+
     }
 
     /**
