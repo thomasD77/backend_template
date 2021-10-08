@@ -2,7 +2,9 @@
 
 namespace App\Mail;
 
+use App\Models\CompanyCredential;
 use App\Models\Location;
+use App\Models\Status;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -14,6 +16,9 @@ class newBooking extends Mailable
     public $booking;
     public $location;
     public $services;
+    public $timeslots;
+    public $status;
+    public $company;
 
     /**
      * Create a new message instance.
@@ -28,8 +33,17 @@ class newBooking extends Mailable
         $location = Location::findOrFail($this->booking->location_id);
         $this->location = $location;
 
+        $status = Status::findOrFail($this->booking->status_id);
+        $this->status = $status;
+
         $services = $this->booking->services()->get()->pluck('name')->toArray();
         $this->services = $services;
+
+        $timeslots = $this->booking->timeslots()->get()->pluck('time_from', 'time_to')->toArray();
+        $this->timeslots = $timeslots;
+
+        $company = CompanyCredential::first();
+        $this->company = $company;
     }
 
     /**

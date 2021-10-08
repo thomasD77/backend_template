@@ -9,6 +9,7 @@ use App\Models\Location;
 use App\Models\Service;
 use App\Models\Status;
 use App\Models\Timeslot;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -75,8 +76,12 @@ class AdminBookingController extends Controller
 
         if($request->button_submit == 'sendMail')
         {
-            $client = Client::findOrFail($booking->client_id);
-            Mail::to($client->email)->send(new newBooking($booking));
+            $client_mail = Client::findOrFail($booking->client_id)->email;
+            $user_mail = User::findOrFail($booking->user_id)->email;
+            
+            $emails = [ $client_mail, $user_mail];
+
+            Mail::to($emails)->send(new newBooking($booking));
         }
 
         return redirect('/admin/bookings');
