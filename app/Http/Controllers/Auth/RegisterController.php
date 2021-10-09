@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
@@ -53,14 +55,14 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => [
-                'required',
-                Password::min(8)
-                    ->mixedCase()
-                    ->letters()
-                    ->numbers()
-                    ->symbols()
-            ],
+//            'password' => [
+//                'required',
+//                Password::min(8)
+//                    ->mixedCase()
+//                    ->letters()
+//                    ->numbers()
+//                    ->symbols()
+//            ],
 
         ]);
     }
@@ -73,10 +75,37 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        if(isset($data['client'])){                                                                                       //Is the new register from client register page?
+
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+            DB::table('user_role')->insert([                                                                      //Set Client ID in user_role migration
+                'user_id' => $user->id,
+                'role_id' => '3',
+                'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
+
+            return $user;
+        }
+        else
+        {
+            $user = User::create([                                                                                      //Default we set Employee ID
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+            DB::table('user_role')->insert([                                                                      //Set Employee ID in user_role migration
+                'user_id' => $user->id,
+                'role_id' => '4',
+                'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
+
+            return $user;
+        }
     }
 }

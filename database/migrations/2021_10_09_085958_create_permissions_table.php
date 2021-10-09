@@ -45,6 +45,16 @@ class CreatePermissionsTable extends Migration
             'role_id' => 2
         ]);
 
+        DB::table('permission_role')->insert([                                                                    // DO NOT DELETE THIS DATA FOR LIVE WEBSITE
+            'permission_id' => 3,
+            'role_id' => 3
+        ]);
+
+        DB::table('permission_role')->insert([                                                                    // DO NOT DELETE THIS DATA FOR LIVE WEBSITE
+            'permission_id' => 4,
+            'role_id' => 4
+        ]);
+
 
     }
 

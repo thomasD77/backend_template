@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
         DB::table('users')->insert([
             'name'=>'Thomas Demeulenaere',
             'username'=>'Thomas',
-            'email'=>'info@innova-webcreation.be',
+            'email'=>'info@innova-webcreations.be',
             'avatar_id'=> 1,
             'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'password'=>bcrypt('@Skatemovies777'),

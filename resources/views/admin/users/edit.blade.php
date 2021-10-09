@@ -61,11 +61,12 @@
                   @enderror
               </div>
 
+              @canany(['is_admin', 'is_superAdmin'])
               <div class="form-group mb-4">
-                  {!! Form::label('one-profile-edit-roles', 'Select Role(s):', ['class'=>'form-label']) !!}
-                  {!! Form::select('roles[]',$roles,$user->roles->pluck('id')->toArray(),['class'=>'form-control',
-                  'multiple'=>'multiple'])!!}
+                  {!! Form::label('one-profile-edit-roles', 'Select Role:', ['class'=>'form-label']) !!}
+                  {!! Form::select('roles[]',$roles,$user->roles->pluck('id')->toArray(),['class'=>'form-control',])!!}
               </div>
+              @endcan
 
               <div class="mb-4">
                   <label class="form-label">Your Avatar</label>

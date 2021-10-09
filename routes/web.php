@@ -27,10 +27,9 @@ Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
 
-Route::get('/cronjob', function()
-{
-    Artisan::call('schedule:run', );
-});
+Route::view('/register/client', 'auth.registerClient');
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

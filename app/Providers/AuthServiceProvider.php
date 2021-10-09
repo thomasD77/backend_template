@@ -32,17 +32,17 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('is_admin', function ($user){
-            $permission = 'is_superAdmin';
+            $permission = 'is_admin';
             return $user = $user->permissions()->contains($permission);
         });
 
         Gate::define('is_client', function ($user){
-            $permission = 'is_superAdmin';
+            $permission = 'is_client';
             return $user = $user->permissions()->contains($permission);
         });
 
         Gate::define('is_employee', function ($user){
-            $permission = 'is_superAdmin';
+            $permission = 'is_employee';
             return $user = $user->permissions()->contains($permission);
         });
     }
