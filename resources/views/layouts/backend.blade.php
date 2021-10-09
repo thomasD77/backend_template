@@ -521,7 +521,7 @@
                                 <div class="p-3 text-center bg-body-light border-bottom rounded-top">
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" height="62" width="62" src="{{ Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62' }}" alt="">
                                     <p class="mt-2 mb-0 fw-medium">{{ Auth::user() ? Auth::user()->name : "" }}</p>
-                                    <p class="mb-0 text-muted fs-sm fw-medium">{{Auth::user()->roles->first()->name}}</p>
+                                    <p class="mb-0 text-muted fs-sm fw-medium">{{Auth::user() && Auth::user()->roles->first() ? Auth::user()->roles->first()->name : ""}}</p>
                                 </div>
                                 <div class="p-2">
 {{--                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">--}}

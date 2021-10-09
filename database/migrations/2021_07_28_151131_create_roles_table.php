@@ -33,7 +33,12 @@ class CreateRolesTable extends Migration
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
         DB::table('roles')->insert([
-            'name' => 'customer',
+            'name' => 'client',
+            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
+
+        DB::table('roles')->insert([
+            'name' => 'employee',
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
@@ -48,9 +53,15 @@ class CreateRolesTable extends Migration
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
 
-        DB::table('user_role')->insert([
+        DB::table('user_role')->insert([                                                                          // superAdmin for Innova account
             'user_id' => '1',
             'role_id' => '1',
+            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
+
+        DB::table('user_role')->insert([                                                                          // admin for Admin default account
+            'user_id' => '2',
+            'role_id' => '2',
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 

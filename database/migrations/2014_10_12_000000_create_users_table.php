@@ -29,12 +29,23 @@ class CreateUsersTable extends Migration
         });
 
         DB::table('users')->insert([
-            'name'=>'Thomas',
-            'username'=>'ThomasD7',
-            'email'=>'thomas.demeulenaere@hotmail.com',
+            'name'=>'Thomas Demeulenaere',
+            'username'=>'Thomas',
+            'email'=>'info@innova-webcreation.be',
             'avatar_id'=> 1,
             'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'password'=>bcrypt(12345678),
+            'password'=>bcrypt('@Skatemovies777'),
+            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('users')->insert([
+            'name'=>'Admin CMS',
+            'username'=>'Admin',
+            'email'=>'admin@cms.be',
+            //'avatar_id'=> 1,
+            'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'password'=>bcrypt('12345678'),
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
         ]);
