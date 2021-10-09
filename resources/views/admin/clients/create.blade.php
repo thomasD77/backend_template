@@ -42,20 +42,18 @@
                    !!}
 
                     <div class="form-group mb-4">
-                        {!! Form::label('firstname','First Name:',['class'=>'form-label']) !!}
-                        {!! Form::text('firstname',null ,['class'=>'form-control']) !!}
+                        {!! Form::label('name','Name:',['class'=>'form-label']) !!}
+                        {!! Form::text('name',null ,['class'=>'form-control']) !!}
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('lastname','Last Name:',['class'=>'form-label']) !!}
-                        {!! Form::text('lastname',null ,['class'=>'form-control']) !!}
-
+                        {!! Form::label('username','Username:',['class'=>'form-label']) !!}
+                        {!! Form::text('username',null ,['class'=>'form-control']) !!}
                     </div>
 
                     <div class="form-group mb-4">
                         {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
                         {!! Form::text('email',null,['class'=>'form-control']) !!}
-
                     </div>
 
                     <div class="form-group mb-4">

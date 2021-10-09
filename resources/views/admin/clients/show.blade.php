@@ -39,13 +39,13 @@
                 <div class="col-lg-8 col-xl-5">
 
                     <div class="form-group mb-4">
-                        {!! Form::label('firstname','First Name:',['class'=>'form-label']) !!}
-                        {!! Form::label('firstname',$client->firstname ,['class'=>'form-control']) !!}
+                        {!! Form::label('firstname','Name:',['class'=>'form-label']) !!}
+                        {!! Form::label('firstname',$client->name ,['class'=>'form-control']) !!}
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('lastname','Last Name:',['class'=>'form-label']) !!}
-                        {!! Form::label('lastname',$client->lastname ,['class'=>'form-control']) !!}
+                        {!! Form::label('lastname','Username:',['class'=>'form-label']) !!}
+                        {!! Form::label('lastname',$client->username ,['class'=>'form-control']) !!}
                     </div>
 
                     <div class="form-group mb-4">
@@ -78,7 +78,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title">Address Information</h3>
         </div>
-        @if($client->address)
+        @if($client->billing)
             <div class="block-content">
                 <div class="row push">
                     <div class="col-lg-4">
@@ -90,32 +90,32 @@
 
                         <div class="form-group mb-4">
                             {!! Form::label('company','Company (Optional):',['class'=>'form-label']) !!}
-                            {!! Form::label('company',$client->address->company,['class'=>'form-control']) !!}
+                            {!! Form::label('company',$client->billing->company,['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group mb-4">
                             {!! Form::label('streetAddress1','Street Address 1:',['class'=>'form-label']) !!}
-                            {!! Form::label('streetAddress1',$client->address->streetAddress1,['class'=>'form-control']) !!}
+                            {!! Form::label('streetAddress1',$client->billing->streetAddress1,['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group mb-4">
                             {!! Form::label('streetAddress2','Street Address 2 (Optional):',['class'=>'form-label']) !!}
-                            {!! Form::label('streetAddress2',$client->address->streetAddress2,['class'=>'form-control']) !!}
+                            {!! Form::label('streetAddress2',$client->billing->streetAddress2,['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group mb-4">
                             {!! Form::label('city','City:',['class'=>'form-label']) !!}
-                            {!! Form::label('city',$client->address->city,['class'=>'form-control']) !!}
+                            {!! Form::label('city',$client->billing->city,['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group mb-4">
                             {!! Form::label('postalCode','Postal Code:',['class'=>'form-label']) !!}
-                            {!! Form::label('postalCode',$client->address->postalCode,['class'=>'form-control']) !!}
+                            {!! Form::label('postalCode',$client->billing->postalCode,['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group mb-4">
                             {!! Form::label('VAT','VAT Number:',['class'=>'form-label']) !!}
-                            {!! Form::label('VAT',$client->address->VAT,['class'=>'form-control']) !!}
+                            {!! Form::label('VAT',$client->billing->VAT,['class'=>'form-control']) !!}
                         </div>
                     </div>
                 </div>

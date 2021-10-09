@@ -21,7 +21,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'billing_id',
-        'avatar_id'
+        'avatar_id',
+        'remarks',
+        'testimonial_send',
+        'loyal_id',
+        'source_id',
+        'archived',
     ];
 
     /**
@@ -66,5 +71,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function permissions()
     {
         return $this->roles->map->permissions->flatten()->pluck('name')->unique();
+    }
+
+    public function loyal()
+    {
+        return $this->belongsTo(Loyal::class);
+    }
+
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
     }
 }

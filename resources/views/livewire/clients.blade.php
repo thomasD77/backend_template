@@ -3,8 +3,8 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">firstname</th>
-            <th scope="col">lastname</th>
+            <th scope="col">name</th>
+            <th scope="col">username</th>
             <th scope="col">email</th>
             <th scope="col">Registered</th>
             <th scope="col">Actions</th>
@@ -15,11 +15,11 @@
             @foreach($clients as $client)
                 <tr>
                     <td>{{$client->id ? $client->id : 'No ID'}}</td>
-                    <td>{{$client->firstname ? $client->firstname : 'No firstname'}}</td>
-                    <td>{{$client->lastname ? $client->lastname : 'No lastname'}}</td>
+                    <td>{{$client->name ? $client->name : 'No name'}}</td>
+                    <td>{{$client->username ? $client->username : 'No Username'}}</td>
                     <td>{{$client->email ? $client->email : 'No email'}}</td>
                     <td>{{$client->created_at ? $client->created_at->diffForHumans() : 'Not Verified'}}</td>
-                    <td class="text-center">
+                    <td>
                         <div class="btn-group">
                             <a href="{{route('clients.edit', $client->id)}}">
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit client">

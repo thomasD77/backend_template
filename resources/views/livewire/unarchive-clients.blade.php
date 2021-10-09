@@ -16,8 +16,8 @@
             @foreach($clients as $client)
                 <tr>
                     <td>{{$client->id ? $client->id : 'No ID'}}</td>
-                    <td>{{$client->firstname ? $client->firstname : 'No firstname'}}</td>
-                    <td>{{$client->lastname ? $client->lastname : 'No lastname'}}</td>
+                    <td>{{$client->name ? $client->name : 'No Name'}}</td>
+                    <td>{{$client->username ? $client->username : 'No Username'}}</td>
                     <td>{{$client->email ? $client->email : 'No email'}}</td>
                     <td>{{$client->created_at ? $client->created_at->diffForHumans() : 'Not Verified'}}</td>
                     <td class="text-center">

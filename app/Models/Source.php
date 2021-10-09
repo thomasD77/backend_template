@@ -13,8 +13,8 @@ class Source extends Model
         'name',
     ];
 
-    public function clients()
+    public function users()
     {
-        return $this->hasMany(Client::class);
+        return $this->hasMany(User::class);
     }
 }

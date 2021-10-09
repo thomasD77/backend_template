@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BillingRequest;
 use App\Models\Billing;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,7 +42,14 @@ class AdminBillingController extends Controller
         //
         $billing = new Billing();
 
-        $billing->user_id = Auth::user()->id;
+        if(isset($request->client_id))
+        {
+            $billing->user_id = $request->client_id;
+        }else
+        {
+            $billing->user_id = Auth::user()->id;
+        }
+
         $billing->company = $request->company;
         $billing->firstname = $request->firstname;
         $billing->lastname = $request->lastname;
@@ -53,9 +61,20 @@ class AdminBillingController extends Controller
 
         $billing->save();
 
-        $user = Auth::user();
-        $user->billing_id = $billing->id;
-        $user->save();
+        if(isset($request->client_id))
+        {
+            $user = User::findOrFail($request->client_id);
+            $user->billing_id = $billing->id;
+            $user->save();
+        }else
+        {
+            $user = Auth::user();
+            $user->billing_id = $billing->id;
+            $user->save();
+        }
+
+
+
 
         return view('admin.dashboard');
     }
@@ -94,7 +113,6 @@ class AdminBillingController extends Controller
         //
         $billing = Billing::findOrFail($id);
 
-        $billing->user_id = Auth::user()->id;
         $billing->company = $request->company;
         $billing->firstname = $request->firstname;
         $billing->lastname = $request->lastname;

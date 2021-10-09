@@ -24,6 +24,12 @@ class CreateUsersTable extends Migration
             $table->integer('billing_id')->index()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->text('remarks')->nullable();
+            $table->string('testimonial_send')->nullable();
+            $table->integer('loyal_id')->index()->nullable();
+            $table->integer('address_id')->index()->nullable();
+            $table->string('source_id')->index()->nullable();
+            $table->boolean('archived')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
