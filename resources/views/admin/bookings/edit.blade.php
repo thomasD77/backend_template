@@ -78,10 +78,40 @@
                         {!! Form::textarea('remarks',$booking->remarks,['class'=>'form-control']) !!}
                     </div>
 
-                    <div class="d-flex justify-content-between">
-                        <div class="form-group mr-1">
-                            <button type="submit" class="btn btn-alt-primary">Update</button>
+                    <button type="button" class="btn btn-alt-primary push" data-bs-toggle="modal" data-bs-target="#modal-block-vcenter">Update</button>
+                    <!-- Vertically Centered Block Modal -->
+                    <div class="modal" id="modal-block-vcenter" tabindex="-1" role="dialog" aria-labelledby="modal-block-vcenter" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="block block-rounded block-transparent mb-0">
+                                    <div class="block-header block-header-default">
+                                        <h3 class="block-title">Submit Booking</h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content fs-sm">
+                                        <p>Hello,</p>
+                                        <p>You are about to Submit your booking.</p>
+                                        <p>First, we have an important question for you.</p>
+                                        <p>Would you like to let your Client know that you just updated this booking?</p>
+                                        <p>Then press this button</p>
+                                        <div class="form-group mr-1 mb-3">
+                                            <button name="button_submit" value="sendMail" type="submit" class="btn btn-alt-primary">Update & Send Email</button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full text-end bg-body">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" name="button_submit" value="noMail" class="btn btn-alt-primary">Submit</button>
+                                        <p class="text-muted"><small>this submit will only update date, NO e-mail will be send*</small></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <!-- END Vertically Centered Block Modal -->
                         {!! Form::close() !!}
                     </div>
                 </div>

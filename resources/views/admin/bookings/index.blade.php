@@ -58,7 +58,7 @@
                 <h3 class="block-title">
                     Bookings
                 </h3>
-                <a href="{{route('bookings.create')}}"><button data-bs-toggle="tooltip" title="New Service" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
+                <a href="{{route('bookings.create')}}"><button data-bs-toggle="tooltip" title="New Booking" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
                 <a href="{{route('bookings.archive')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>

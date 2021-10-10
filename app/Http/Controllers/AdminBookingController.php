@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\newBooking;
+use App\Mail\updateBooking;
 use App\Models\Booking;
 use App\Models\Client;
 use App\Models\Location;
@@ -78,7 +79,7 @@ class AdminBookingController extends Controller
         {
             $client_mail = Client::findOrFail($booking->client_id)->email;
             $user_mail = User::findOrFail($booking->user_id)->email;
-            
+
             $emails = [ $client_mail, $user_mail];
 
             Mail::to($emails)->send(new newBooking($booking));
@@ -150,6 +151,16 @@ class AdminBookingController extends Controller
         /**wegschrijven van de tussentabel**/
         $booking->services()->sync($request->services, true);
         $booking->timeslots()->sync($request->timeslots, true);
+
+        if($request->button_submit == 'sendMail')
+        {
+            $client_mail = Client::findOrFail($booking->client_id)->email;
+            $user_mail = User::findOrFail($booking->user_id)->email;
+
+            $emails = [ $client_mail, $user_mail];
+
+            Mail::to($emails)->send(new updateBooking($booking));
+        }
 
         return redirect('/admin/bookings');
     }
