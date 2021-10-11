@@ -21,7 +21,7 @@
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
-    @livewireStyles
+
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        DataTable Bookings
+                        Agenda
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -51,36 +51,11 @@
 
     <!-- Page Content -->
     <div class="content container-fluid">
-
-        <!-- Dynamic Table Full -->
-        <div class="block block-rounded row">
-            <div class="block-header block-header-default">
-                <h3 class="block-title">
-                    Bookings
-                </h3>
-                @php
-                    use Illuminate\Support\Carbon;$now = Carbon::now();
-                    $dayOfTheWeek = $now->dayOfWeek;
-                    $weekStartDate = $now->startOfMonth()->format('Y-m-d H:i');
-                    $weekEndDate = $now->endOfMonth()->format('Y-m-d H:i');
-
-                @endphp
-
-                <a href="{{route('bookings.create')}}"><button data-bs-toggle="tooltip" title="New Booking" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
-                <a href="{{route('bookings.archive')}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
-                    </button>
-                </a>
-            </div>
-            <div class="block-content block-content-full overflow-scroll">
-                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('bookings')
-            </div>
-        </div>
-        <!-- END Dynamic Table Full -->
-
-        @livewireScripts
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23e3e7f5&ctz=Europe%2FBrussels&showNav=1&showPrint=0&showTabs=1&showCalendars=0&showTitle=0&showDate=1&showTz=0&src=dGhvbWFzLmRlbWV1bGVuYWVyZUBob3RtYWlsLmNvbQ&color=%23039BE5"
+                style="border-width:0"
+                class="w-100"
+                height="800" frameborder="0" scrolling="no">
+        </iframe>
     </div>
     <!-- END Page Content -->
 @endsection

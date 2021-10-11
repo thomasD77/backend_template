@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CalenderController;
+use App\Http\Controllers\FullCalendarController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -94,6 +96,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('service-categories', App\Http\Controllers\AdminServiceCategory::class);
     Route::get('archive/services', 'App\Http\Controllers\AdminServiceController@archive')->name('services.archive');
     Route::get('layout', 'App\Http\Controllers\AdminServiceController@layout');
+    Route::view('/agenda', 'admin.bookings.agenda')->name('bookings.agenda');
 
     //MailChimp Routes
     Route::get('mailchimp', 'App\Http\Controllers\MailChimpController@index')->name('mailchimp.form');
@@ -104,6 +107,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('/mail/test', function () {
         return view('emails.newBooking');
     });
+
+    //Calender
+    Route::get('event', [FullCalendarController::class, 'index']);
+    Route::post('eventAjax', [FullCalendarController::class, 'ajax']);
 
 
 
