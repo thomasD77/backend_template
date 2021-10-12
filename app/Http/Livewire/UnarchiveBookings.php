@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Booking;
 use Livewire\Component;
+use Spatie\GoogleCalendar\Event;
 
 class UnarchiveBookings extends Component
 {

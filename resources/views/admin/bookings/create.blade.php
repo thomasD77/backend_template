@@ -2,9 +2,6 @@
 <?php require '../resources/inc/backend/config.php'; ?>
 <?php require '../resources/inc/_global/views/head_start.php'; ?>
 
-<!-- Page JS Plugins CSS -->
-<?php $one->get_css('js/plugins/sweetalert2/sweetalert2.min.css'); ?>
-
 <?php require '../resources/inc/_global/views/head_end.php'; ?>
 <?php require '../resources/inc/_global/views/page_start.php'; ?>
 
@@ -61,18 +58,25 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('date','Select Date:',['class'=>'form-label']) !!}
-                        {!! Form::date('date',null ,['class'=>'form-control']) !!}
+                        {!! Form::label('date','Select Date:', ['class'=>'form-label']) !!}
+                        <input name="date" class="form-control" type="date">
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('timeslot','Select Timeslot(s):', ['class'=>'form-label']) !!}
-                        {!! Form::select('timeslots[]',$timeslots,null,['class'=>'form-control', 'placeholder'=>'select...', 'multiple'=>'multiple'])!!}
+                        {!! Form::label('bookingStatus','Select Timeslot:', ['class'=>'form-label']) !!}
+                        <div>
+                            {!! Form::label('bookingStatus','Start time:', ['class'=>'form-label']) !!}
+                            <input name="startTime" class="form-control" type="time">
+                        </div>
+                        <div>
+                            {!! Form::label('bookingStatus','End time:', ['class'=>'form-label']) !!}
+                            <input name="endTime" class="form-control" type="time">
+                        </div>
                     </div>
 
                     <div class="form-group mb-4">
                         {!! Form::label('bookingStatus','Select Status:', ['class'=>'form-label']) !!}
-                        {!! Form::select('status_id',$statuses,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                        {!! Form::select('status_id',$statuses,null,['class'=>'form-control'])!!}
                     </div>
 
                     <div class="form-group  mb-4">
@@ -127,12 +131,5 @@
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
-
-<!-- Page JS Plugins -->
-<?php $one->get_js('js/plugins/es6-promise/es6-promise.auto.min.js'); ?>
-<?php $one->get_js('js/plugins/sweetalert2/sweetalert2.min.js'); ?>
-
-<!-- Page JS Code -->
-<?php $one->get_js('js/pages/be_comp_dialogs.min.js'); ?>
 
 <?php require '../resources/inc/_global/views/footer_end.php'; ?>

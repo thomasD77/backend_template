@@ -11,9 +11,11 @@ use App\Models\Service;
 use App\Models\Status;
 use App\Models\Timeslot;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Spatie\GoogleCalendar\Event;
 
 class AdminBookingController extends Controller
 {
@@ -37,18 +39,21 @@ class AdminBookingController extends Controller
     public function create()
     {
         //
-        $clients = Client::pluck( 'lastname','id')->all();
+        $role = ['client'];
+        $clients = User::whereHas('roles', function($q) use($role) {
+            $q->whereIn('name', $role);})
+            ->where('archived', 0)
+            ->pluck('name', 'id')
+            ->all();
 
         $services = Service::pluck('name', 'id')
             ->all();
         $locations = Location::pluck('name', 'id')
             ->all();
-        $timeslots = Timeslot::pluck('time_from', 'id')
-            ->all();
         $statuses = Status::pluck('name', 'id')
             ->all();
 
-        return view('admin.bookings.create', compact('clients', 'services', 'locations', 'timeslots', 'statuses'));
+        return view('admin.bookings.create', compact('clients', 'services', 'locations', 'statuses'));
     }
 
     /**
@@ -66,24 +71,44 @@ class AdminBookingController extends Controller
         $booking->user_id = Auth::user()->id;
         $booking->status_id = $request->status_id;
         $booking->date = $request->date;
+        $booking->startTime = $request->startTime;
+        $booking->endTime = $request->endTime;
         $booking->remarks = $request->remarks;
-
         $booking->save();
 
-        /**wegschrijven van de tussentabel**/
+        $client = User::where('id', $booking->client_id)->first();
+        $booking->google_calendar_name = 'Booking' . "-" . $client->name . "-" . $booking->location->name . "-" . $booking->status->name;
+        $booking->update();
+
+
+        //wegschrijven van de tussentabel
         $booking->services()->sync($request->services, false);
-        $booking->timeslots()->sync($request->timeslots, false);
 
 
+        //Need to send mail
         if($request->button_submit == 'sendMail')
         {
-            $client_mail = Client::findOrFail($booking->client_id)->email;
+            $client_mail = $client->email;
             $user_mail = User::findOrFail($booking->user_id)->email;
 
             $emails = [ $client_mail, $user_mail];
 
             Mail::to($emails)->send(new newBooking($booking));
         }
+
+        //Google Calendar Booking
+        $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
+        $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
+
+        $event = Event::create([
+            'name' => $booking->google_calendar_name,
+            'startDateTime' => $startTime,
+            'endDateTime' => $endTime,
+        ]);
+
+        $booking->event_id = $event->id;
+        $booking->update();
+
 
         return redirect('/admin/bookings');
 
@@ -114,18 +139,21 @@ class AdminBookingController extends Controller
         //
         $booking = Booking::findOrFail($id);
 
-        $clients = Client::pluck( 'lastname','id')->all();
+        $role = ['client'];
+        $clients = User::whereHas('roles', function($q) use($role) {
+            $q->whereIn('name', $role);})
+            ->where('archived', 0)
+            ->pluck('name', 'id')
+            ->all();
 
         $services = Service::pluck('name', 'id')
             ->all();
         $locations = Location::pluck('name', 'id')
             ->all();
-        $timeslots = Timeslot::pluck('time_from', 'id')
-            ->all();
         $statuses = Status::pluck('name', 'id')
             ->all();
 
-        return view('admin.bookings.edit', compact('clients', 'services', 'locations', 'timeslots', 'statuses', 'booking'));
+        return view('admin.bookings.edit', compact('clients', 'services', 'locations','statuses', 'booking'));
     }
 
     /**
@@ -144,23 +172,40 @@ class AdminBookingController extends Controller
         $booking->user_id = Auth::user()->id;
         $booking->status_id = $request->status_id;
         $booking->date = $request->date;
+        $booking->startTime = $request->startTime;
+        $booking->endTime = $request->endTime;
         $booking->remarks = $request->remarks;
+        $booking->update();
 
+        $client = User::where('id', $booking->client_id)->first();
+        $booking->google_calendar_name = 'Booking' . "-" . $client->name . "-" . $booking->location->name . "-" . $booking->status->name;
         $booking->update();
 
         /**wegschrijven van de tussentabel**/
         $booking->services()->sync($request->services, true);
-        $booking->timeslots()->sync($request->timeslots, true);
 
         if($request->button_submit == 'sendMail')
         {
-            $client_mail = Client::findOrFail($booking->client_id)->email;
+            $client_mail = User::where('id', $booking->client_id)->email;
             $user_mail = User::findOrFail($booking->user_id)->email;
 
             $emails = [ $client_mail, $user_mail];
 
             Mail::to($emails)->send(new updateBooking($booking));
         }
+
+        //Google Calendar Booking
+        $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
+        $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
+
+        $eventId = $booking->event_id;
+        $event = Event::find($eventId);
+
+        $event->update([
+            'name' => $booking->google_calendar_name,
+            'startDateTime' => $startTime,
+            'endDateTime' => $endTime
+        ]);
 
         return redirect('/admin/bookings');
     }
@@ -174,6 +219,13 @@ class AdminBookingController extends Controller
     public function destroy($id)
     {
         //
+        $booking = Booking::findOrFail($id);
+        $eventId = $booking->event_id;
+        $event = Event::find($eventId);
+        $event->delete();
+
+        return redirect('/admin/archive/bookings');
+
     }
 
     public function archive()

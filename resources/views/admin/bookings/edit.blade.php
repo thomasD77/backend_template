@@ -43,7 +43,7 @@
 
                     <div class="form-group mb-4">
                         {!! Form::label('client','Select Client:', ['class'=>'form-label']) !!}
-                        {!! Form::select('client_id',$clients, $booking->client->id ,['class'=>'form-control'])!!}
+                        {!! Form::select('client_id',$clients, $booking->user->id ,['class'=>'form-control'])!!}
                     </div>
 
                     <div class="form-group mb-4">
@@ -61,11 +61,16 @@
                         {!! Form::date('date',$booking->date ,['class'=>'form-control']) !!}
                     </div>
 
-
-
                     <div class="form-group mb-4">
-                        {!! Form::label('timeslot','Select Timeslot(s):', ['class'=>'form-label']) !!}
-                        {!! Form::select('timeslots[]',$timeslots,$booking->timeslots->pluck('id')->toArray(),['class'=>'form-control', 'multiple'=>'multiple'])!!}
+                        {!! Form::label('bookingStatus','Select Timeslot:', ['class'=>'form-label']) !!}
+                        <div>
+                            {!! Form::label('bookingStatus','Start time:', ['class'=>'form-label']) !!}
+                            <input name="startTime" value="{{ $booking->startTime }}" class="form-control" type="time">
+                        </div>
+                        <div>
+                            {!! Form::label('bookingStatus','End time:', ['class'=>'form-label']) !!}
+                            <input name="endTime" value="{{ $booking->endTime }}" class="form-control" type="time">
+                        </div>
                     </div>
 
                     <div class="form-group mb-4">

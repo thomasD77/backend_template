@@ -15,13 +15,22 @@
             @foreach($bookings as $booking)
                 <tr>
                     <td>{{$booking->id ? $booking->id : 'No ID'}}</td>
-                    <td>{{$booking->client ? $booking->client->firstname : 'No firstname'}} {{""}} {{$booking->client ? $booking->client->lastname : 'No lastname'}}</td>
+                    @php
+                        $client = \App\Models\User::where('id', $booking->client_id)->first();
+                    @endphp
+                    <td>{{$client ? $client->name : 'No name'}}</td>
                     <td>@foreach($booking->services as $service)
                             <li>
                                 {{$service->name ? $service->name : 'No Service'}}
                             </li>
                         @endforeach</td>
-                    <td>{{$booking->date ? $booking->date : 'No Date'}}</td>
+                    <td>
+                        {{$booking->date ? $booking->date : 'No Date'}}
+                        <div>
+                            <span class="badge badge rounded-pill text-white bg-dark">{{ $booking->startTime }}</span>
+                            <span class="badge badge rounded-pill text-white bg-dark">{{ $booking->endTime }}</span>
+                        </div>
+                    </td>
                     <td>
                         <span class="badge badge rounded-pill p-2 {{$booking->status->color}}">
                             {{$booking->status ? $booking->status->name : 'No Status'}}

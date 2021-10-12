@@ -19,6 +19,8 @@ class Bookings extends Component
         $bookings = Booking::where('archived', 0)
             ->latest()
             ->paginate(20);
+
+
         return view('livewire.bookings', compact('bookings'));
     }
 }

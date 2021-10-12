@@ -15,8 +15,12 @@ class Booking extends Model
         'client_id',
         'bookingStatus_id',
         'date',
+        'startTime',
+        'endTime',
         'remarks',
-        'archived'
+        'archived',
+        'google_calendar_name',
+        'event_id',
     ];
 
     // Een op Veel relaties
@@ -30,22 +34,12 @@ class Booking extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function client()
-    {
-        return $this->belongsTo(Client::class);
-    }
-
     public function status()
     {
         return $this->belongsTo(Status::class);
     }
 
     //Veel op Veel relaties
-    public function timeslots()
-    {
-        return $this->belongsToMany(Timeslot::class);
-    }
-
     public function services()
     {
         return $this->belongsToMany(Service::class, 'booking_service');

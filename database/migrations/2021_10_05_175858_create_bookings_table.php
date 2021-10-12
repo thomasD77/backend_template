@@ -19,8 +19,12 @@ class CreateBookingsTable extends Migration
             $table->integer('user_id')->index();
             $table->integer('client_id')->index();
             $table->integer('status_id')->index();
-            $table->date('date');
-            $table->text('remarks');
+            $table->date('date')->nullable();
+            $table->time('startTime')->nullable();
+            $table->time('endTime')->nullable();
+            $table->text('remarks')->nullable();
+            $table->text('google_calendar_name')->nullable();
+            $table->string('event_id')->nullable();
             $table->boolean('archived')->default(0);
             $table->timestamps();
         });

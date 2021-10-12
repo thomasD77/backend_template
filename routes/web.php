@@ -5,6 +5,7 @@ use App\Http\Controllers\FullCalendarController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use \Spatie\GoogleCalendar\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +92,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('archive/bookings', 'App\Http\Controllers\AdminBookingController@archive')->name('bookings.archive');
     Route::resource('booking-status', App\Http\Controllers\AdminStatusController::class);
     Route::resource('booking-location', App\Http\Controllers\AdminLocationController::class);
-    Route::resource('booking-timeslot', App\Http\Controllers\AdminTimeslotController::class);
     Route::resource('services', App\Http\Controllers\AdminServiceController::class);
     Route::resource('service-categories', App\Http\Controllers\AdminServiceCategory::class);
     Route::get('archive/services', 'App\Http\Controllers\AdminServiceController@archive')->name('services.archive');
@@ -111,7 +111,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Calender
     Route::get('event', [FullCalendarController::class, 'index']);
     Route::post('eventAjax', [FullCalendarController::class, 'ajax']);
-
 
 
 });
