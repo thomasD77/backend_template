@@ -8,10 +8,9 @@
 <p><strong>Date:</strong></p>
 <p>{{ $booking['date'] }}</p>
 
-<p><strong>Timeslots:</strong></p>
-@foreach($timeslots as $timeslot)
-    <li> {{ $timeslot }} </li>
-@endforeach
+<p><strong>Timeslot:</strong></p>
+<p>{{ $booking['startTime'] }}</p>
+<p>{{ $booking['endTime'] }}</p>
 
 <p class="mt-2"><strong>Status:</strong></p>
 <p>{{ $status['name'] }}</p>

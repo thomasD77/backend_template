@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Spatie\GoogleCalendar\Event;
 
 class AdminBookingController extends Controller
@@ -65,6 +66,11 @@ class AdminBookingController extends Controller
     public function store(Request $request)
     {
         //
+        if($request->startTime > $request->endTime ){
+            Session::flash('timeslot', 'Your End time has to ends after your Start time. Please do it again.');
+            return redirect()->back();
+        }
+
         $booking = new Booking();
         $booking->location_id = $request->location_id;
         $booking->client_id = $request->client_id;
@@ -166,6 +172,11 @@ class AdminBookingController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if($request->startTime > $request->endTime ){
+            Session::flash('timeslot', 'Your End time has to ends after your Start time. Please do it again.');
+            return redirect()->back();
+        }
+
         $booking = Booking::findOrFail($id);
         $booking->location_id = $request->location_id;
         $booking->client_id = $request->client_id;
@@ -219,13 +230,6 @@ class AdminBookingController extends Controller
     public function destroy($id)
     {
         //
-        $booking = Booking::findOrFail($id);
-        $eventId = $booking->event_id;
-        $event = Event::find($eventId);
-        $event->delete();
-
-        return redirect('/admin/archive/bookings');
-
     }
 
     public function archive()

@@ -39,35 +39,6 @@
                                     <i class="far fa-eye"></i>
                                 </button>
                             </a>
-                            <button type="button" class="btn btn-sm btn-alt-danger ms-4 rounded" data-bs-toggle="modal" data-bs-target="#modal-block-small"><i class="far fa-calendar-alt"></i></button>
-                            <!-- Small Block Modal -->
-                            <div class="modal" id="modal-block-small" tabindex="-1" role="dialog" aria-labelledby="modal-block-small" aria-hidden="true">
-                                <div class="modal-dialog modal-sm" role="document">
-                                    <div class="modal-content">
-                                        <div class="block block-rounded block-transparent mb-0">
-                                            <div class="block-header block-header-default">
-                                                <h3 class="block-title">Are You Sure?</h3>
-                                                <div class="block-options">
-                                                    <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
-                                                        <i class="fa fa-fw fa-times"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="block-content fs-sm text-center">
-                                                <p>With this button you will delete the Booking date in your Google Calendar</p>
-                                                {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\AdminBookingController@destroy', $booking->id],'files'=>false])!!}
-                                                <div class="d-flex justify-content-center">
-                                                    <div class="form-group mr-1 mb-3">
-                                                        <button type="submit" class=" btn btn-alt-primary push" data-bs-toggle="tooltip" title="Delete Google Calendar"><i class="far fa-trash-alt"></i></button>
-                                                    </div>
-                                                </div>
-                                                {!! Form::close() !!}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END Small Block Modal -->
                         </div>
                     </td>
                 </tr>

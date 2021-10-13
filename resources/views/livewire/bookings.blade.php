@@ -25,10 +25,10 @@
                             </li>
                         @endforeach</td>
                     <td>
-                        {{$booking->date ? $booking->date : 'No Date'}}
+                        {{$booking->date ? \Carbon\Carbon::parse($booking->date)->format('d-M-y') : 'No Date'}}
                         <div>
-                            <span class="badge badge rounded-pill text-white bg-dark">{{ $booking->startTime }}</span>
-                            <span class="badge badge rounded-pill text-white bg-dark">{{ $booking->endTime }}</span>
+                            <span class="badge badge rounded-pill text-white bg-dark">{{ $booking->startTime ? \Carbon\Carbon::parse($booking->startTime)->format('h:i') : 'No Start Time' }}</span>
+                            <span class="badge badge rounded-pill text-white bg-dark">{{ $booking->endTime ? \Carbon\Carbon::parse($booking->endTime)->format('h:i') : 'No End Time' }}</span>
                         </div>
                     </td>
                     <td>

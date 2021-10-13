@@ -16,7 +16,6 @@ class updateBooking extends Mailable
     public $booking;
     public $location;
     public $services;
-    public $timeslots;
     public $status;
     public $company;
 
@@ -38,9 +37,6 @@ class updateBooking extends Mailable
 
         $services = $this->booking->services()->get()->pluck('name')->toArray();
         $this->services = $services;
-
-        $timeslots = $this->booking->timeslots()->get()->pluck('time_from', 'time_to')->toArray();
-        $this->timeslots = $timeslots;
 
         $company = CompanyCredential::first();
         $this->company = $company;

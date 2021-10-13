@@ -62,6 +62,10 @@
                         <input name="date" class="form-control" type="date">
                     </div>
 
+                    @if(Session::has('timeslot'))
+                        <p class="alert alert-danger my-2">{{session('timeslot')}}</p>
+                    @endif
+
                     <div class="form-group mb-4">
                         {!! Form::label('bookingStatus','Select Timeslot:', ['class'=>'form-label']) !!}
                         <div>
