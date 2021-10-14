@@ -200,6 +200,7 @@
 {{--                                    </a>--}}
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{route('users.edit', Auth::user() ? Auth::user()->id : "")}}">
                                         <span class="fs-sm fw-medium">Account</span>
+                                        <i class="far fa-user"></i>
                                     </a>
 {{--                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">--}}
 {{--                                        <span class="fs-sm fw-medium">Settings</span>--}}
@@ -210,12 +211,12 @@
 {{--                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">--}}
 {{--                                        <span class="fs-sm fw-medium">Lock Account</span>--}}
 {{--                                    </a>--}}
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="javascript:void(0)">
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between w-100" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
-                                            <i class="fas fa-sign-out-alt mx-3"></i>
+                                            <i class="fas fa-sign-out-alt"></i>
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none bg-dark">
