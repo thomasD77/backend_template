@@ -122,7 +122,7 @@ class AdminUsersController extends Controller
 
         /** wegschrijven van de role in tussentabel **/
         $user->roles()->sync($request->roles, true);
-
+        
         return view('admin.dashboard');
     }
 

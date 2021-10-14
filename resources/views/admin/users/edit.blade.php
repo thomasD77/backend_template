@@ -68,6 +68,10 @@
               </div>
               @endcan
 
+              @can('is_client')
+                  <input type="hidden" name="roles" value="3">
+              @endcan
+
               <div class="mb-4">
                   <label class="form-label">Your Avatar</label>
                   <div class="mb-4">

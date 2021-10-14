@@ -355,11 +355,13 @@
             </header>
             <!-- END Header -->
 
+
             <!-- Main Container -->
-            <main id="main-container">
-                @yield('content')
-            </main>
+                <main id="main-container">
+                    @yield('content')
+                </main>
             <!-- END Main Container -->
+
 
             <!-- Footer -->
             <footer id="page-footer" class="bg-body-light">

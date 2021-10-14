@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Booking;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Bookings extends Component
@@ -16,10 +17,17 @@ class Bookings extends Component
 
     public function render()
     {
-        $bookings = Booking::where('archived', 0)
-            ->latest()
-            ->paginate(20);
-
+        if(Auth::user()->roles->first()->name == 'client')
+        {
+            $bookings = Booking::where('archived', 0)
+                ->where('client_id', Auth::user()->id)
+                ->latest()
+                ->paginate(20);
+        }else{
+            $bookings = Booking::where('archived', 0)
+                ->latest()
+                ->paginate(20);
+        }
 
         return view('livewire.bookings', compact('bookings'));
     }

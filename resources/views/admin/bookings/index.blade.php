@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        DataTable Bookings
+                        DataTable Bookings test
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -63,15 +63,16 @@
                     $dayOfTheWeek = $now->dayOfWeek;
                     $weekStartDate = $now->startOfMonth()->format('Y-m-d H:i');
                     $weekEndDate = $now->endOfMonth()->format('Y-m-d H:i');
-
                 @endphp
 
-                <a href="{{route('bookings.create')}}"><button data-bs-toggle="tooltip" title="New Booking" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
-                <a href="{{route('bookings.archive')}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
-                    </button>
-                </a>
+                @canany(['is_superAdmin', 'is_admin', 'is_employee'])
+                    <a href="{{route('bookings.create')}}"><button data-bs-toggle="tooltip" title="New Booking" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
+                    <a href="{{route('bookings.archive')}}">
+                        <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
+                            <i class="fa fa-archive "></i>
+                        </button>
+                    </a>
+                @endcanany
             </div>
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->

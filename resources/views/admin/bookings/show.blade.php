@@ -8,7 +8,7 @@
 <div class="bg-primary-dark" style="background-image: url({{asset('images/general/banner6.png')}}); background-size: cover  ; background-repeat: no-repeat ">
     <div class="content content-full text-center">
         <div class="my-3">
-            <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user() ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
+            <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
         </div>
         <h1 class="h2 text-white mb-0">Booking</h1>
         <h2 class="h4 fw-normal text-white-75">
@@ -39,8 +39,11 @@
                 <div class="col-lg-8 col-xl-5">
 
                     <div class="form-group mb-4">
+                        @php
+                            $client = \App\Models\User::where('id', $booking->client_id)->first();
+                        @endphp
                         {!! Form::label('date','Client:',['class'=>'form-label']) !!}
-                        {!! Form::label('date',$booking->client->lastname . $booking->client->firstname ,['class'=>'form-control']) !!}
+                        {!! Form::label('date',$client->name ,['class'=>'form-control']) !!}
                     </div>
 
                     <div class="form-group mb-4">
@@ -63,12 +66,9 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('Service(s)','Timeslot(s):',['class'=>'form-label']) !!}
-                            @foreach($booking->timeslots as $timeslot)
-                            <label class="form-control">
-                                {{ $timeslot->time_from }}
-                            </label>
-                            @endforeach
+                        {!! Form::label('date','Timeslots:',['class'=>'form-label']) !!}
+                        {!! Form::label('date',$booking->startTime ,['class'=>'form-control']) !!}
+                        {!! Form::label('date',$booking->endTime ,['class'=>'form-control mt-2']) !!}
                     </div>
 
                     <div class="form-group mb-4">
@@ -80,7 +80,6 @@
                         {!! Form::label('remarks', 'Remarks:') !!}
                         {!! Form::label('remarks',$booking->remarks,['class'=>'form-control']) !!}
                     </div>
-
 
                 </div>
             </div>
