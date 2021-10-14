@@ -65,8 +65,9 @@
                     $weekEndDate = $now->endOfMonth()->format('Y-m-d H:i');
                 @endphp
 
-                @canany(['is_superAdmin', 'is_admin', 'is_employee'])
+
                     <a href="{{route('bookings.create')}}"><button data-bs-toggle="tooltip" title="New Booking" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
+                @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                     <a href="{{route('bookings.archive')}}">
                         <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                             <i class="fa fa-archive "></i>

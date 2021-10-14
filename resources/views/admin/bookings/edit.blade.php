@@ -41,10 +41,12 @@
                         'files'=>false])
                    !!}
 
+                    @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                     <div class="form-group mb-4">
                         {!! Form::label('client','Select Client:', ['class'=>'form-label']) !!}
                         {!! Form::select('client_id',$clients, $booking->user->id ,['class'=>'form-control'])!!}
                     </div>
+                    @endcanany
 
                     <div class="form-group mb-4">
                         {!! Form::label('service','Select Service:', ['class'=>'form-label']) !!}
@@ -77,10 +79,12 @@
                         </div>
                     </div>
 
+                    @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                     <div class="form-group mb-4">
                         {!! Form::label('bookingStatus','Select Status:', ['class'=>'form-label']) !!}
                         {!! Form::select('status_id',$statuses,$booking->status->id,['class'=>'form-control'])!!}
                     </div>
+                    @endcanany
 
                     <div class="form-group  mb-4">
                         {!! Form::label('remarks', 'Remarks:') !!}

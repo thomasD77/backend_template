@@ -25,6 +25,8 @@ class CreateBookingsTable extends Migration
             $table->text('remarks')->nullable();
             $table->text('google_calendar_name')->nullable();
             $table->string('event_id')->nullable();
+            $table->string('booking_request_admin')->nullable();
+            $table->string('booking_request_client')->nullable();
             $table->boolean('archived')->default(0);
             $table->timestamps();
         });

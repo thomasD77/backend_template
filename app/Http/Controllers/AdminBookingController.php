@@ -66,20 +66,37 @@ class AdminBookingController extends Controller
     public function store(Request $request)
     {
         //
-        if($request->startTime > $request->endTime ){
-            Session::flash('timeslot', 'Your End time has to ends after your Start time. Please do it again.');
-            return redirect()->back();
+        if(Auth::user()->roles->first()->name == 'client')
+        {                                                              //Booking from Client
+            $booking = new Booking();
+            $booking->location_id = $request->location_id;
+            $booking->user_id = Auth::user()->id;
+            $booking->client_id = Auth::user()->id;
+            $booking->date = $request->date;
+            $booking->booking_request_admin = 1;
+            $booking->startTime = $request->startTime;
+            $booking->endTime = Carbon::parse($request->startTime)->addHour(2);
+            $booking->status_id = 1;
+            $booking->remarks = $request->remarks;
+        }
+        else                                                                                                            //Booking from other Role
+        {
+            if($request->startTime > $request->endTime ){
+                Session::flash('timeslot', 'Your End time has to ends after your Start time. Please do it again.');
+                return redirect()->back();
+            }
+            $booking = new Booking();
+            $booking->location_id = $request->location_id;
+            $booking->client_id = $request->client_id;
+            $booking->user_id = Auth::user()->id;
+            $booking->status_id = $request->status_id;
+            $booking->date = $request->date;
+            $booking->startTime = $request->startTime;
+            $booking->endTime = $request->endTime;
+            $booking->remarks = $request->remarks;
+            $booking->booking_request_client = 1;
         }
 
-        $booking = new Booking();
-        $booking->location_id = $request->location_id;
-        $booking->client_id = $request->client_id;
-        $booking->user_id = Auth::user()->id;
-        $booking->status_id = $request->status_id;
-        $booking->date = $request->date;
-        $booking->startTime = $request->startTime;
-        $booking->endTime = $request->endTime;
-        $booking->remarks = $request->remarks;
         $booking->save();
 
         $client = User::where('id', $booking->client_id)->first();
@@ -103,18 +120,20 @@ class AdminBookingController extends Controller
         }
 
         //Google Calendar Booking
-        $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
-        $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
+        if(Auth::user()->roles->first()->name != 'client')
+        {
+            $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
+            $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
 
-        $event = Event::create([
-            'name' => $booking->google_calendar_name,
-            'startDateTime' => $startTime,
-            'endDateTime' => $endTime,
-        ]);
+            $event = Event::create([
+                'name' => $booking->google_calendar_name,
+                'startDateTime' => $startTime,
+                'endDateTime' => $endTime,
+            ]);
 
-        $booking->event_id = $event->id;
-        $booking->update();
-
+            $booking->event_id = $event->id;
+            $booking->update();
+        }
 
         return redirect('/admin/bookings');
 
@@ -172,21 +191,41 @@ class AdminBookingController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if($request->startTime > $request->endTime ){
+        if($request->startTime > $request->endTime )
+        {
             Session::flash('timeslot', 'Your End time has to ends after your Start time. Please do it again.');
             return redirect()->back();
         }
 
-        $booking = Booking::findOrFail($id);
-        $booking->location_id = $request->location_id;
-        $booking->client_id = $request->client_id;
-        $booking->user_id = Auth::user()->id;
-        $booking->status_id = $request->status_id;
-        $booking->date = $request->date;
-        $booking->startTime = $request->startTime;
-        $booking->endTime = $request->endTime;
-        $booking->remarks = $request->remarks;
-        $booking->update();
+        if(Auth::user()->roles->first()->name == 'client')
+        {
+            $booking = Booking::findOrFail($id);
+            $booking->location_id = $request->location_id;
+            $booking->client_id = Auth::user()->id;
+            $booking->user_id = Auth::user()->id;
+            $booking->date = $request->date;
+            $booking->startTime = $request->startTime;
+            $booking->endTime = $request->endTime;
+            $booking->remarks = $request->remarks;
+            $booking->booking_request_admin = 1;
+            $booking->booking_request_client = 0;
+            $booking->update();
+        }
+        else
+        {
+            $booking = Booking::findOrFail($id);
+            $booking->location_id = $request->location_id;
+            $booking->client_id = $request->client_id;
+            $booking->user_id = Auth::user()->id;
+            $booking->status_id = $request->status_id;
+            $booking->date = $request->date;
+            $booking->startTime = $request->startTime;
+            $booking->endTime = $request->endTime;
+            $booking->remarks = $request->remarks;
+            $booking->booking_request_admin = 0;
+            $booking->booking_request_client = 1;
+            $booking->update();
+        }
 
         $client = User::where('id', $booking->client_id)->first();
         $booking->google_calendar_name = 'Booking' . "-" . $client->name . "-" . $booking->location->name . "-" . $booking->status->name;
@@ -197,7 +236,7 @@ class AdminBookingController extends Controller
 
         if($request->button_submit == 'sendMail')
         {
-            $client_mail = User::where('id', $booking->client_id)->email;
+            $client_mail = User::where('id', $booking->client_id)->first()->email;
             $user_mail = User::findOrFail($booking->user_id)->email;
 
             $emails = [ $client_mail, $user_mail];
@@ -206,17 +245,23 @@ class AdminBookingController extends Controller
         }
 
         //Google Calendar Booking
-        $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
-        $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
+        if(Auth::user()->roles->first()->name == 'client')
+        {
+            $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
+            $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
 
-        $eventId = $booking->event_id;
-        $event = Event::find($eventId);
+            $eventId = $booking->event_id;
+            if(isset($eventId))
+            {
+                $event = Event::find($eventId);
 
-        $event->update([
-            'name' => $booking->google_calendar_name,
-            'startDateTime' => $startTime,
-            'endDateTime' => $endTime
-        ]);
+                $event->update([
+                    'name' => $booking->google_calendar_name,
+                    'startDateTime' => $startTime,
+                    'endDateTime' => $endTime
+                ]);
+            }
+        }
 
         return redirect('/admin/bookings');
     }

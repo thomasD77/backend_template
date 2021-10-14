@@ -21,6 +21,8 @@ class Booking extends Model
         'archived',
         'google_calendar_name',
         'event_id',
+        'booking_request_admin',
+        'booking_request_client',
     ];
 
     // Een op Veel relaties

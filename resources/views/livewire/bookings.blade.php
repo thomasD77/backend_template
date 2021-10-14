@@ -16,12 +16,24 @@
         @if($bookings)
                 @foreach($bookings as $booking)
                     <tr>
-                        <td>{{$booking->id ? $booking->id : 'No ID'}}</td>
+                        <td>
+                            {{$booking->id ? $booking->id : 'No ID'}}
+                            @can('is_client')
+                                @if($booking->booking_request_client == 1 && $booking->status->name == 'pending' )
+                                    <span class="badge badge rounded-pill bg-success text-white">NEW</span>
+                                @endif
+                            @endcan
+                        </td>
                         @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                             @php
                                 $client = \App\Models\User::where('id', $booking->client_id)->first();
                             @endphp
-                            <td>{{$client ? $client->name : 'No name'}}</td>
+                            <td>
+                                @if($booking->booking_request_admin == 1)
+                                    <span class="badge badge rounded-pill bg-success text-white">NEW</span>
+                                @endif
+                                {{$client ? $client->name : 'No name'}}
+                            </td>
                         @endcanany
                         <td>@foreach($booking->services as $service)
                                 <li>
@@ -40,32 +52,32 @@
                                 {{$booking->status ? $booking->status->name : 'No Status'}}
                             </span>
                         </td>
-                        @canany(['is_superAdmin', 'is_admin', 'is_employee'])
-                            <td>
-                                <div class="btn-group">
-                                    <a href="{{route('bookings.edit', $booking->id)}}">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit booking">
-                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                        </button>
-                                    </a>
-                                    <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive booking" wire:click="archiveBooking({{$booking->id}})"><i class="fa fa-archive"></i></button>
-                                    <a href="{{route('bookings.show', $booking->id)}}">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show booking">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </a>
-                                </div>
-                            </td>
-                        @endcanany
-                        @can('is_client')
-                            <td>
+                        <td>
+                            <div class="btn-group">
+                                @canany(['is_superAdmin', 'is_admin', 'is_employee'])
+                                <a href="{{route('bookings.edit', $booking->id)}}">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit booking">
+                                        <i class="fa fa-fw fa-pencil-alt"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive booking" wire:click="archiveBooking({{$booking->id}})"><i class="fa fa-archive"></i></button>
+                                @endcanany
+                                @can('is_client')
+                                @if($booking->status->name == 'pending')
+                                        <a href="{{route('bookings.edit', $booking->id)}}">
+                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit booking">
+                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                            </button>
+                                        </a>
+                                    @endif
+                                @endcan
                                 <a href="{{route('bookings.show', $booking->id)}}">
                                     <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show booking">
                                         <i class="far fa-eye"></i>
                                     </button>
                                 </a>
-                            </td>
-                        @endcan
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             @endif

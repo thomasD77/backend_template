@@ -11,7 +11,7 @@
             <div class="my-3">
                 <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
             </div>
-            <h1 class="h2 text-white mb-0">Create Client</h1>
+            <h1 class="h2 text-white mb-0">Create Booking</h1>
             <h2 class="h4 fw-normal text-white-75">
                 <?php echo Auth::user()->name; ?>
             </h2>
@@ -42,10 +42,12 @@
                         'files'=>false])
                    !!}
 
-                    <div class="form-group mb-4">
-                        {!! Form::label('client','Select Client:', ['class'=>'form-label']) !!}
-                        {!! Form::select('client_id',$clients,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
-                    </div>
+                    @canany(['is_superAdmin', 'is_admin', 'is_employee'])
+                        <div class="form-group mb-4">
+                            {!! Form::label('client','Select Client:', ['class'=>'form-label']) !!}
+                            {!! Form::select('client_id',$clients,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                        </div>
+                    @endcanany
 
                     <div class="form-group mb-4">
                         {!! Form::label('service','Select Service:', ['class'=>'form-label']) !!}
@@ -72,22 +74,27 @@
                             {!! Form::label('bookingStatus','Start time:', ['class'=>'form-label']) !!}
                             <input name="startTime" class="form-control" type="time">
                         </div>
+                        @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                         <div>
                             {!! Form::label('bookingStatus','End time:', ['class'=>'form-label']) !!}
                             <input name="endTime" class="form-control" type="time">
                         </div>
+                        @endcanany
                     </div>
 
+                    @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                     <div class="form-group mb-4">
                         {!! Form::label('bookingStatus','Select Status:', ['class'=>'form-label']) !!}
                         {!! Form::select('status_id',$statuses,null,['class'=>'form-control'])!!}
                     </div>
+                    @endcanany
 
                     <div class="form-group  mb-4">
                         {!! Form::label('remarks', 'Remarks:') !!}
                         {!! Form::textarea('remarks',null,['class'=>'form-control']) !!}
                     </div>
 
+                    @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                     <button type="button" class="btn btn-alt-primary push" data-bs-toggle="modal" data-bs-target="#modal-block-vcenter">Save</button>
                     <!-- Vertically Centered Block Modal -->
                     <div class="modal" id="modal-block-vcenter" tabindex="-1" role="dialog" aria-labelledby="modal-block-vcenter" aria-hidden="true">
@@ -122,6 +129,11 @@
                         </div>
                     </div>
                     <!-- END Vertically Centered Block Modal -->
+                    @endcanany
+
+                    @can('is_client')
+                        <button type="submit" name="button_submit" value="noMail" class="btn btn-alt-primary">Save</button>
+                    @endcan
                     {!! Form::close() !!}
                 </div>
             </div>
