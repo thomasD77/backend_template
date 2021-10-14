@@ -19,7 +19,7 @@
                         <td>
                             {{$booking->id ? $booking->id : 'No ID'}}
                             @can('is_client')
-                                @if($booking->booking_request_client == 1 && $booking->status->name == 'pending' )
+                                @if($booking->booking_request_client == 1 && $booking->status->name == 'pending' && $booking->approved == 0 )
                                     <span class="badge badge rounded-pill bg-success text-white">NEW</span>
                                 @endif
                             @endcan
@@ -31,6 +31,9 @@
                             <td>
                                 @if($booking->booking_request_admin == 1)
                                     <span class="badge badge rounded-pill bg-success text-white">NEW</span>
+                                @endif
+                                @if($booking->approved == 1)
+                                    <span class="badge badge rounded-pill bg-default-light text-white">WAITING</span>
                                 @endif
                                 {{$client ? $client->name : 'No name'}}
                             </td>
@@ -62,20 +65,51 @@
                                 </a>
                                 <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive booking" wire:click="archiveBooking({{$booking->id}})"><i class="fa fa-archive"></i></button>
                                 @endcanany
-                                @can('is_client')
-                                @if($booking->status->name == 'pending')
-                                        <a href="{{route('bookings.edit', $booking->id)}}">
-                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit booking">
-                                                <i class="fa fa-fw fa-pencil-alt"></i>
-                                            </button>
-                                        </a>
-                                    @endif
-                                @endcan
                                 <a href="{{route('bookings.show', $booking->id)}}">
                                     <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show booking">
                                         <i class="far fa-eye"></i>
                                     </button>
                                 </a>
+                                @can('is_client')
+                                @if($booking->status->name == 'pending' && $booking->approved == 0)
+                                        <a href="{{route('bookings.edit', $booking->id)}}">
+                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit booking">
+                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                            </button>
+                                        </a>
+                                            {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminBookingController@approved'],'files'=>false])!!}
+                                            <div class="d-flex">
+                                                <div class="form-group mb-3">
+                                                    {!! Form::hidden('booking',$booking->id,['class'=>'form-control']) !!}
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-alt-success ms-5" data-bs-toggle="modal" data-bs-target="#modal-block-normal"><i class="far fa-thumbs-up"></i></button>
+                                                <!-- Normal Block Modal -->
+                                                <div class="modal" id="modal-block-normal" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="block block-rounded block-transparent mb-0">
+                                                                <div class="block-header block-header-default">
+                                                                    <h3 class="block-title">Approve Your Booking</h3>
+                                                                    <div class="block-options">
+                                                                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                                                            <i class="fa fa-fw fa-times"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="block-content fs-sm">
+                                                                    <p>Here you can Approve your booking.</p>
+                                                                    <p>Please know that after submitting this booking you can no longer change the status. </p>
+                                                                    <button class="btn btn-sm btn-alt-secondary mb-3 text-center" data-bs-toggle="tooltip" title="Approve booking" type="submit"><i class="far fa-thumbs-up"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END Normal Block Modal -->
+                                            </div>
+                                            {!! Form::close() !!}
+                                    @endif
+                                @endcan
                             </div>
                         </td>
                     </tr>

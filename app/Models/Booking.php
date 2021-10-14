@@ -23,6 +23,7 @@ class Booking extends Model
         'event_id',
         'booking_request_admin',
         'booking_request_client',
+        'approved',
     ];
 
     // Een op Veel relaties

@@ -91,6 +91,7 @@
                         {!! Form::textarea('remarks',$booking->remarks,['class'=>'form-control']) !!}
                     </div>
 
+                    @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                     <button type="button" class="btn btn-alt-primary push" data-bs-toggle="modal" data-bs-target="#modal-block-vcenter">Update</button>
                     <!-- Vertically Centered Block Modal -->
                     <div class="modal" id="modal-block-vcenter" tabindex="-1" role="dialog" aria-labelledby="modal-block-vcenter" aria-hidden="true">
@@ -125,6 +126,10 @@
                         </div>
                     </div>
                     <!-- END Vertically Centered Block Modal -->
+                    @endcanany
+                    @can('is_client')
+                        <button type="submit" name="button_submit" value="noMail" class="btn btn-alt-primary">Update</button>
+                    @endcan
                         {!! Form::close() !!}
                     </div>
                 </div>

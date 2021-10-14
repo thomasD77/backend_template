@@ -27,6 +27,7 @@ class CreateBookingsTable extends Migration
             $table->string('event_id')->nullable();
             $table->string('booking_request_admin')->nullable();
             $table->string('booking_request_client')->nullable();
+            $table->string('approved')->nullable();
             $table->boolean('archived')->default(0);
             $table->timestamps();
         });

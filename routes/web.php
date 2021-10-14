@@ -90,6 +90,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Booking Routes
     Route::resource('bookings', App\Http\Controllers\AdminBookingController::class);
     Route::get('archive/bookings', 'App\Http\Controllers\AdminBookingController@archive')->name('bookings.archive');
+    Route::post('approved/bookings', 'App\Http\Controllers\AdminBookingController@approved');
     Route::resource('booking-status', App\Http\Controllers\AdminStatusController::class);
     Route::resource('booking-location', App\Http\Controllers\AdminLocationController::class);
     Route::resource('services', App\Http\Controllers\AdminServiceController::class);

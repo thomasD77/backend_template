@@ -224,6 +224,7 @@ class AdminBookingController extends Controller
             $booking->remarks = $request->remarks;
             $booking->booking_request_admin = 0;
             $booking->booking_request_client = 1;
+            $booking->approved = 0;
             $booking->update();
         }
 
@@ -245,7 +246,7 @@ class AdminBookingController extends Controller
         }
 
         //Google Calendar Booking
-        if(Auth::user()->roles->first()->name == 'client')
+        if(Auth::user()->roles->first()->name != 'client')
         {
             $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
             $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
@@ -283,5 +284,14 @@ class AdminBookingController extends Controller
             ->latest()
             ->paginate(20);
         return view('admin.bookings.archive', compact('bookings'));
+    }
+
+    public function approved(Request $request)
+    {
+        $booking = Booking::findOrFail($request->booking);
+        $booking->approved = 1;
+        $booking->update();
+
+        return redirect()->back();
     }
 }
