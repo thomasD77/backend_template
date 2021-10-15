@@ -73,10 +73,18 @@
                             {!! Form::label('bookingStatus','Start time:', ['class'=>'form-label']) !!}
                             <input name="startTime" value="{{ $booking->startTime }}" class="form-control" type="time">
                         </div>
+                        @can('is_client')
+                            <div>
+                                <input name="endTime" value="{{\Carbon\Carbon::parse($booking->startTime)->addHour()->format('H:i:s') }}" class="form-control d-none" type="time">
+                            </div>
+                        @endcan
+                        @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                         <div>
                             {!! Form::label('bookingStatus','End time:', ['class'=>'form-label']) !!}
                             <input name="endTime" value="{{ $booking->endTime }}" class="form-control" type="time">
                         </div>
+                        @endcanany
+                        <p class="mt-1">This booking will take {{ $booking->timeslot_range }} minutes.</p>
                     </div>
 
                     @canany(['is_superAdmin', 'is_admin', 'is_employee'])

@@ -69,6 +69,7 @@
                         {!! Form::label('date','Timeslots:',['class'=>'form-label']) !!}
                         {!! Form::label('date',$booking->startTime ,['class'=>'form-control']) !!}
                         {!! Form::label('date',$booking->endTime ,['class'=>'form-control mt-2']) !!}
+                        <p class="mt-1">This booking will take {{ $booking->timeslot_range }} minutes.</p>
                     </div>
 
                     <div class="form-group mb-4">

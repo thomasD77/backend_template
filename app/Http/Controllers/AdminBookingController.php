@@ -210,11 +210,10 @@ class AdminBookingController extends Controller
             $booking->user_id = Auth::user()->id;
             $booking->date = $request->date;
             $booking->startTime = $request->startTime;
-            $booking->endTime = $request->endTime;
+            $booking->endTime = Carbon::parse($request->startTime)->addMinutes($booking->timeslot_range)->format('H:i:s');
             $booking->remarks = $request->remarks;
             $booking->booking_request_admin = 1;
             $booking->booking_request_client = 0;
-            $booking->update();
         }
         else
         {
@@ -230,8 +229,14 @@ class AdminBookingController extends Controller
             $booking->booking_request_admin = 0;
             $booking->booking_request_client = 1;
             $booking->approved = 0;
-            $booking->update();
+
+            //Timeslot range
+            $start = Carbon::parse($request->startTime);
+            $end = Carbon::parse($request->endTime);
+            $range = $start->diffInMinutes($end);
+            $booking->timeslot_range = $range;
         }
+        $booking->update();
 
         $client = User::where('id', $booking->client_id)->first();
         $booking->google_calendar_name = 'Booking' . "-" . $client->name . "-" . $booking->location->name . "-" . $booking->status->name;
