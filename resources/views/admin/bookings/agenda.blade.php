@@ -57,6 +57,8 @@
                 height="800" frameborder="0" scrolling="no">
         </iframe>
     </div>
+
+    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Europe%2FBrussels&src=M283cjQ5NWFrdW5kZ250b3EyZGZ1MmtrMW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=M2Y4YTFwMTIxbGloZnBha3NxanV2bHVrZzBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23E67C73&color=%238E24AA" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     <!-- END Page Content -->
 @endsection
 

@@ -66,8 +66,8 @@ class AdminBookingController extends Controller
     public function store(Request $request)
     {
         //
-        if(Auth::user()->roles->first()->name == 'client')
-        {                                                              //Booking from Client
+        if(Auth::user()->roles->first()->name == 'client')                                                                //Booking from Client
+        {
             $booking = new Booking();
             $booking->location_id = $request->location_id;
             $booking->user_id = Auth::user()->id;
@@ -75,7 +75,7 @@ class AdminBookingController extends Controller
             $booking->date = $request->date;
             $booking->booking_request_admin = 1;
             $booking->startTime = $request->startTime;
-            $booking->endTime = Carbon::parse($request->startTime)->addHour(2);
+            $booking->endTime = Carbon::parse($request->startTime)->addHour(2);                                         //Default endTime for Client
             $booking->status_id = 1;
             $booking->remarks = $request->remarks;
         }
@@ -130,6 +130,7 @@ class AdminBookingController extends Controller
             $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
             $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
 
+            $calendarId = 1;
             $event = Event::create([
                 'name' => $booking->google_calendar_name,
                 'startDateTime' => $startTime,
