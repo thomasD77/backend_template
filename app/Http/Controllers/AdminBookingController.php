@@ -95,14 +95,19 @@ class AdminBookingController extends Controller
             $booking->endTime = $request->endTime;
             $booking->remarks = $request->remarks;
             $booking->booking_request_client = 1;
-        }
 
+            //Timeslot range
+            $start = Carbon::parse($request->startTime);
+            $end = Carbon::parse($request->endTime);
+            $range = $start->diffInMinutes($end);
+            $booking->timeslot_range = $range;
+        }
         $booking->save();
 
+        //Google Calendar credentials
         $client = User::where('id', $booking->client_id)->first();
         $booking->google_calendar_name = 'Booking' . "-" . $client->name . "-" . $booking->location->name . "-" . $booking->status->name;
         $booking->update();
-
 
         //wegschrijven van de tussentabel
         $booking->services()->sync($request->services, false);

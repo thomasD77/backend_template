@@ -2,7 +2,7 @@
     <table class="table table-striped table-hover table-vcenter fs-sm">
         <thead>
         <tr>
-            <th scope="col">ID</th>
+            <th scope="col">Booking ID</th>
             @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                 <th scope="col">Client</th>
             @endcanany
@@ -10,6 +10,9 @@
             <th scope="col">Date</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
+            @can('is_client')
+            <th scope="col">Confirm</th>
+            @endcan
         </tr>
         </thead>
         <tbody>
@@ -17,7 +20,7 @@
                 @foreach($bookings as $booking)
                     <tr>
                         <td>
-                            {{$booking->id ? $booking->id : 'No ID'}}
+                            # {{$booking->id ? $booking->id : 'No ID'}}
                             @can('is_client')
                                 @if($booking->booking_request_client == 1 && $booking->status->name == 'pending' && $booking->approved == 0 )
                                     <span class="badge badge rounded-pill bg-success text-white">NEW</span>
@@ -33,7 +36,7 @@
                                     <span class="badge badge rounded-pill bg-success text-white">NEW</span>
                                 @endif
                                 @if($booking->approved == 1)
-                                    <span class="badge badge rounded-pill bg-default-light text-white">WAITING</span>
+                                    <span class="badge badge rounded-pill bg-default-light text-white">CONFIRMED</span>
                                 @endif
                                 {{$client ? $client->name : 'No name'}}
                             </td>
@@ -77,40 +80,50 @@
                                                 <i class="fa fa-fw fa-pencil-alt"></i>
                                             </button>
                                         </a>
-                                            {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminBookingController@approved'],'files'=>false])!!}
-                                            <div class="d-flex">
-                                                <div class="form-group mb-3">
-                                                    {!! Form::hidden('booking',$booking->id,['class'=>'form-control']) !!}
-                                                </div>
-                                                <button type="button" class="btn btn-sm btn-alt-success ms-5" data-bs-toggle="modal" data-bs-target="#modal-block-normal"><i class="far fa-thumbs-up"></i></button>
-                                                <!-- Normal Block Modal -->
-                                                <div class="modal" id="modal-block-normal" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="block block-rounded block-transparent mb-0">
-                                                                <div class="block-header block-header-default">
-                                                                    <h3 class="block-title">Approve Your Booking</h3>
-                                                                    <div class="block-options">
-                                                                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
-                                                                            <i class="fa fa-fw fa-times"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="block-content fs-sm">
-                                                                    <p>Here you can Approve your booking.</p>
-                                                                    <p>Please know that after submitting this booking you can no longer change the status. </p>
-                                                                    <button class="btn btn-sm btn-alt-secondary mb-3 text-center" data-bs-toggle="tooltip" title="Approve booking" type="submit"><i class="far fa-thumbs-up"></i></button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END Normal Block Modal -->
-                                            </div>
-                                            {!! Form::close() !!}
                                     @endif
                                 @endcan
                             </div>
+                        </td>
+                        <td>
+                            @can('is_client')
+                            @if($booking->status->name == 'pending' && $booking->approved == 0 && $booking->booking_request_admin == 0)
+                            {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminBookingController@approved'],'files'=>false])!!}
+                            <div class="d-flex">
+                                <div class="form-group mb-3">
+                                    {!! Form::hidden('booking',$booking->id,['class'=>'form-control']) !!}
+                                </div>
+                                <button type="button" class="btn btn-sm btn-alt-success ms-3" data-bs-toggle="modal" data-bs-target="#modal-block-normal"><i class="far fa-thumbs-up"></i></button>
+                                <!-- Normal Block Modal -->
+                                <div class="modal" id="modal-block-normal" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="block block-rounded block-transparent mb-0">
+                                                <div class="block-header block-header-default">
+                                                    <h3 class="block-title">Confirm Your Booking</h3>
+                                                    <div class="block-options">
+                                                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                                            <i class="fa fa-fw fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="block-content fs-sm">
+                                                    <p>Here you can Approve your booking.</p>
+                                                    <p>Please know that after submitting this booking you can no longer change the status. </p>
+                                                    <button class="btn btn-sm btn-alt-secondary mb-3 text-center" data-bs-toggle="tooltip" title="Approve booking" type="submit"><i class="far fa-thumbs-up"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Normal Block Modal -->
+                            </div>
+                            {!! Form::close() !!}
+                            @elseif($booking->status->name == 'pending' && $booking->approved == 0 && $booking->booking_request_admin == 1)
+{{--                                Nothing --}}
+                                @else
+                                    <button type="button" data-bs-toggle="tooltip" title="This booking is confirmed" class="btn btn-sm btn-alt-success ms-3" ><i class="fa fa-check"></i></button>
+                                @endif
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

@@ -24,6 +24,7 @@ class Booking extends Model
         'booking_request_admin',
         'booking_request_client',
         'approved',
+        'timeslot_range',
     ];
 
     // Een op Veel relaties
