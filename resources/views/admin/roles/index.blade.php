@@ -32,7 +32,6 @@
                     <h1 class="h3 fw-bold mb-2">
                         DataTable Roles
                     </h1>
-
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
@@ -51,25 +50,12 @@
 
     <!-- Page Content -->
     <div class="content">
-
         <div class="mb-4 d-flex justify-content-end">
-            {{--{!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@store']]) !!}
-                {!! Form::label('role', 'Role:',['class'=>'form-label']) !!}
-                {!! Form::text('email',) !!}
-                <div class="form-group mr-1">
-                    {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
-                </div>
-            {!! Form::close() !!}--}}
-
             <div class="mb-4 col-4">
                 @livewire('role')
             </div>
-
         </div>
         @livewire('role-table')
-
-
-
     </div>
     <!-- END Page Content -->
 @endsection

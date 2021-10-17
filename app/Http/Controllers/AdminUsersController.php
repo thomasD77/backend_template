@@ -22,14 +22,7 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $roles = ['superAdmin', 'admin', 'employee'];
-
-        $users = User::whereHas('roles', function($q) use($roles) {
-            $q->whereIn('name', $roles);})
-            ->latest()
-            ->paginate(10);
-
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index');
     }
 
     /**

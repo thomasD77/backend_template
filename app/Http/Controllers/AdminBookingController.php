@@ -130,11 +130,12 @@ class AdminBookingController extends Controller
             $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
             $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
 
-            $calendarId = 1;
+
             $event = Event::create([
                 'name' => $booking->google_calendar_name,
                 'startDateTime' => $startTime,
                 'endDateTime' => $endTime,
+                'calendarId' => $booking->location->google_calendar_id,
             ]);
 
             $booking->event_id = $event->id;

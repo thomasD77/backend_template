@@ -51,14 +51,14 @@
 
     <!-- Page Content -->
     <div class="content container-fluid">
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23e3e7f5&ctz=Europe%2FBrussels&showTitle=0&showPrint=0&showTz=0&src=M283cjQ5NWFrdW5kZ250b3EyZGZ1MmtrMW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23E67C73"
-                style="border-width:0"
-                class="w-100"
-                height="800" frameborder="0" scrolling="no">
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23B39DDB&ctz=Europe%2FBrussels&showTitle=0&showPrint=0&mode=WEEK&showTz=0&src=M283cjQ5NWFrdW5kZ250b3EyZGZ1MmtrMW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=M2Y4YTFwMTIxbGloZnBha3NxanV2bHVrZzBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23E67C73&color=%238E24AA"
+                style="border:solid 1px #777"
+               class="w-100"
+                height="800"
+                frameborder="0" scrolling="no">
         </iframe>
     </div>
 
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Europe%2FBrussels&src=M283cjQ5NWFrdW5kZ250b3EyZGZ1MmtrMW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=M2Y4YTFwMTIxbGloZnBha3NxanV2bHVrZzBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23E67C73&color=%238E24AA" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     <!-- END Page Content -->
 @endsection
 
