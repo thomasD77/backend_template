@@ -1,4 +1,4 @@
-<?php require '../resources/inc/_global/config.php'; ?>
+<?php use Brian2694\Toastr\Facades\Toastr;require '../resources/inc/_global/config.php'; ?>
 <?php require '../resources/inc/backend/config.php'; ?>
 <?php require '../resources/inc/_global/views/head_start.php'; ?>
 <?php require '../resources/inc/_global/views/head_end.php'; ?>
@@ -284,7 +284,6 @@
 
     <!-- Page JS Plugins -->
 <?php $one->get_js('js/plugins/cropperjs/cropper.min.js'); ?>
-
 
 <?php require '../resources/inc/_global/views/footer_end.php'; ?>
 

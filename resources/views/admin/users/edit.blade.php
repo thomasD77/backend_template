@@ -160,7 +160,7 @@
 
                   <div class="form-group mb-4">
                       {!! Form::label('one-profile-edit-company', 'Company (Optional):',['class'=>'form-label']) !!}
-                      {!! Form::text('company',$user->billing? $user->billing->company : "",['class'=>'form-control']) !!}
+                      {!! Form::text('company',$user->billing ? $user->billing->company : "",['class'=>'form-control']) !!}
                       @error('company')
                       <p class="text-danger mt-2"> {{ $message }}</p>
                       @enderror
@@ -169,14 +169,14 @@
                   <div class="row mb-4">
                       <div class="form-group col-6">
                           {!! Form::label('one-profile-edit-firstname', 'Firstname:',['class'=>'form-label']) !!}
-                          {!! Form::text('firstname',$user->billing? $user->billing->firstname : "",['class'=>'form-control']) !!}
+                          {!! Form::text('firstname',$user->billing ? $user->billing->firstname : "",['class'=>'form-control']) !!}
                           @error('firstname')
                           <p class="text-danger mt-2"> {{ $message }}</p>
                           @enderror
                       </div>
                       <div class="form-group col-6">
                           {!! Form::label('one-profile-edit-lastname', 'Lastname:',['class'=>'form-label']) !!}
-                          {!! Form::text('lastname',$user->billing? $user->billing->lastname : "",['class'=>'form-control']) !!}
+                          {!! Form::text('lastname',$user->billing ? $user->billing->lastname : "",['class'=>'form-control']) !!}
                           @error('lastname')
                           <p class="text-danger mt-2"> {{ $message }}</p>
                           @enderror
@@ -185,7 +185,7 @@
 
                   <div class="form-group mb-4">
                       {!! Form::label('one-profile-edit-streetAddress1', 'Street Address 1:',['class'=>'form-label']) !!}
-                      {!! Form::text('streetAddress1',$user->billing? $user->billing->streetAddress1 : "",['class'=>'form-control']) !!}
+                      {!! Form::text('streetAddress1',$user->billing ? $user->billing->streetAddress1 : "",['class'=>'form-control']) !!}
                       @error('streetAddress1')
                       <p class="text-danger mt-2"> {{ $message }}</p>
                       @enderror
@@ -193,7 +193,7 @@
 
                   <div class="form-group mb-4">
                       {!! Form::label('one-profile-edit-streetAddress2', 'Street Address 2 (Optional):',['class'=>'form-label']) !!}
-                      {!! Form::text('streetAddress2',$user->billing? $user->billing->streetAddress2 : "",['class'=>'form-control']) !!}
+                      {!! Form::text('streetAddress2',$user->billing ? $user->billing->streetAddress2 : "",['class'=>'form-control']) !!}
                       @error('streetAddress2')
                       <p class="text-danger mt-2"> {{ $message }}</p>
                       @enderror
@@ -201,7 +201,7 @@
 
                   <div class="form-group mb-4">
                       {!! Form::label('one-profile-edit-city', 'City:',['class'=>'form-label']) !!}
-                      {!! Form::text('city',$user->billing? $user->billing->city : "",['class'=>'form-control']) !!}
+                      {!! Form::text('city',$user->billing ? $user->billing->city : "",['class'=>'form-control']) !!}
                       @error('city')
                       <p class="text-danger mt-2"> {{ $message }}</p>
                       @enderror
@@ -209,7 +209,7 @@
 
                   <div class="form-group mb-4">
                       {!! Form::label('one-profile-edit-postalCode', 'Postal Code:',['class'=>'form-label']) !!}
-                      {!! Form::text('postalCode',$user->billing? $user->billing->postalCode : "",['class'=>'form-control']) !!}
+                      {!! Form::text('postalCode',$user->billing ? $user->billing->postalCode : "",['class'=>'form-control']) !!}
                       @error('postalCode')
                       <p class="text-danger mt-2"> {{ $message }}</p>
                       @enderror
@@ -217,7 +217,7 @@
 
                   <div class="form-group mb-4">
                       {!! Form::label('one-profile-edit-VAT', 'VAT Number:',['class'=>'form-label']) !!}
-                      {!! Form::text('VAT',$user->billing? $user->billing->VAT : "",['class'=>'form-control']) !!}
+                      {!! Form::text('VAT',$user->billing ? $user->billing->VAT : "",['class'=>'form-control']) !!}
                       @error('VAT')
                       <p class="text-danger mt-2"> {{ $message }}</p>
                       @enderror

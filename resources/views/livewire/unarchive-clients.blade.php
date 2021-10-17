@@ -4,8 +4,8 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Firstname</th>
-            <th scope="col">Lastname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Username</th>
             <th scope="col">Email</th>
             <th scope="col">Registered</th>
             <th scope="col">Actions</th>

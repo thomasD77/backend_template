@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -91,7 +93,6 @@
     <!-- END Page Content -->
 
     @include('admin.includes.dash-blocks')
-
 
 
 

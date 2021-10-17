@@ -7,6 +7,7 @@ use App\Models\HomePage;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 use Image;
+use Brian2694\Toastr\Facades\Toastr;
 
 class HomePageController extends Controller
 {
@@ -148,8 +149,6 @@ class HomePageController extends Controller
                 }
 
         }
-
-
 
         return redirect('/admin');
     }

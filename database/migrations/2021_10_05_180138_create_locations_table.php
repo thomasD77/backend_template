@@ -16,8 +16,9 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('google_calendar_id');
+            $table->string('name')->nullable();
+            $table->string('google_calendar_id')->nullable();
+            $table->integer('archived')->default(0);
             $table->timestamps();
         });
 

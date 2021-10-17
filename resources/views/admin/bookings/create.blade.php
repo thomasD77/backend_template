@@ -59,6 +59,10 @@
                         {!! Form::select('location_id',$locations,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
                     </div>
 
+                    @if(Session::has('date'))
+                        <p class="alert alert-danger my-2">{{session('date')}}</p>
+                    @endif
+
                     <div class="form-group mb-4">
                         {!! Form::label('date','Select Date:', ['class'=>'form-label']) !!}
                         <input name="date" class="form-control" type="date">

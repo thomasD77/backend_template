@@ -58,6 +58,10 @@
                         {!! Form::select('location_id',$locations,$booking->location->id,['class'=>'form-control'])!!}
                     </div>
 
+                    @if(Session::has('date'))
+                        <p class="alert alert-danger my-2">{{session('date')}}</p>
+                    @endif
+
                     <div class="form-group mb-4">
                         {!! Form::label('date','Select Date:',['class'=>'form-label']) !!}
                         {!! Form::date('date',$booking->date ,['class'=>'form-control']) !!}

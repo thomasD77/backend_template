@@ -54,6 +54,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Shop Routes
     Route::resource('products', App\Http\Controllers\AdminProductsController::class);
     Route::resource('promos', App\Http\Controllers\AdminPromoController::class);
+    Route::resource('location', App\Http\Controllers\AdminLocationController::class);
+    Route::get('archive/location', 'App\Http\Controllers\AdminLocationController@archive')->name('locations.archive');
     Route::get('archive/promos', 'App\Http\Controllers\AdminPromoController@archive')->name('promos.archive');
 
     //FAQ Routes

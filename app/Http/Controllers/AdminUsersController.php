@@ -90,7 +90,8 @@ class AdminUsersController extends Controller
             ->where('id', '!=', Auth::user()->id)
             ->get();
 
-        if($user->isNotEmpty()){
+        if($user->isNotEmpty() && Auth::user()->roles->first()->name != 'superAdmin')
+        {
             Session::flash('user_username', 'This Username is already taken. Please try again.');
             return redirect()->back();
         }
@@ -116,7 +117,8 @@ class AdminUsersController extends Controller
         /** wegschrijven van de role in tussentabel **/
         $user->roles()->sync($request->roles, true);
 
-        return view('admin.dashboard');
+        \Brian2694\Toastr\Facades\Toastr::success('User Successfully Updated');
+        return view('admin.users.index');
     }
 
     /**
@@ -133,7 +135,7 @@ class AdminUsersController extends Controller
     public function updatePassword(Request $request, $id)
     {
         //
-        $secret = Auth::user()->password;
+        $secret = User::findOrFail($id)->password;
 
         if (Hash::check($request->currentPassword, $secret)) {                                  // Check if Current Password is same like input Password
             if ($request->newPassword == $request->confirmPassword) {                           // Check if the new input Passwords are the same
@@ -153,7 +155,9 @@ class AdminUsersController extends Controller
                 $newHashPassword = Hash::make($request->newPassword);
                 $user->password = $newHashPassword;
                 $user->update();
-                return view('admin.dashboard');
+
+                \Brian2694\Toastr\Facades\Toastr::success('User Successfully Updated');
+                return view('admin.users.index');
 
             } else {
                 Session::flash('user_password', 'The New Password is not duplicated correct, please try again.');

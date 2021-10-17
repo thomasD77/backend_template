@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class AdminLocationController extends Controller
@@ -14,6 +15,7 @@ class AdminLocationController extends Controller
     public function index()
     {
         //
+        return view('admin.locations.index');
     }
 
     /**
@@ -24,6 +26,7 @@ class AdminLocationController extends Controller
     public function create()
     {
         //
+        return view('admin.locations.create');
     }
 
     /**
@@ -35,6 +38,12 @@ class AdminLocationController extends Controller
     public function store(Request $request)
     {
         //
+        $location = new Location();
+        $location->name = $request->name;
+        $location->google_calendar_id = $request->google_calendar_id;
+        $location->save();
+
+        return redirect('/admin/location');
     }
 
     /**
@@ -57,6 +66,8 @@ class AdminLocationController extends Controller
     public function edit($id)
     {
         //
+        $location = Location::findOrFail($id);
+        return view('admin.locations.edit', compact('location'));
     }
 
     /**
@@ -69,6 +80,12 @@ class AdminLocationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $location = Location::findOrFail($id);
+        $location->name = $request->name;
+        $location->google_calendar_id = $request->google_calendar_id;
+        $location->update();
+
+        return redirect('/admin/location');
     }
 
     /**
@@ -80,5 +97,13 @@ class AdminLocationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function archive()
+    {
+        $locations = Location::where('archived', 1)
+            ->latest()
+            ->paginate(10);
+        return view('admin.locations.archive', compact('locations'));
     }
 }

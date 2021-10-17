@@ -12,5 +12,6 @@ class Location extends Model
     protected $fillable = [
         'name',
         'google_calendar_id',
+        'archived',
     ];
 }

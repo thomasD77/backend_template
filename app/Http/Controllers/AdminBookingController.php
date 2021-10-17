@@ -11,6 +11,7 @@ use App\Models\Service;
 use App\Models\Status;
 use App\Models\Timeslot;
 use App\Models\User;
+use Brian2694\Toastr\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +67,13 @@ class AdminBookingController extends Controller
     public function store(Request $request)
     {
         //
+        $bookingTime = Carbon::parse($request->date . " " . $request->startTime);
+        if($bookingTime < now()->addHours(2))
+        {
+            Session::flash('date', 'You cant book in the past. Please select new date');
+            return redirect()->back();
+        }
+
         if(Auth::user()->roles->first()->name == 'client')                                                                //Booking from Client
         {
             $booking = new Booking();
@@ -142,6 +150,8 @@ class AdminBookingController extends Controller
             $booking->update();
         }
 
+        \Brian2694\Toastr\Facades\Toastr::success('Booking Successfully Saved');
+
         return redirect('/admin/bookings');
 
     }
@@ -198,6 +208,13 @@ class AdminBookingController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $bookingTime = Carbon::parse($request->date . " " . $request->startTime);
+        if($bookingTime < now()->addHours(2))
+        {
+            Session::flash('date', 'You cant book in the past. Please select new date');
+            return redirect()->back();
+        }
+
         if($request->startTime > $request->endTime )
         {
             Session::flash('timeslot', 'Your End time has to ends after your Start time. Please do it again.');
@@ -266,7 +283,7 @@ class AdminBookingController extends Controller
             $eventId = $booking->event_id;
             if(isset($eventId))
             {
-                $event = Event::find($eventId);
+                $event = Event::find($eventId, $booking->location->google_calendar_id);
 
                 $event->update([
                     'name' => $booking->google_calendar_name,
@@ -276,7 +293,9 @@ class AdminBookingController extends Controller
             }
         }
 
-        return redirect('/admin/bookings');
+        \Brian2694\Toastr\Facades\Toastr::success('Booking Successfully Updated');
+
+        return redirect('/admin/');
     }
 
     /**

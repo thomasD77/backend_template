@@ -8,7 +8,9 @@
         <th scope="col">Email</th>
         <th scope="col">Role</th>
         <th scope="col">Registered</th>
+        @can('is_superAdmin')
         <th scope="col">Actions</th>
+        @endcan
     </tr>
     </thead>
     <tbody>
@@ -23,7 +25,8 @@
                         <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>
                     @endforeach</td>
                 <td>{{$user->email_verified_at ? $user->email_verified_at : 'Not Verified'}}</td>
-                <td class="text-center">
+                @can('is_superAdmin')
+                <td>
                     <div class="btn-group">
 
                         <a href="{{route('users.edit', $user->id)}}" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
@@ -34,6 +37,7 @@
                         </button>
                     </div>
                 </td>
+                @endcan
             </tr>
         @endforeach
     @endif

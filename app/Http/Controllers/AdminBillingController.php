@@ -73,10 +73,9 @@ class AdminBillingController extends Controller
             $user->save();
         }
 
+        \Brian2694\Toastr\Facades\Toastr::success('Address Successfully Created');
 
-
-
-        return view('admin.dashboard');
+        return view('admin.users.index');
     }
 
     /**
@@ -124,7 +123,9 @@ class AdminBillingController extends Controller
 
         $billing->update();
 
-        return view('admin.dashboard');
+        \Brian2694\Toastr\Facades\Toastr::success('Address Successfully Updated');
+
+        return view('admin.users.index');
     }
 
     /**
