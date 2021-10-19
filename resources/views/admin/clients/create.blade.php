@@ -44,16 +44,25 @@
                     <div class="form-group mb-4">
                         {!! Form::label('name','Name:',['class'=>'form-label']) !!}
                         {!! Form::text('name',null ,['class'=>'form-control']) !!}
+                        @error('name')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
                         {!! Form::label('username','Username:',['class'=>'form-label']) !!}
                         {!! Form::text('username',null ,['class'=>'form-control']) !!}
+                        @error('username')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
                         {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
                         {!! Form::text('email',null,['class'=>'form-control']) !!}
+                        @error('email')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
@@ -63,6 +72,9 @@
                         </div>
 
                         {!! Form::select('loyal_id',$loyals,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                        @error('loyal_id')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
@@ -71,11 +83,17 @@
                             <a data-bs-toggle="tooltip" title="New Source" class="btn btn-alt-primary mb-1" href="{{route('sources.index')}}"><i class="fa fa-plus"></i></a>
                         </div>
                         {!! Form::select('source_id',$sources,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                        @error('source_id')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
                         {!! Form::label('remarks','Remarks:',['class'=>'form-label']) !!}
                         {!! Form::textarea('remarks',null ,['class'=>'form-control']) !!}
+                        @error('remarks')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="d-flex justify-content-between">

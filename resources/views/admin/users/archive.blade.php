@@ -51,27 +51,25 @@
 
     <!-- Page Content -->
     <div class="content container-fluid">
+
         <!-- Dynamic Table Full -->
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Users
+                    Archive Users
                 </h3>
-                <a href="{{route('users.archive')}}">
-                    @canany(['is_superAdmin', 'is_admin'])
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
-                    </button>
-                    @endcanany
-                </a>
             </div>
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('users')
+                @livewire('unarchive-users')
             </div>
         </div>
         <!-- END Dynamic Table Full -->
+
         @livewireScripts
     </div>
     <!-- END Page Content -->
 @endsection
+
+
+

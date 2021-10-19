@@ -35,7 +35,7 @@
         @livewireStyles
 
         @php
-        $company = 'InnovA'
+        $company = \App\Models\CompanyCredential::find(1)
         @endphp
 
     </head>

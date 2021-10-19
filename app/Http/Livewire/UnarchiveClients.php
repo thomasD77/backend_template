@@ -20,12 +20,12 @@ class UnarchiveClients extends Component
     {
         $role = ['client'];
 
-        $clients = User::whereHas('roles', function($q) use($role) {
+        $users = User::whereHas('roles', function($q) use($role) {
             $q->whereIn('name', $role);})
             ->where('archived', 1)
             ->latest()
             ->paginate(10);
 
-        return view('livewire.unarchive-clients', compact('clients'));
+        return view('livewire.unarchive-users', compact('users'));
     }
 }

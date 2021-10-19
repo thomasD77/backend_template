@@ -44,6 +44,9 @@
                     <div class="form-group mb-4">
                         {!! Form::label('name','Name:',['class'=>'form-label']) !!}
                         {!! Form::text('name',$location->name ,['class'=>'form-control']) !!}
+                        @error('name')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     @can('is_superAdmin')

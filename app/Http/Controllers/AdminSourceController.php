@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SourceRequest;
 use App\Models\source;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,7 @@ class AdminSourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SourceRequest $request)
     {
         //
         $source = new Source();
@@ -74,7 +75,7 @@ class AdminSourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SourceRequest $request, $id)
     {
         //
         $source = Source::findOrFail($id);

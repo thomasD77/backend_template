@@ -5,12 +5,12 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Livewire\Component;
 
-class Users extends Component
+class UnarchiveUsers extends Component
 {
-    public function archiveUser($id)
+    public function unArchiveUser($id)
     {
         $user = User::findOrFail($id);
-        $user->archived = 1;
+        $user->archived = 0;
         $user->update();
     }
 
@@ -20,10 +20,10 @@ class Users extends Component
 
         $users = User::whereHas('roles', function($q) use($roles) {
             $q->whereIn('name', $roles);})
-            ->where('archived', 0)
+            ->where('archived', 1)
             ->latest()
             ->paginate(10);
 
-        return view('livewire.users', compact('users'));
+        return view('livewire.unarchive-users', compact('users'));
     }
 }

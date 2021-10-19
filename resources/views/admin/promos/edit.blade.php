@@ -49,6 +49,10 @@
                   @enderror
               </div>
 
+              @if(Session::has('promo_date'))
+                  <p class="alert alert-danger my-2 col-6">{{session('promo_date')}}</p>
+              @endif
+
               <div class="col-6 form-group mb-4">
                   {!! Form::label('date_from', 'Date from:') !!}
                   {!! Form::date('date_from', $promo->date_from,['class'=>'form-control']) !!}
@@ -66,18 +70,17 @@
               </div>
 
               <div class="col-6 form-group mb-4">
-                  {!! Form::label('discount', 'Discount:') !!}
-                  {!! Form::text('discount',$promo->discount,['class'=>'form-control']) !!}
+                  {!! Form::label('discount', 'Discount (%):') !!}
+                  {!! Form::number('discount',$promo->discount,['class'=>'form-control']) !!}
                   @error('discount')
                   <p class="text-danger mt-2"> {{ $message }}</p>
                   @enderror
               </div>
 
-
               <div class="form-group  mb-4">
                   {!! Form::label('description', 'Description:') !!}
                   {!! Form::textarea('description',$promo->description,['class'=>'form-control', 'id'=>'js-ckeditor5-classic']) !!}
-                  @error('body')
+                  @error('description')
                   <p class="text-danger mt-2"> {{ $message }}</p>
                   @enderror
               </div>

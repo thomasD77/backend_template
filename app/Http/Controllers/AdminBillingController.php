@@ -75,7 +75,7 @@ class AdminBillingController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('Address Successfully Created');
 
-        return view('admin.users.index');
+        return redirect('/admin/');
     }
 
     /**
@@ -125,7 +125,7 @@ class AdminBillingController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('Address Successfully Updated');
 
-        return view('admin.users.index');
+        return redirect('/admin/');
     }
 
     /**

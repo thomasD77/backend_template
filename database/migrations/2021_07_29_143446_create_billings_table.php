@@ -19,11 +19,11 @@ class CreateBillingsTable extends Migration
             $table->string('company')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
-            $table->string('streetAddress1');
+            $table->string('streetAddress1')->nullable();
             $table->string('streetAddress2')->nullable();
-            $table->string('city');
-            $table->integer('postalCode');
-            $table->string('VAT');
+            $table->string('city')->nullable();
+            $table->integer('postalCode')->nullable();
+            $table->string('VAT')->nullable();
             $table->timestamps();
         });
     }

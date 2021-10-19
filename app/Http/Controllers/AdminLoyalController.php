@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoyalRequest;
 use App\Models\Loyal;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,7 @@ class AdminLoyalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LoyalRequest $request)
     {
         //
         $loyal = new Loyal();
@@ -74,7 +75,7 @@ class AdminLoyalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LoyalRequest $request, $id)
     {
         //
         $loyal = Loyal::findOrFail($id);

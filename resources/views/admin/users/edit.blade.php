@@ -216,7 +216,7 @@
                   </div>
 
                   <div class="form-group mb-4">
-                      {!! Form::label('one-profile-edit-VAT', 'VAT Number:',['class'=>'form-label']) !!}
+                      {!! Form::label('one-profile-edit-VAT', 'VAT Number (optional):',['class'=>'form-label']) !!}
                       {!! Form::text('VAT',$user->billing ? $user->billing->VAT : "",['class'=>'form-control']) !!}
                       @error('VAT')
                       <p class="text-danger mt-2"> {{ $message }}</p>
@@ -289,7 +289,7 @@
                   </div>
 
                   <div class="form-group mb-4">
-                      {!! Form::label('one-profile-edit-VAT', 'VAT Number:',['class'=>'form-label']) !!}
+                      {!! Form::label('one-profile-edit-VAT', 'VAT Number (optional):',['class'=>'form-label']) !!}
                       {!! Form::text('VAT',$user->billing? $user->billing->VAT : "",['class'=>'form-control']) !!}
                       @error('VAT')
                       <p class="text-danger mt-2"> {{ $message }}</p>

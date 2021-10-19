@@ -41,20 +41,27 @@
                         'files'=>false])
                    !!}
                     <div class="form-group mb-4">
-                        {!! Form::label('firstname','First Name:',['class'=>'form-label']) !!}
-                        {!! Form::text('firstname',$client->name ,['class'=>'form-control']) !!}
-
+                        {!! Form::label('name','Name:',['class'=>'form-label']) !!}
+                        {!! Form::text('name',$client->name ,['class'=>'form-control']) !!}
+                        @error('name')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('lastname','Last Name:',['class'=>'form-label']) !!}
-                        {!! Form::text('lastname',$client->username ,['class'=>'form-control']) !!}
-
+                        {!! Form::label('username','Username:',['class'=>'form-label']) !!}
+                        {!! Form::text('username',$client->username ,['class'=>'form-control']) !!}
+                        @error('username')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
                         {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
                         {!! Form::text('email',$client->email,['class'=>'form-control']) !!}
+                        @error('email')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
@@ -63,6 +70,9 @@
                         <a data-bs-toggle="tooltip" title="New Loyalty" class="btn btn-alt-primary mb-1" href="{{route('loyals.index')}}"><i class="fa fa-plus"></i></a>
                         </div>
                         {!! Form::select('loyal_id',$loyals,$client->loyal->id,['class'=>'form-control'])!!}
+                        @error('loyal_id')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
@@ -71,6 +81,9 @@
                         <a data-bs-toggle="tooltip" title="New Source" class="btn btn-alt-primary mb-1" href="{{route('sources.index')}}"><i class="fa fa-plus"></i></a>
                         </div>
                         {!! Form::select('source_id',$sources,$client->source->id,['class'=>'form-control'])!!}
+                        @error('source_id')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">

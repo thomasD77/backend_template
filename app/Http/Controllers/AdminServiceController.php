@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\User;
@@ -44,7 +45,7 @@ class AdminServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
         //
         $service = new Service();
@@ -94,7 +95,7 @@ class AdminServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceRequest $request, $id)
     {
         //
         $service = Service::findOrFail($id);

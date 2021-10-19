@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PromoRequest;
 use App\Models\Promo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminPromoController extends Controller
 {
@@ -35,9 +37,14 @@ class AdminPromoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PromoRequest $request)
     {
         //
+        if($request->date_from > $request->date_to)
+        {
+            Session::flash('promo_date', 'You cant book in the past. Please select new date');
+            return redirect()->back();
+        }
         $promo = new Promo();
         $promo->name = $request->name;
         $promo->date_from = $request->date_from;
@@ -83,9 +90,14 @@ class AdminPromoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PromoRequest $request, $id)
     {
         //
+        if($request->date_from > $request->date_to)
+        {
+            Session::flash('promo_date', 'You cant book in the past. Please select new date');
+            return redirect()->back();
+        }
         $promo = Promo::findOrFail($id);
         $promo->name = $request->name;
         $promo->date_from = $request->date_from;

@@ -45,7 +45,7 @@
 
               <div class="col-6 form-group mb-4">
                   {!! Form::label('price', 'Price:') !!}
-                  {!! Form::text('price', null,['class'=>'form-control']) !!}
+                  {!! Form::number('price', null,['class'=>'form-control']) !!}
                   @error('price')
                   <p class="text-danger mt-2"> {{ $message }}</p>
                   @enderror
@@ -62,7 +62,7 @@
               <div class="form-group  mb-4">
                   {!! Form::label('description', 'Description:') !!}
                   {!! Form::textarea('description',null,['class'=>'form-control', 'id'=>'js-ckeditor5-classic']) !!}
-                  @error('body')
+                  @error('description')
                   <p class="text-danger mt-2"> {{ $message }}</p>
                   @enderror
               </div>

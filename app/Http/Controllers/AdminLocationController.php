@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LocationRequest;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class AdminLocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LocationRequest $request)
     {
         //
         $location = new Location();
@@ -77,7 +78,7 @@ class AdminLocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LocationRequest $request, $id)
     {
         //
         $location = Location::findOrFail($id);

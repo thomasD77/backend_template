@@ -77,13 +77,16 @@
                     <div class="block-content d-flex justify-content-center align-items-center">
                         @if(isset($photos))
                             @php
-                                $photo = \App\Models\Photo::where('credential_id', $company->id)->first()
+                                $company = \App\Models\CompanyCredential::find(1);
+                                if(isset($company)){
+                                    $photo = \App\Models\Photo::where('credential_id', $company->id)->first();
+                                }
                             @endphp
 
-                            @if($photo)
+                            @if(isset($photo))
                                 <input type="hidden" name="photo" value="{{$photo->id}}">
+                                <img class="rounded mt-2" height="200" width="200" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company ? $company->firstname : ""}}">
                             @endif
-                            <img class="rounded mt-2" height="200" width="200" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company->firstname}}">
                         @endif
                     </div>
                 </div>

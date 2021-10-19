@@ -68,7 +68,7 @@
               <div class="form-group  mb-4">
                   {!! Form::label('description', 'Description:') !!}
                   {!! Form::textarea('description',$service->description,['class'=>'form-control', 'id'=>'js-ckeditor5-classic']) !!}
-                  @error('body')
+                  @error('description')
                   <p class="text-danger mt-2"> {{ $message }}</p>
                   @enderror
               </div>

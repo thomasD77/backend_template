@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServiceCategoryRequest;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class AdminServiceCategory extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceCategoryRequest $request)
     {
         //
         $category = new ServiceCategory();
@@ -75,7 +76,7 @@ class AdminServiceCategory extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceCategoryRequest $request, $id)
     {
         //
         $category = ServiceCategory::findOrfail($id);

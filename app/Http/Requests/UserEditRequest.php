@@ -25,15 +25,15 @@ class UserEditRequest extends FormRequest
     {
         return [
             //
-            'name'=>'required',
-            'email'=>'required',
+            'name'=>'required|max:150',
+            'email'=>'required|max:150',
         ];
     }
 
     public function messages(){
         return[
             'name.required'=>'Name is required',
-            'email.required'=> 'Email is required!',
+            'email.required'=> 'Email is required',
         ];
     }
 }

@@ -118,7 +118,8 @@ class AdminUsersController extends Controller
         $user->roles()->sync($request->roles, true);
 
         \Brian2694\Toastr\Facades\Toastr::success('User Successfully Updated');
-        return view('admin.users.index');
+
+        return redirect('/admin/');
     }
 
     /**
@@ -157,7 +158,7 @@ class AdminUsersController extends Controller
                 $user->update();
 
                 \Brian2694\Toastr\Facades\Toastr::success('User Successfully Updated');
-                return view('admin.users.index');
+                return redirect('/admin/');
 
             } else {
                 Session::flash('user_password', 'The New Password is not duplicated correct, please try again.');
@@ -167,6 +168,19 @@ class AdminUsersController extends Controller
 
         Session::flash('user_message', 'The Current Password is not correct, please try again.');
         return redirect()->back();
+    }
+
+    public function archive()
+    {
+        $name = ['superAdmin', 'admin', 'employee'];
+
+        $users = User::whereHas('roles', function($q) use($name) {
+            $q->whereIn('name', $name);})
+            ->where('archived', 1)
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.users.archive', compact('users'));
     }
 
 }

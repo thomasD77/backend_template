@@ -51,9 +51,8 @@
 
                     <div class="col-12 form-group mb-4">
                         {!! Form::label('Description:') !!}
-                        {!! Form::label('price', $promo->description,['class'=>'form-control']) !!}
+                        <div class="form-control" >{!! $promo->description !!}</div>
                     </div>
-
 
                 </div>
             </div>

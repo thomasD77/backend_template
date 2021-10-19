@@ -36,7 +36,7 @@ class CreateCompanyCredentialsTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('company_credentials')->insert([
+        DB::table('company_credentials')->insert([                                                                //Keep for Live website
             'firstname' => "",
             'lastname' => "",
             'companyName' => "",

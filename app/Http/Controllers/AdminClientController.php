@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientRequest;
 use App\Models\Client;
 use App\Models\Loyal;
 use App\Models\Source;
@@ -45,7 +46,7 @@ class AdminClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
         //
         $client = new User();
@@ -111,7 +112,7 @@ class AdminClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CLientRequest $request, $id)
     {
         //
         $client = User::findOrFail($id);

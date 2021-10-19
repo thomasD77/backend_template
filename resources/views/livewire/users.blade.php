@@ -8,7 +8,7 @@
         <th scope="col">Email</th>
         <th scope="col">Role</th>
         <th scope="col">Registered</th>
-        @can('is_superAdmin')
+        @canany(['is_superAdmin', 'is_admin'])
         <th scope="col">Actions</th>
         @endcan
     </tr>
@@ -23,18 +23,18 @@
                 <td>{{$user->email ? $user->email : 'No Email'}}</td>
                 <td>@foreach($user->roles as $role)
                         <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>
-                    @endforeach</td>
+                    @endforeach
+                </td>
                 <td>{{$user->email_verified_at ? $user->email_verified_at : 'Not Verified'}}</td>
-                @can('is_superAdmin')
+                @canany(['is_superAdmin', 'is_admin'])
                 <td>
                     <div class="btn-group">
-
-                        <a href="{{route('users.edit', $user->id)}}" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
-                            <i class="fa fa-fw fa-pencil-alt"></i>
+                        <a href="{{route('clients.edit', $user->id)}}">
+                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit User">
+                                <i class="fa fa-fw fa-pencil-alt"></i>
+                            </button>
                         </a>
-                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
-                            <i class="fa fa-fw fa-times"></i>
-                        </button>
+                        <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive User" wire:click="archiveUser({{$user->id}})"><i class="fa fa-archive"></i></button>
                     </div>
                 </td>
                 @endcan
