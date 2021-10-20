@@ -8,6 +8,7 @@
             @endcanany
             <th scope="col">Service</th>
             <th scope="col">Date</th>
+            <th scope="col">Shop</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
             @can('is_client')
@@ -52,6 +53,9 @@
                                 <span class="badge badge rounded-pill text-white bg-dark">{{ $booking->startTime ? \Carbon\Carbon::parse($booking->startTime)->format('h:i') : 'No Start Time' }}</span>
                                 <span class="badge badge rounded-pill text-white bg-dark">{{ $booking->endTime ? \Carbon\Carbon::parse($booking->endTime)->format('h:i') : 'No End Time' }}</span>
                             </div>
+                        </td>
+                        <td>
+                            {{ $booking->location->name }}
                         </td>
                         <td>
                             <span class="badge badge rounded-pill p-2 {{$booking->status->color}}">

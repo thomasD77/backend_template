@@ -44,18 +44,26 @@
                     @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                     <div class="form-group mb-4">
                         {!! Form::label('client','Select Client:', ['class'=>'form-label']) !!}
-                        {!! Form::select('client_id',$clients, $booking->user->id ,['class'=>'form-control'])!!}
+                        {!! Form::select('client_id',$clients, $booking->client->id ,['class'=>'form-control'])!!}
+                        @error('client_id')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
                     @endcanany
 
                     <div class="form-group mb-4">
                         {!! Form::label('service','Select Service:', ['class'=>'form-label']) !!}
-                        {!! Form::select('services[]',$services,$booking->services->pluck('id')->toArray(),['class'=>'form-control', 'multiple'=>'multiple'])!!}
+                        {!! Form::select('services',$services,$booking->services->pluck('id')->toArray(),['class'=>'form-control', 'multiple'=>'multiple'])!!}
+                        @error('services')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('location','Select Location:', ['class'=>'form-label']) !!}
-                        {!! Form::select('location_id',$locations,$booking->location->id,['class'=>'form-control'])!!}
+                        <div class="form-label">Location:</div>
+                        <div class="form-control">{{ $booking->location->name }}</div>
+                        <input type="hidden" name="location_id" value="{{ $booking->location->id }}">
+                        <span class="text-muted"><small>*you can't change the location. Make new booking if needed.</small></span>
                     </div>
 
                     @if(Session::has('date'))
@@ -65,6 +73,9 @@
                     <div class="form-group mb-4">
                         {!! Form::label('date','Select Date:',['class'=>'form-label']) !!}
                         {!! Form::date('date',$booking->date ,['class'=>'form-control']) !!}
+                        @error('date')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
 
                     @if(Session::has('timeslot'))
@@ -76,6 +87,9 @@
                         <div>
                             {!! Form::label('bookingStatus','Start time:', ['class'=>'form-label']) !!}
                             <input name="startTime" value="{{ $booking->startTime }}" class="form-control" type="time">
+                            @error('startTime')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
                         </div>
                         @can('is_client')
                             <div>
@@ -86,6 +100,9 @@
                         <div>
                             {!! Form::label('bookingStatus','End time:', ['class'=>'form-label']) !!}
                             <input name="endTime" value="{{ $booking->endTime }}" class="form-control" type="time">
+                            @error('endTime')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
                         </div>
                         @endcanany
                         <p class="mt-1">This booking will take {{ $booking->timeslot_range }} minutes.</p>
@@ -95,11 +112,14 @@
                     <div class="form-group mb-4">
                         {!! Form::label('bookingStatus','Select Status:', ['class'=>'form-label']) !!}
                         {!! Form::select('status_id',$statuses,$booking->status->id,['class'=>'form-control'])!!}
+                        @error('status_id')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
                     @endcanany
 
                     <div class="form-group  mb-4">
-                        {!! Form::label('remarks', 'Remarks:') !!}
+                        {!! Form::label('remarks', 'Share your message:') !!}
                         {!! Form::textarea('remarks',$booking->remarks,['class'=>'form-control']) !!}
                     </div>
 

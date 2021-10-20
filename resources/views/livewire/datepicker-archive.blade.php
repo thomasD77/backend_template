@@ -8,7 +8,7 @@
             </h3>
             <label class="d-flex">
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date submission" data-inline="month" data-enable-time="false">
-                <button wire:click="dateALL" class="btn btn-secondary rounded " type="button"><i class="si si-refresh"></i></button>
+                <button wire:click="dateALL" class="btn btn-secondary rounded" data-bs-toggle="tooltip" title="Refresh" type="button"><i class="si si-refresh"></i></button>
             </label>
         </div>
         <div class="block-content block-content-full overflow-scroll">
@@ -37,7 +37,7 @@
                                             <i class="fa far fa-eye"></i>
                                         </button>
                                     </a>
-                                    <button class="btn btn-sm btn-alt-secondary" data-toggle="tooltip" data-title="Reset Sub" wire:click="unArchiveSub({{$submission->id}})"><i class="si si-refresh "></i></button>
+                                    <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset Submission" wire:click="unArchiveSub({{$submission->id}})"><i class="si si-refresh "></i></button>
                                 </div>
                             </td>
                         </tr>

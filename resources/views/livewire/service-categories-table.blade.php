@@ -31,7 +31,7 @@
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
 
-                                <button wire:click="removeCategory({{$servicecategory->id}})" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
+                                <button wire:click="removeCategory({{$servicecategory->id}})" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Category">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </div>

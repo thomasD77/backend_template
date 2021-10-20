@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostCategoryRequest;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class AdminPostCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCategoryRequest $request)
     {
         //
         $category = new PostCategory();

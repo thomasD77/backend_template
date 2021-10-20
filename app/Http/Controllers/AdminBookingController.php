@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookingRequest;
 use App\Mail\newBooking;
 use App\Mail\updateBooking;
 use App\Models\Booking;
@@ -76,6 +77,13 @@ class AdminBookingController extends Controller
 
         if(Auth::user()->roles->first()->name == 'client')                                                                //Booking from Client
         {
+            $this->validate($request, [
+                'services'=>'required',
+                'location_id'=>'required',
+                'date'=>'required',
+                'startTime'=>'required',
+            ]);
+
             $booking = new Booking();
             $booking->location_id = $request->location_id;
             $booking->user_id = Auth::user()->id;
@@ -93,6 +101,15 @@ class AdminBookingController extends Controller
                 Session::flash('timeslot', 'Your End time has to ends after your Start time. Please do it again.');
                 return redirect()->back();
             }
+            $this->validate($request, [
+                'client_id'=>'required',
+                'status_id'=>'required',
+                'services'=>'required',
+                'location_id'=>'required',
+                'date'=>'required',
+                'startTime'=>'required',
+                'endTime'=>'required',
+            ]);
             $booking = new Booking();
             $booking->location_id = $request->location_id;
             $booking->client_id = $request->client_id;
@@ -223,6 +240,13 @@ class AdminBookingController extends Controller
 
         if(Auth::user()->roles->first()->name == 'client')
         {
+            $this->validate($request, [
+                'services'=>'required',
+                'location_id'=>'required',
+                'date'=>'required',
+                'startTime'=>'required',
+            ]);
+
             $booking = Booking::findOrFail($id);
             $booking->location_id = $request->location_id;
             $booking->client_id = Auth::user()->id;
@@ -236,6 +260,16 @@ class AdminBookingController extends Controller
         }
         else
         {
+            $this->validate($request, [
+                'client_id'=>'required',
+                'status_id'=>'required',
+                'services'=>'required',
+                'location_id'=>'required',
+                'date'=>'required',
+                'startTime'=>'required',
+                'endTime'=>'required',
+            ]);
+
             $booking = Booking::findOrFail($id);
             $booking->location_id = $request->location_id;
             $booking->client_id = $request->client_id;
@@ -295,7 +329,7 @@ class AdminBookingController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('Booking Successfully Updated');
 
-        return redirect('/admin/');
+        return redirect('/admin/bookings');
     }
 
     /**

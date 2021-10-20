@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostRequest extends FormRequest
+class BookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,17 +25,13 @@ class PostRequest extends FormRequest
     {
         return [
             //
-            'title'=>'required|max:150',
-            'body'=>'required',
-            'postcategory_id'=>'required',
-        ];
-    }
-
-    public function messages(){
-        return[
-            'title.required'=>'Title is required',
-            'body.required'=> 'Description is required!',
-            'postcategory_id.required'=> 'Category is required!',
+            'client_id'=>'required',
+            'status_id'=>'required',
+            'services'=>'required',
+            'location_id'=>'required',
+            'date'=>'required',
+            'startTime'=>'required',
+            'endTime'=>'required',
         ];
     }
 }

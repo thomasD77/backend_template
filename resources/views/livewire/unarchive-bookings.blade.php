@@ -35,7 +35,7 @@
                         <div class="btn-group">
                             <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset booking" wire:click="unArchiveBooking({{$booking->id}})"><i class="si si-refresh "></i></button>
                             <a href="{{route('bookings.show', $booking->id)}}">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit booking">
+                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show booking">
                                     <i class="far fa-eye"></i>
                                 </button>
                             </a>

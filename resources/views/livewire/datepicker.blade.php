@@ -8,9 +8,9 @@
             </h3>
             <label class="d-flex">
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date submission" data-inline="month" data-enable-time="false">
-                <button wire:click="dateALL" class="btn btn-secondary rounded" type="button"><i class="si si-refresh"></i></button>
+                <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
                 <a href="{{route('submission.archive')}}">
-                    <button class="btn btn-secondary rounded mx-2" data-toggle="tooltip" data-title="Archive Sub">
+                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>
                     </button>
                 </a>
@@ -42,7 +42,7 @@
                                             <i class="fa far fa-eye"></i>
                                         </button>
                                     </a>
-                                    <button class="btn btn-sm btn-alt-secondary" data-toggle="tooltip" data-title="Archive Sub" wire:click="archiveSub({{$submission->id}})"><i class="fa fa-archive "></i></button>
+                                    <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive" wire:click="archiveSub({{$submission->id}})"><i class="fa fa-archive "></i></button>
                                 </div>
                             </td>
                         </tr>
