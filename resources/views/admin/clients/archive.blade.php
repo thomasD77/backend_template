@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        DataTable Clients
+                       Clients
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -58,6 +58,11 @@
                 <h3 class="block-title">
                     Archive Clients
                 </h3>
+                <a href="{{url()->previous()}}">
+                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
+                        <i class="far fa-list-alt "></i>
+                    </button>
+                </a>
             </div>
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->

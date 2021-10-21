@@ -44,6 +44,8 @@ class AdminLocationController extends Controller
         $location->google_calendar_id = $request->google_calendar_id;
         $location->save();
 
+        \Brian2694\Toastr\Facades\Toastr::success('Location Successfully Saved');
+
         return redirect('/admin/location');
     }
 
@@ -86,6 +88,8 @@ class AdminLocationController extends Controller
         $location->google_calendar_id = $request->google_calendar_id;
         $location->update();
 
+        \Brian2694\Toastr\Facades\Toastr::success('Location Successfully Updated');
+
         return redirect('/admin/location');
     }
 
@@ -105,6 +109,7 @@ class AdminLocationController extends Controller
         $locations = Location::where('archived', 1)
             ->latest()
             ->paginate(10);
+
         return view('admin.locations.archive', compact('locations'));
     }
 }

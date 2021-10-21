@@ -22,14 +22,20 @@ class CreateLoyalsTable extends Migration
 
         DB::table('loyals')->insert([
             'name'=>'strong',
+            'created_at' => now(),
+            'updated_at' => now()->addHour()
         ]);
 
         DB::table('loyals')->insert([
             'name'=>'medium',
+            'created_at' => now(),
+            'updated_at' => now()->addHour()
         ]);
 
         DB::table('loyals')->insert([
             'name'=>'weak',
+            'created_at' => now(),
+            'updated_at' => now()->addHour()
         ]);
 
     }

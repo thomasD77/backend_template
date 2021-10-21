@@ -43,6 +43,8 @@ class AdminPostCategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
+        \Brian2694\Toastr\Facades\Toastr::success('Category Successfully Saved');
+
         return redirect('admin/postcategories');
     }
 

@@ -43,6 +43,8 @@ class AdminServiceCategory extends Controller
         $category->name = $request->name;
         $category->save();
 
+        \Brian2694\Toastr\Facades\Toastr::success('Category Successfully Saved');
+
         return redirect('/admin/service-categories');
 
     }
@@ -82,6 +84,8 @@ class AdminServiceCategory extends Controller
         $category = ServiceCategory::findOrfail($id);
         $category->name = $request->name;
         $category->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Category Successfully Updated');
 
         return redirect('/admin/postcategories');
     }

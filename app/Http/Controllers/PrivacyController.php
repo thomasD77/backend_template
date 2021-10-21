@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Privacy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PrivacyController extends Controller
 {
@@ -78,8 +79,9 @@ class PrivacyController extends Controller
         $creditential->input_1 = $request->input_1;
         $creditential->text_1 = $request->text_1;
 
-
         $creditential->update();
+
+        Session::flash('flash_message', 'Privacy Policy Successfully Updated');
 
         return redirect('/admin');
     }

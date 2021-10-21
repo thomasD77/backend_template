@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cookie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CookieController extends Controller
 {
@@ -78,6 +79,8 @@ class CookieController extends Controller
         $creditential->text_1 = $request->text_1;
 
         $creditential->update();
+
+        Session::flash('flash_message', 'Cookie Policy Successfully Updated');
 
         return redirect('/admin');
     }

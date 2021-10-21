@@ -2,12 +2,27 @@
 
 @section('content')
 
+    <style>
+        .parent {
+            position: relative;
+        }
+        #flash_message {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            opacity: 0.9;
+            color: white;
+        }
 
-
+        #flash_message:hover{
+            transform: scale(1.1);
+            opacity: 1.1;
+        }
+    </style>
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+            <div class="d-flex parent flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
                         Dashboard
@@ -26,6 +41,11 @@
                         </li>
                     </ol>
                 </nav>
+                <div style="z-index: 99" id="flash_message">
+                    @if(Session::has('flash_message'))
+                        <p style="z-index: 5" class="alert bg-success my-2">{{session('flash_message')}}</p>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

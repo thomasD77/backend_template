@@ -44,6 +44,9 @@ class AdminFaqController extends Controller
         $faq->question = $request->question;
         $faq->answer = $request->answer;
         $faq->save();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Faq Successfully Saved');
+
         return redirect('admin/faqs');
     }
 
@@ -85,6 +88,9 @@ class AdminFaqController extends Controller
         $faq->question = $request->question;
         $faq->answer = $request->answer;
         $faq->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Faq Successfully Updated');
+
         return redirect('admin/faqs');
     }
 

@@ -29,7 +29,7 @@
                 @canany(['is_superAdmin', 'is_admin'])
                 <td>
                     <div class="btn-group">
-                        <a href="{{route('clients.edit', $user->id)}}">
+                        <a href="{{route('users.edit', $user->id)}}">
                             <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit User">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </button>

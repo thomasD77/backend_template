@@ -7,6 +7,11 @@
                 submissions
             </h3>
             <label class="d-flex">
+                <a href="{{url()->previous()}}">
+                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
+                        <i class="far fa-list-alt "></i>
+                    </button>
+                </a>
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date submission" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" data-bs-toggle="tooltip" title="Refresh" type="button"><i class="si si-refresh"></i></button>
             </label>

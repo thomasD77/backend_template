@@ -22,10 +22,14 @@ class CreateSourcesTable extends Migration
 
         DB::table('sources')->insert([
             'name' => 'shop_prospect',
+            'created_at' => now(),
+            'updated_at' => now()->addHour()
         ]);
 
         DB::table('sources')->insert([
             'name' => 'shop_customer',
+            'created_at' => now(),
+            'updated_at' => now()->addHour()
         ]);
     }
 

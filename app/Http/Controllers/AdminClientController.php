@@ -66,6 +66,8 @@ class AdminClientController extends Controller
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
+        \Brian2694\Toastr\Facades\Toastr::success('Client Successfully Saved');
+
         return redirect('/admin/clients');
     }
 
@@ -124,6 +126,8 @@ class AdminClientController extends Controller
         $client->source_id = $request->source_id;
 
         $client->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Client Successfully Updated');
 
         return redirect('/admin/clients');
     }

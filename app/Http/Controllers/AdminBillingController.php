@@ -7,6 +7,7 @@ use App\Models\Billing;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminBillingController extends Controller
 {
@@ -73,7 +74,7 @@ class AdminBillingController extends Controller
             $user->save();
         }
 
-        \Brian2694\Toastr\Facades\Toastr::success('Address Successfully Created');
+        Session::flash('flash_message', 'Address Successfully Updated');
 
         return redirect('/admin/');
     }
@@ -123,7 +124,7 @@ class AdminBillingController extends Controller
 
         $billing->update();
 
-        \Brian2694\Toastr\Facades\Toastr::success('Address Successfully Updated');
+        Session::flash('flash_message', 'Address Successfully Updated');
 
         return redirect('/admin/');
     }

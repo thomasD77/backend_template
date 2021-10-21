@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\disclaimer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DisclaimerController extends Controller
 {
@@ -77,8 +78,9 @@ class DisclaimerController extends Controller
         $creditential->input_1 = $request->input_1;
         $creditential->text_1 = $request->text_1;
 
-
         $creditential->update();
+
+        Session::flash('flash_message', 'Disclaimer Successfully Updated');
 
         return redirect('/admin');
     }

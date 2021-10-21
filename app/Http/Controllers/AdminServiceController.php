@@ -56,6 +56,9 @@ class AdminServiceController extends Controller
         $service['slug'] = Str::slug($request->name, '-');
 
         $service->save();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Service Successfully Saved');
+
         return redirect('admin/services');
     }
 
@@ -104,6 +107,8 @@ class AdminServiceController extends Controller
         $service->description = $request->description;
         $service->servicecategory_id = $request->servicecategory_id;
         $service->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Service Successfully Updated');
 
         return redirect('/admin/services');
     }

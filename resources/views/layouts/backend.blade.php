@@ -401,5 +401,14 @@
         <!-- Laravel Toastr -->
         <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
+
+        <!-- Session Flash Timer -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            setTimeout(function() {
+                $('#flash_message').fadeOut('fast');
+            }, 3000); // <-- time in milliseconds
+        </script>
+
     </body>
 </html>

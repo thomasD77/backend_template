@@ -117,7 +117,7 @@ class AdminUsersController extends Controller
         /** wegschrijven van de role in tussentabel **/
         $user->roles()->sync($request->roles, true);
 
-        \Brian2694\Toastr\Facades\Toastr::success('User Successfully Updated');
+        Session::flash('flash_message', 'User Successfully Updated');
 
         return redirect('/admin/');
     }
@@ -157,7 +157,7 @@ class AdminUsersController extends Controller
                 $user->password = $newHashPassword;
                 $user->update();
 
-                \Brian2694\Toastr\Facades\Toastr::success('User Successfully Updated');
+                Session::flash('flash_message', 'Password Successfully Updated');
                 return redirect('/admin/');
 
             } else {

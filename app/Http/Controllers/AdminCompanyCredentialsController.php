@@ -110,6 +110,7 @@ class AdminCompanyCredentialsController extends Controller
             Photo::create(['file'=>$name, 'credential_id'=>$creditential->id]);
         }
 
+        Session::flash('flash_message', 'Credentials Successfully Updated');
 
         return redirect('/admin');
     }

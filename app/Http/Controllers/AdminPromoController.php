@@ -54,6 +54,8 @@ class AdminPromoController extends Controller
 
         $promo->save();
 
+        \Brian2694\Toastr\Facades\Toastr::success('Promo Successfully Saved');
+
         return redirect('admin/promos');
     }
 
@@ -106,6 +108,8 @@ class AdminPromoController extends Controller
         $promo->description = $request->description;
 
         $promo->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Promo Successfully Updated');
 
         return redirect('admin/promos');
     }

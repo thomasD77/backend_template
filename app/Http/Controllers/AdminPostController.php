@@ -103,6 +103,7 @@ class AdminPostController extends Controller
         $post['slug'] = Str::slug($request->title, '-');
 
 
+        \Brian2694\Toastr\Facades\Toastr::success('Post Successfully Saved');
 
         return redirect('admin/posts');
     }
@@ -197,6 +198,7 @@ class AdminPostController extends Controller
 
         $post['slug'] = Str::slug($request->title, '-');
 
+        \Brian2694\Toastr\Facades\Toastr::success('Post Successfully Updated');
 
         return redirect('admin/posts');
     }

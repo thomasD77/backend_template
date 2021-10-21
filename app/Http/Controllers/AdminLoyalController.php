@@ -43,6 +43,8 @@ class AdminLoyalController extends Controller
 
         $loyal->save();
 
+        \Brian2694\Toastr\Facades\Toastr::success('Loyalty Successfully Saved');
+
         return redirect('admin/loyals');
     }
 

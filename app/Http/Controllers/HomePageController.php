@@ -6,6 +6,7 @@ use App\Models\CompanyCredential;
 use App\Models\HomePage;
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Image;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -147,8 +148,9 @@ class HomePageController extends Controller
                         $photo->update();
                     }
                 }
-
         }
+
+        Session::flash('flash_message', 'Your Home Page Builder is Updated');
 
         return redirect('/admin');
     }

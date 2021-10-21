@@ -43,6 +43,8 @@ class AdminSourceController extends Controller
 
         $source->save();
 
+        \Brian2694\Toastr\Facades\Toastr::success('Source Successfully Saved');
+
         return redirect('admin/sources');
     }
 
