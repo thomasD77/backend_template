@@ -36,12 +36,10 @@ class AdminPostController extends Controller
     public function create()
     {
         //
-        $postcategories = PostCategory::pluck('name', 'id')
-            ->all();
-        $users = User::pluck('name', 'id')
-            ->all();
+        $postcategories = PostCategory::where('archived', 0)
+        ->pluck('name', 'id');
 
-        return view('admin.posts.create',compact('postcategories', 'users'));
+        return view('admin.posts.create',compact('postcategories'));
 
     }
 
@@ -131,8 +129,9 @@ class AdminPostController extends Controller
     {
         //
         $post = Post::findOrFail($id);
-        $postcategories = PostCategory::pluck('name','id')
-            ->all();
+
+        $postcategories = PostCategory::where('archived', 0)
+            ->pluck('name', 'id');
 
         return view('admin.posts.edit', compact('post', 'postcategories'));
 

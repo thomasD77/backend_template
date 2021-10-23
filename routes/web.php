@@ -29,12 +29,9 @@ Route::match(['get', 'post'], '/dashboard', function(){
 Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
-
 Route::view('/register/client', 'auth.registerClient');
-
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
@@ -77,7 +74,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('archive/submissions', 'App\Http\Controllers\AdminSubmissionController@archive')->name('submission.archive');
     Route::get('archive/posts', 'App\Http\Controllers\AdminPostController@archive')->name('post.archive');
 
-
     //General Routes
     Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');
 
@@ -117,10 +113,4 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('/mail/test', function () {
         return view('emails.newBooking');
     });
-
-    //Calender
-    Route::get('event', [FullCalendarController::class, 'index']);
-    Route::post('eventAjax', [FullCalendarController::class, 'ajax']);
-
-
 });
