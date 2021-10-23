@@ -14,6 +14,13 @@ class LoyalTable extends Component
         'updateLoyalsTable',
     ];
 
+    public function archiveLoyal($id)
+    {
+        $loyal = \App\Models\Loyal::findOrFail($id);
+        $loyal->archived = 1;
+        $loyal->update();
+    }
+
     public function updateLoyalsTable($name)
     {
         //
@@ -55,7 +62,9 @@ class LoyalTable extends Component
 
     public function render()
     {
-        $loyals = \App\Models\Loyal::orderBy('id', 'DESC')->paginate(5);
+        $loyals = \App\Models\Loyal::orderBy('id', 'DESC')
+            ->where('archived', 0)
+            ->paginate(5);
         return view('livewire.loyal-table', compact( 'loyals'));
     }
 }

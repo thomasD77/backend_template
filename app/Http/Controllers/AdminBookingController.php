@@ -49,10 +49,12 @@ class AdminBookingController extends Controller
             ->pluck('name', 'id')
             ->all();
 
-        $services = Service::pluck('name', 'id')
-            ->all();
-        $locations = Location::pluck('name', 'id')
-            ->all();
+        $services = Service::where('archived', 0)
+            ->pluck('name', 'id');
+
+        $locations = Location::where('archived', 0)
+            ->pluck('name', 'id');
+
         $statuses = Status::pluck('name', 'id')
             ->all();
 
@@ -205,10 +207,10 @@ class AdminBookingController extends Controller
             ->pluck('name', 'id')
             ->all();
 
-        $services = Service::pluck('name', 'id')
-            ->all();
-        $locations = Location::pluck('name', 'id')
-            ->all();
+        $services = Service::where('archived', 0)
+            ->pluck('name', 'id');
+        $locations = Location::where('archived', 0)
+            ->pluck('name', 'id');
         $statuses = Status::pluck('name', 'id')
             ->all();
 

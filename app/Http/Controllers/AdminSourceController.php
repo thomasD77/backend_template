@@ -98,4 +98,12 @@ class AdminSourceController extends Controller
     {
         //
     }
+
+    public function archive()
+    {
+        $sources = Source::where('archived', 0)
+            ->paginate(10);
+
+        return view('admin.sources.archive', compact('sources'));
+    }
 }

@@ -34,8 +34,7 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
-        $users = User::all();
-        return view('admin.users.create', compact('users'));
+        return view('admin.users.create');
     }
 
     /**

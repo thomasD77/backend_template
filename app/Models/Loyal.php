@@ -11,6 +11,7 @@ class Loyal extends Model
 
     protected $fillable = [
       'name',
+      'archived',
     ];
 
     public function users()

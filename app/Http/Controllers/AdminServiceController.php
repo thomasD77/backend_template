@@ -31,12 +31,10 @@ class AdminServiceController extends Controller
     public function create()
     {
         //
-        $servicecategories = ServiceCategory::pluck('name', 'id')
-            ->all();
-        $users = User::pluck('name', 'id')
-            ->all();
+        $servicecategories = ServiceCategory::where('archived', 0)
+            ->pluck('name', 'id');
 
-        return view('admin.services.create',compact('servicecategories', 'users'));
+        return view('admin.services.create',compact('servicecategories'));
     }
 
     /**
@@ -85,8 +83,8 @@ class AdminServiceController extends Controller
     {
         //
         $service = Service::findOrFail($id);
-        $servicecategories = ServiceCategory::pluck('name','id')
-            ->all();
+        $servicecategories = ServiceCategory::where('archived', 0)
+            ->pluck('name', 'id');
 
         return view('admin.services.edit', compact('service', 'servicecategories'));
     }

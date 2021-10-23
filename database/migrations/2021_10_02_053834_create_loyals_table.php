@@ -17,6 +17,7 @@ class CreateLoyalsTable extends Migration
         Schema::create('loyals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('archived')->default(0);
             $table->timestamps();
         });
 

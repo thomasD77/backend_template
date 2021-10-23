@@ -3,6 +3,13 @@
         <h3 class="block-title">
             Sources
         </h3>
+        <a href="{{route('sources.archive')}}">
+            @canany(['is_superAdmin', 'is_admin'])
+                <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
+                    <i class="fa fa-archive "></i>
+                </button>
+            @endcanany
+        </a>
     </div>
     <div class="block-content block-content-full overflow-scroll">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -31,9 +38,7 @@
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$source->id}}">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button wire:click="removeSource({{$source->id}})" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Source">
-                                    <i class="fa fa-fw fa-times"></i>
-                                </button>
+                                <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive Source" wire:click="archiveSource({{$source->id}})"><i class="fa fa-archive"></i></button>
                             </div>
                         </td>
                         <div wire:ignore.self class="modal fade" id="exampleModal{{$source->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

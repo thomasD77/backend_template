@@ -11,6 +11,7 @@ class Source extends Model
 
     protected $fillable = [
         'name',
+        'archived',
     ];
 
     public function users()

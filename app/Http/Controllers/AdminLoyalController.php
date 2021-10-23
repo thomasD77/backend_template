@@ -98,4 +98,12 @@ class AdminLoyalController extends Controller
     {
         //
     }
+
+    public function archive()
+    {
+        $loyals = Loyal::where('archived', 0)
+            ->paginate(10);
+
+        return view('admin.loyals.archive', compact('loyals'));
+    }
 }

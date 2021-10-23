@@ -14,6 +14,13 @@ class SourceTable extends Component
         'updateSourcesTable',
     ];
 
+    public function archiveSource($id)
+    {
+        $source = \App\Models\Source::findOrFail($id);
+        $source->archived = 1;
+        $source->update();
+    }
+
     public function updateSourcesTable($name)
     {
         //
@@ -55,7 +62,9 @@ class SourceTable extends Component
 
     public function render()
     {
-        $sources = \App\Models\Source::orderBy('id', 'DESC')->paginate(5);
+        $sources = \App\Models\Source::orderBy('id', 'DESC')
+            ->where('archived', 0)
+            ->paginate(5);
         return view('livewire.source-table', compact( 'sources'));
     }
 }

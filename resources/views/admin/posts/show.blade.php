@@ -27,12 +27,11 @@
                 <!-- Story -->
                 <div class="push">
                     <a class="block block-rounded block-link-pop overflow-hidden" href="be_pages_blog_story.php">
-
                         <div id="carouselExampleControls" class="carousel slide mb-md-5" data-bs-ride="carousel" data-innterval="100">
                             <div class="carousel-inner">
                                 @foreach($post->photos as $photo)
                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                        <img class="d-block w-100"  src="{{$photo ? asset('images/posts') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->title}}">
+                                        <img class="d-block" style="max-width: 100%" src="{{$photo ? asset('images/posts') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$post->title}}">
                                     </div>
                                 @endforeach
                             </div>

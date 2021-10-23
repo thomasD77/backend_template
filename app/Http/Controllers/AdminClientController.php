@@ -32,10 +32,11 @@ class AdminClientController extends Controller
     public function create()
     {
         //
-        $loyals = Loyal::pluck('name', 'id')
-            ->all();
-        $sources = Source::pluck('name', 'id')
-            ->all();
+        $loyals = Loyal::where('archived', 0)
+            ->pluck('name', 'id');
+
+        $sources = Source::where('archived', 0)
+            ->pluck('name', 'id');
 
         return view('admin.clients.create',compact('loyals', 'sources'));
     }
@@ -99,10 +100,12 @@ class AdminClientController extends Controller
     {
         //
         $client = User::findOrFail($id);
-        $loyals = Loyal::pluck('name', 'id')
-            ->all();
-        $sources = Source::pluck('name', 'id')
-            ->all();
+
+        $loyals = Loyal::where('archived', 0)
+            ->pluck('name', 'id');
+
+        $sources = Source::where('archived', 0)
+            ->pluck('name', 'id');
 
         return view('admin.clients.edit',compact('loyals', 'sources', 'client'));
     }
