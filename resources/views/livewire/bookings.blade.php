@@ -129,7 +129,7 @@
                             @elseif($booking->status->name == 'pending' && $booking->approved == 0 && $booking->booking_request_admin == 1)
 {{--                                Nothing --}}
                                 @else
-                                    <button type="button" data-bs-toggle="tooltip" title="This booking is confirmed" class="btn btn-sm btn-alt-success ms-3" ><i class="fa fa-check"></i></button>
+{{--                                    <button type="button" data-bs-toggle="tooltip" title="This booking is confirmed" class="btn btn-sm btn-alt-success ms-3" ><i class="fa fa-check"></i></button>--}}
                                 @endif
                             @endcan
                         </td>
