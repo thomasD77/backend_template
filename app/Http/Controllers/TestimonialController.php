@@ -17,8 +17,7 @@ class TestimonialController extends Controller
     public function index()
     {
         //
-        $testimonials = Testimonial::paginate(10);
-        return view('admin.testimonials.index', compact('testimonials'));
+        return view('admin.testimonials.index');
     }
 
     /**
@@ -116,5 +115,13 @@ class TestimonialController extends Controller
         //
         $testimonials = Testimonial::paginate(10);
         return view('admin.testimonials.form', compact('testimonials'));
+    }
+
+    public function archive()
+    {
+        $testimonials = Testimonial::where('archived', 0)
+            ->paginate(10);
+
+        return view('admin.testimonials.archive', compact('testimonials'));
     }
 }

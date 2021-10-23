@@ -96,4 +96,12 @@ class AdminPostCategoryController extends Controller
     {
         //
     }
+
+    public function archive()
+    {
+        $postcategories = PostCategory::where('archived', 0)
+            ->paginate(10);
+
+        return view('admin.postcategories.archive', compact('postcategories'));
+    }
 }

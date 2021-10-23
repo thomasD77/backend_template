@@ -25,7 +25,7 @@
                         <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>
                     @endforeach
                 </td>
-                <td>{{$user->email_verified_at ? $user->email_verified_at : 'Not Verified'}}</td>
+                <td>{{$user->email_verified_at ? $user->email_verified_at->diffForHumans() : 'Not Verified'}}</td>
                 @canany(['is_superAdmin', 'is_admin'])
                 <td>
                     <div class="btn-group">

@@ -107,4 +107,12 @@ class AdminFaqController extends Controller
         $faq->delete();
         return redirect('admin/faqs');
     }
+
+    public function archive()
+    {
+        $faqs = faq::where('archived', 0)
+            ->paginate(10);
+
+        return view('admin.faqs.archive', compact('faqs'));
+    }
 }

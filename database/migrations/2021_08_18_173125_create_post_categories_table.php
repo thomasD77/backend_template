@@ -18,6 +18,7 @@ class CreatePostCategoriesTable extends Migration
         Schema::create('post_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('archived')->default(0);
             $table->timestamps();
         });
 

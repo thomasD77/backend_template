@@ -20,6 +20,7 @@ class CreateTestimonialsTable extends Migration
             $table->string('city')->nullable();
             $table->text('experience')->nullable();
             $table->string('GDPR')->nullable();
+            $table->boolean('archived')->default(0);
             $table->timestamps();
         });
     }

@@ -100,4 +100,12 @@ class AdminServiceCategory extends Controller
     {
         //
     }
+
+    public function archive()
+    {
+        $servicecategories = ServiceCategory::where('archived', 0)
+            ->paginate(10);
+
+        return view('admin.servicecategories.archive', compact('servicecategories'));
+    }
 }

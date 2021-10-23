@@ -31,34 +31,8 @@
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$role->id}}">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button wire:click="removeRole({{$role->id}})" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
-                                    <i class="fa fa-fw fa-times"></i>
-                                </button>
                             </div>
                         </td>
-                        {{--                        <!-- Modal -->--}}
-                        {{--                        <div class="modal fade" id="exampleModal{{$role->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-                        {{--                            <div class="modal-dialog">--}}
-                        {{--                                <div class="modal-content">--}}
-                        {{--                                    <div class="modal-header">--}}
-                        {{--                                        <h5 class="modal-title" id="exampleModalLabel">Update Role</h5>--}}
-                        {{--                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-                        {{--                                    </div>--}}
-                        {{--                                    <div class="modal-body text-left">--}}
-                        {{--                                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminRolesController@update',$role->id],--}}
-                        {{--                                            'files'=>false])!!}--}}
-                        {{--                                        <div class="form-group mb-3">--}}
-                        {{--                                            {!! Form::label('Name', 'Name:',['class'=>'mb-3']) !!}--}}
-                        {{--                                            {!! Form::text('name',$role->name,['class'=>'form-control']) !!}--}}
-                        {{--                                        </div>--}}
-                        {{--                                        <div class="form-group mr-1 mb-3">--}}
-                        {{--                                            {!! Form::submit('Update Role',['class'=>'btn btn-secondary']) !!}--}}
-                        {{--                                        </div>--}}
-                        {{--                                        {!! Form::close() !!}--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                         <div wire:ignore.self class="modal fade" id="exampleModal{{$role->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">

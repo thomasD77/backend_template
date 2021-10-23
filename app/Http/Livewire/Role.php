@@ -3,10 +3,12 @@
 namespace App\Http\Livewire;
 
 use http\Env\Request;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Livewire\Component;
 
 class Role extends Component
 {
+
     public $name;
 
     protected $rules = [

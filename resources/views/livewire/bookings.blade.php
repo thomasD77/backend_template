@@ -4,6 +4,7 @@
         <tr>
             <th scope="col">Booking ID</th>
             @canany(['is_superAdmin', 'is_admin', 'is_employee'])
+                <th scope="col">Booker</th>
                 <th scope="col">Client</th>
             @endcanany
             <th scope="col">Service</th>
@@ -32,6 +33,9 @@
                             @php
                                 $client = \App\Models\User::where('id', $booking->client_id)->first();
                             @endphp
+                            <td>
+                                {{ $booking->user->name }}
+                            </td>
                             <td>
                                 @if($booking->booking_request_admin == 1)
                                     <span class="badge badge rounded-pill bg-success text-white">NEW</span>

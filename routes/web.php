@@ -61,6 +61,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //FAQ Routes
     Route::resource('faqs', App\Http\Controllers\AdminFaqController::class);
+    Route::get('archive/faqs', 'App\Http\Controllers\AdminFaqController@archive')->name('faqs.archive');
     Route::get('faqs/delete/{id}', 'App\Http\Controllers\AdminFaqController@destroy')->name('faqs.delete');
 
     //Submissions Routes
@@ -70,6 +71,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('gallery', 'App\Http\Controllers\AdminPostController@gallery')->name('post.gallery');
     Route::resource('posts', App\Http\Controllers\AdminPostController::class);
     Route::resource('postcategories', App\Http\Controllers\AdminPostCategoryController::class);
+    Route::get('archive/post-categories', 'App\Http\Controllers\AdminPostCategoryController@archive')->name('postcategories.archive');
     Route::resource('comments', App\Http\Controllers\AdminCommentController::class);
     Route::post('comments/reply', 'App\Http\Controllers\AdminCommentController@storeReply');
     Route::get('archive/submissions', 'App\Http\Controllers\AdminSubmissionController@archive')->name('submission.archive');
@@ -88,6 +90,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //Testimonial Routes
     Route::resource('testimonials', App\Http\Controllers\TestimonialController::class);
+    Route::get('archive/testimonials', 'App\Http\Controllers\TestimonialController@archive')->name('testimonials.archive');
     Route::get('testimonial/form', 'App\Http\Controllers\TestimonialController@form')->name('testimonials.form');
 
     //Booking Routes
@@ -98,6 +101,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('booking-location', App\Http\Controllers\AdminLocationController::class);
     Route::resource('services', App\Http\Controllers\AdminServiceController::class);
     Route::resource('service-categories', App\Http\Controllers\AdminServiceCategory::class);
+    Route::get('archive/service-categories', 'App\Http\Controllers\AdminServiceCategory@archive')->name('service-categories.archive');
     Route::get('archive/services', 'App\Http\Controllers\AdminServiceController@archive')->name('services.archive');
     Route::get('layout', 'App\Http\Controllers\AdminServiceController@layout');
     Route::view('/agenda', 'admin.bookings.agenda')->name('bookings.agenda');

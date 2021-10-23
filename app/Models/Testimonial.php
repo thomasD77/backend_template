@@ -15,5 +15,6 @@ class Testimonial extends Model
       'city',
       'experience',
       'GDPR',
+      'archived',
     ];
 }

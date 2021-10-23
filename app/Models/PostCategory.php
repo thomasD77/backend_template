@@ -11,6 +11,7 @@ class PostCategory extends Model
 
     protected $fillable = [
         'name',
+        'archived',
     ];
 
     public function posts(){

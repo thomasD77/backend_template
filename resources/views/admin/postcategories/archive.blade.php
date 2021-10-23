@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        FAQS
+                        Post Categories
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Faqs
+                            Post Categories
                         </li>
                     </ol>
                 </nav>
@@ -50,27 +50,31 @@
     <!-- END Hero -->
 
     <!-- Page Content -->
-    <div class="content">
-        <div class="block block-rounded">
+    <div class="content container-fluid">
+
+        <!-- Dynamic Table Full -->
+        <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Faqs
+                    Archive Post Categories
                 </h3>
-                <a href="{{route('faqs.create')}}"><button data-bs-toggle="tooltip" title="New Faq" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
-                <a href="{{route('faqs.archive')}}">
-                    @canany(['is_superAdmin', 'is_admin'])
-                        <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                            <i class="fa fa-archive "></i>
-                        </button>
-                    @endcanany
+                <a href="{{url()->previous()}}">
+                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
+                        <i class="far fa-list-alt "></i>
+                    </button>
                 </a>
             </div>
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('faqs')
+                @livewire('unarchive-post-categories')
             </div>
         </div>
+        <!-- END Dynamic Table Full -->
+
+        @livewireScripts
     </div>
-    @livewireScripts
     <!-- END Page Content -->
 @endsection
+
+
+

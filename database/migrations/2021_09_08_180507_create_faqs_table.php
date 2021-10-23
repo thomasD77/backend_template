@@ -17,6 +17,7 @@ class CreateFaqsTable extends Migration
             $table->id();
             $table->string('question');
             $table->text('answer')->nullable();
+            $table->boolean('archived')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

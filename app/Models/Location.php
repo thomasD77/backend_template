@@ -11,6 +11,12 @@ class Location extends Model
 
     protected $fillable = [
         'name',
+        'streetAddress',
+        'city',
+        'postalCode',
+        'mobile',
+        'email',
+        'VAT',
         'google_calendar_id',
         'archived',
     ];

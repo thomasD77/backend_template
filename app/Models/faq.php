@@ -14,6 +14,7 @@ class faq extends Model
     protected $fillable = [
       'question',
       'answer',
+      'archived',
     ];
 
 }

@@ -10,6 +10,13 @@ class PostCategoriesTable extends Component
     public $postcategory;
     public $name;
 
+    public function archivePostCategory($id)
+    {
+        $postcategory = PostCategory::findOrFail($id);
+        $postcategory->archived = 1;
+        $postcategory->update();
+    }
+
 
     protected $listeners = [
         'updateCategoriesTable',
@@ -55,7 +62,10 @@ class PostCategoriesTable extends Component
 
     public function render()
     {
-        $postcategories = PostCategory::latest()->paginate(10);
+        $postcategories = PostCategory::where('archived', 0)
+            ->latest()
+            ->paginate(20);
+
         $postcategory = $this->postcategory;
         return view('livewire.post-categories-table', compact('postcategories', 'postcategory'));
     }

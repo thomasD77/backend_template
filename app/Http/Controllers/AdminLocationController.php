@@ -41,6 +41,12 @@ class AdminLocationController extends Controller
         //
         $location = new Location();
         $location->name = $request->name;
+        $location->streetAddress = $request->streetAddress;
+        $location->city = $request->city;
+        $location->postalCode = $request->postalCode;
+        $location->mobile = $request->mobile;
+        $location->email = $request->email;
+        $location->VAT = $request->VAT;
         $location->google_calendar_id = $request->google_calendar_id;
         $location->save();
 
@@ -85,6 +91,12 @@ class AdminLocationController extends Controller
         //
         $location = Location::findOrFail($id);
         $location->name = $request->name;
+        $location->streetAddress = $request->streetAddress;
+        $location->city = $request->city;
+        $location->postalCode = $request->postalCode;
+        $location->mobile = $request->mobile;
+        $location->email = $request->email;
+        $location->VAT = $request->VAT;
         $location->google_calendar_id = $request->google_calendar_id;
         $location->update();
 

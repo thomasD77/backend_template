@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserEditRequest;
 use App\Models\Avatar;
 use App\Models\Role;
+use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -182,5 +183,6 @@ class AdminUsersController extends Controller
 
         return view('admin.users.archive', compact('users'));
     }
+
 
 }

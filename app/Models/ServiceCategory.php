@@ -10,7 +10,8 @@ class ServiceCategory extends Model
     use HasFactory;
 
     protected $fillable = [
-      'name'
+        'name',
+        'archived',
     ];
 
     public function services()

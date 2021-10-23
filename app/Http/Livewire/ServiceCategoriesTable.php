@@ -15,6 +15,12 @@ class ServiceCategoriesTable extends Component
         'updateCategoriesTable',
     ];
 
+    public function archiveServiceCategory($id)
+    {
+        $category = ServiceCategory::findOrFail($id);
+        $category->archived = 1;
+        $category->update();
+    }
 
     public function updateCategoriesTable($name)
     {
@@ -56,8 +62,12 @@ class ServiceCategoriesTable extends Component
 
     public function render()
     {
-        $servicecategories = ServiceCategory::latest()->paginate(10);
+        $servicecategories = ServiceCategory::latest()
+            ->where('archived', 0)
+            ->paginate(10);
+
         $servicecategory = $this->servicecategory;
+
         return view('livewire.service-categories-table', compact('servicecategory', 'servicecategories'));
     }
 }

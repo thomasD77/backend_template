@@ -3,6 +3,13 @@
         <h3 class="block-title">
             Service Categories
         </h3>
+        <a href="{{route('service-categories.archive')}}">
+            @canany(['is_superAdmin', 'is_admin'])
+                <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
+                    <i class="fa fa-archive "></i>
+                </button>
+            @endcanany
+        </a>
     </div>
     <div class="block-content block-content-full overflow-scroll">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -31,9 +38,8 @@
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
 
-                                <button wire:click="removeCategory({{$servicecategory->id}})" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Category">
-                                    <i class="fa fa-fw fa-times"></i>
-                                </button>
+                                <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive Category" wire:click="archiveServiceCategory({{$servicecategory->id}})"><i class="fa fa-archive"></i></button>
+
                             </div>
                         </td>
                         <!-- Modal -->

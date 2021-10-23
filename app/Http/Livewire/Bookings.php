@@ -23,7 +23,9 @@ class Bookings extends Component
                 ->where('client_id', Auth::user()->id)
                 ->latest()
                 ->paginate(20);
-        }else{
+        }
+        else
+        {
             $bookings = Booking::where('archived', 0)
                 ->latest()
                 ->paginate(20);

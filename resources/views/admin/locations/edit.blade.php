@@ -49,6 +49,54 @@
                         @enderror
                     </div>
 
+                    <div class="form-group mb-4">
+                        {!! Form::label('streetAddress','Address:',['class'=>'form-label']) !!}
+                        {!! Form::text('streetAddress',$location->streetAddress ,['class'=>'form-control']) !!}
+                        @error('streetAddress')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-4">
+                        {!! Form::label('postalCode','Postal Code:',['class'=>'form-label']) !!}
+                        {!! Form::text('postalCode',$location->postalCode ,['class'=>'form-control']) !!}
+                        @error('postalCode')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-4">
+                        {!! Form::label('city','City:',['class'=>'form-label']) !!}
+                        {!! Form::text('city',$location->city ,['class'=>'form-control']) !!}
+                        @error('postalCode')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-4">
+                        {!! Form::label('mobile','Mobile:',['class'=>'form-label']) !!}
+                        {!! Form::text('mobile',$location->mobile ,['class'=>'form-control']) !!}
+                        @error('mobile')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-4">
+                        {!! Form::label('email','Email:',['class'=>'form-label']) !!}
+                        {!! Form::text('email',$location->email ,['class'=>'form-control']) !!}
+                        @error('email')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-4">
+                        {!! Form::label('VAT','VAT:',['class'=>'form-label']) !!}
+                        {!! Form::text('VAT',$location->VAT ,['class'=>'form-control']) !!}
+                        @error('VAT')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
+                    </div>
+
                     @can('is_superAdmin')
                         <div class="form-group mb-4">
                             {!! Form::label('google_calendar_id','Google Calendar Id:', ['class'=>'form-label']) !!}
