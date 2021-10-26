@@ -39,6 +39,7 @@ class Template {
             $l_dark_mode,
             $inc_side_overlay,
             $inc_sidebar,
+            $inc_sidebar_client,
             $inc_header,
             $inc_footer;
 

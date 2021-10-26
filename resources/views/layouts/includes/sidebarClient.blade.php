@@ -2,11 +2,11 @@
     <!-- Side Header -->
     <div class="content-header">
         <!-- Logo -->
-        <a class="font-semibold text-dual" href="/">
+        <a class="font-semibold text-dual" href="">
                         <span class="smini-visible">
                             <i class="fa fa-circle-notch text-primary"></i>
                         </span>
-            <span class="smini-hide fs-5 tracking-wider"><?php echo $company ?></span>
+            <span class="smini-hide fs-5 tracking-wider"><?php echo \App\Models\CompanyCredential::first()->companyName ?></span>
         </a>
         <!-- END Logo -->
 

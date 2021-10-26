@@ -20,6 +20,7 @@
         <tbody>
         @if($bookings)
                 @foreach($bookings as $booking)
+                    @if($booking->user->archived == 0)
                     <tr>
                         <td>
                             # {{$booking->id ? $booking->id : 'No ID'}}
@@ -134,6 +135,7 @@
                             @endcan
                         </td>
                     </tr>
+                    @endif
                 @endforeach
             @endif
         </tbody>

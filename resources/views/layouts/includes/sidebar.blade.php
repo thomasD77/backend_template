@@ -2,7 +2,7 @@
     <!-- Side Header -->
     <div class="content-header">
         <!-- Logo -->
-        <a class="font-semibold text-dual" href="/">
+        <a class="font-semibold text-dual" href="">
                         <span class="smini-visible">
                             <i class="fa fa-circle-notch text-primary"></i>
                         </span>
@@ -118,26 +118,25 @@
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('disclaimer.index')}}">
-                                <span class="nav-main-link-name">Disclaimer</span>
+                                <span class="nav-main-link-name ms-3">Disclaimer</span>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('privacy.index')}}">
-                                <span class="nav-main-link-name">Privacy Policy</span>
+                                <span class="nav-main-link-name ms-3">Privacy Policy</span>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('cookie.index')}}">
-                                <span class="nav-main-link-name">Cookie Policy</span>
+                                <span class="nav-main-link-name ms-3">Cookie Policy</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-
 
                 @canany(['is_superAdmin', 'is_admin'])
                     <li class="nav-main-heading text-uppercase">USER INTERFACE</li>
@@ -159,40 +158,6 @@
                                     </a>
                                 </li>
                             @endcan
-                        </ul>
-                    </li>
-                @endcan
-
-                @can('is_superAdmin')
-                    <li class="nav-main-heading">Components</li>
-                    <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                            <i class="nav-main-link-icon far fa-address-card"></i>
-                            <span class="nav-main-link-name">Forms/Components</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('components.index')}}">
-                                    <span class="nav-main-link-name">Components</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endcan
-
-                @canany(['is_superAdmin', 'is_admin'])
-                    <li class="nav-main-heading">Components</li>
-                    <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                            <i class="nav-main-link-icon far fa-address-card"></i>
-                            <span class="nav-main-link-name">My Company</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('credentials.index')}}">
-                                    <span class="nav-main-link-name">Data</span>
-                                </a>
-                            </li>
                         </ul>
                     </li>
                 @endcan
@@ -242,7 +207,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}" href="{{ route('service-categories.index') }}">
-                                <span class="nav-main-link-name">Categories</span>
+                                <span class="nav-main-link-name ms-3">Categories</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -268,21 +233,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-main-heading">Contact</li>
-                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon far fa-list-alt"></i>
-                        <span class="nav-main-link-name">Submissions</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('submissions.index')}}">
-                                <span class="nav-main-link-name">List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="nav-main-heading">Publish</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
@@ -297,7 +247,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('postcategories.index')}}">
-                                <span class="nav-main-link-name">Category</span>
+                                <span class="nav-main-link-name ms-3">Category</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -320,8 +270,37 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="nav-main-heading">Marketing</li>
+                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                        <i class="nav-main-link-icon fa fa-comment-dots"></i>
+                        <span class="nav-main-link-name">Testimonials</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('testimonials.index')}}">
+                                <span class="nav-main-link-name">list</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('testimonials.form')}}">
+                                <span class="nav-main-link-name">Form</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                        <i class="nav-main-link-icon far fa-list-alt"></i>
+                        <span class="nav-main-link-name">Submissions</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('submissions.index')}}">
+                                <span class="nav-main-link-name">List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                         <i class="nav-main-link-icon fab fa-mailchimp"></i>
@@ -340,23 +319,44 @@
                         </li>
 
                     </ul>
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon fa fa-comment-dots"></i>
-                        <span class="nav-main-link-name">Testimonials</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('testimonials.index')}}">
-                                <span class="nav-main-link-name">list</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('testimonials.form')}}">
-                                <span class="nav-main-link-name">Form</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
+
+
+                @canany(['is_superAdmin', 'is_admin'])
+                    <li class="nav-main-heading">Components</li>
+                    <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                            <i class="nav-main-link-icon far fa-address-card"></i>
+                            <span class="nav-main-link-name">My Company</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('credentials.index')}}">
+                                    <span class="nav-main-link-name">Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
+
+                @can('is_superAdmin')
+                    <li class="nav-main-heading">Components</li>
+                    <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                            <i class="nav-main-link-icon far fa-address-card"></i>
+                            <span class="nav-main-link-name">Forms/Components</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('components.index')}}">
+                                    <span class="nav-main-link-name">Components</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
+
+
             </ul>
         </div>
         <!-- END Side Navigation -->

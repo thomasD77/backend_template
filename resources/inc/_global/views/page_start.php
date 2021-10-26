@@ -7,6 +7,9 @@
  * The start section of each page used in every page of the template
  *
  */
+
+use Illuminate\Support\Facades\Auth;
+
 ?>
 <!-- Page Container -->
 <!--
@@ -59,8 +62,26 @@ DARK MODE
 
   <?php } ?>
   <?php if(isset($one->inc_side_overlay) && $one->inc_side_overlay) { include('../resources/' . $one->inc_side_overlay); } ?>
-  <?php if(isset($one->inc_sidebar) && $one->inc_sidebar) { include('../resources/' . $one->inc_sidebar); } ?>
-  <?php if(isset($one->inc_header) && $one->inc_header) { include('../resources/' . $one->inc_header); } ?>
+
+    <?php
+    $user = Auth::user();
+    if(isset($user))
+    {
+        $id = Auth::user()->roles[0]['id'];
+        $role = \App\Models\Role::findOrFail($id)->name;
+    }
+    else
+    {
+        $role = false;
+    }
+    ?>
+
+        <?php if($role == 'client'){ ?>
+            <?php if(isset($one->inc_sidebar_client) && $one->inc_sidebar_client) { include('../resources/' . $one->inc_sidebar_client); } ?>
+        <?php }else{ ?>
+      <?php if(isset($one->inc_sidebar) && $one->inc_sidebar) { include('../resources/' . $one->inc_sidebar); } ?>
+        <?php } ?>
+      <?php if(isset($one->inc_header) && $one->inc_header) { include('../resources/' . $one->inc_header); } ?>
 
   <!-- Main Container -->
   <main id="main-container">
