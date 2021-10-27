@@ -19,14 +19,16 @@ class Bookings extends Component
     {
         if(Auth::user()->roles->first()->name == 'client')
         {
-            $bookings = Booking::where('archived', 0)
+            $bookings = Booking::with([ 'user', 'services', 'location', 'status'])
+                ->where('archived', 0)
                 ->where('client_id', Auth::user()->id)
                 ->latest()
                 ->paginate(20);
         }
         else
         {
-            $bookings = Booking::where('archived', 0)
+            $bookings = Booking::with([ 'user', 'services', 'location', 'status'])
+                ->where('archived', 0)
                 ->latest()
                 ->paginate(20);
         }

@@ -19,7 +19,8 @@ class Services extends Component
 
     public function render()
     {
-        $services = Service::where('archived', 0)
+        $services = Service::with(['servicecategory'])
+            ->where('archived', 0)
             ->latest()
             ->paginate(10);
         return view('livewire.services', compact('services'));

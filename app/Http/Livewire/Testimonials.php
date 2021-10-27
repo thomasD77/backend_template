@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Testimonial;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Testimonials extends Component
@@ -12,6 +13,8 @@ class Testimonials extends Component
         $testimonial = Testimonial::findOrFail($id);
         $testimonial->archived = 1;
         $testimonial->update();
+
+        Session::flash('flash_message', 'success');
     }
 
     public function render()

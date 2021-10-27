@@ -17,7 +17,8 @@ class UnarchiveServices extends Component
 
     public function render()
     {
-        $services = Service::where('archived', 1)
+        $services = Service::with(['servicecategory'])
+            ->where('archived', 1)
             ->latest()
             ->paginate(10);
         return view('livewire.unarchive-services', compact('services'));

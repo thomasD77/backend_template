@@ -17,7 +17,8 @@ class UnarchiveBookings extends Component
 
     public function render()
     {
-        $bookings = Booking::where('archived', 1)
+        $bookings = Booking::with([ 'user', 'services', 'location', 'status'])
+            ->where('archived', 1)
             ->latest()
             ->paginate(20);
 

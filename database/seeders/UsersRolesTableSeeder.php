@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Billing;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class BillingsTableSeeder extends Seeder
+class UsersRolesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +17,6 @@ class BillingsTableSeeder extends Seeder
     public function run()
     {
         //
-        Billing::factory()->count(40)->create();
     }
+
 }

@@ -20,10 +20,10 @@ class CreateSubmissionsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->integer('phone');
-            $table->date('date');
-            $table->boolean('approval');
-            $table->text('description');
-            $table->boolean('archived');
+            $table->date('date')->nullable();
+            $table->boolean('approval')->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('archived')->default(0);
             $table->timestamps();
         });
 

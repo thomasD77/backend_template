@@ -22,7 +22,7 @@ class Posts extends Component
 
     public function render()
     {
-        $posts = Post::with([ 'user', 'postcategory'])
+        $posts = Post::with([ 'user', 'postcategory', 'photos'])
             ->where('archived', 0)
             ->latest()
             ->paginate(10);

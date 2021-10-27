@@ -4,10 +4,11 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Firstname</th>
-            <th scope="col">Lastname</th>
-            <th scope="col">Email</th>
-            <th scope="col">Registered</th>
+            <th scope="col">Name</th>
+            <th scope="col">Service</th>
+            <th scope="col">Date</th>
+            <th scope="col">Shop</th>
+            <th scope="col">Status</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -26,6 +27,7 @@
                             </li>
                         @endforeach</td>
                     <td>{{$booking->date ? $booking->date : 'No Date'}}</td>
+                    <td>{{$booking->location ? $booking->location->name : 'No Location'}}</td>
                     <td>
                         <span class="badge badge rounded-pill p-2 {{$booking->status->color}}">
                             {{$booking->status ? $booking->status->name : 'No Status'}}

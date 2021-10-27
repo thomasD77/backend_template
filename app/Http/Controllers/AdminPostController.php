@@ -25,7 +25,6 @@ class AdminPostController extends Controller
     {
         //
         return view('admin.posts.index');
-
     }
 
     /**
