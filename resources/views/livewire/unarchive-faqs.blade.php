@@ -20,7 +20,7 @@
                     <td>{{$faq->updated_at->diffForHumans()}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset Faq" wire:click="unArchiveFaq({{$faq->id}})"><i class="si si-refresh "></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveFaq({{$faq->id}})"><i class="si si-refresh "></i></button>
                         </div>
                     </td>
                 </tr>

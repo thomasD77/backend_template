@@ -42,7 +42,7 @@
                                             <i class="fa far fa-eye"></i>
                                         </button>
                                     </a>
-                                    <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset Submission" wire:click="unArchiveSub({{$submission->id}})"><i class="si si-refresh "></i></button>
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveSub({{$submission->id}})"><i class="si si-refresh "></i></button>
                                 </div>
                             </td>
                         </tr>

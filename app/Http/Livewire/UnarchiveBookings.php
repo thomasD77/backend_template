@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Booking;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Spatie\GoogleCalendar\Event;
 
@@ -13,6 +14,7 @@ class UnarchiveBookings extends Component
         $booking = Booking::findOrFail($id);
         $booking->archived = 0;
         $booking->update();
+
     }
 
     public function render()

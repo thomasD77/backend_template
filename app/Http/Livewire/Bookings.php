@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Bookings extends Component
@@ -13,6 +14,7 @@ class Bookings extends Component
         $booking = Booking::findOrFail($id);
         $booking->archived = 1;
         $booking->update();
+
     }
 
     public function render()

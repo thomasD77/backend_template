@@ -22,7 +22,7 @@
                     <td>{{$client->created_at ? $client->created_at->diffForHumans() : 'Not Verified'}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset client" wire:click="unArchiveClient({{$client->id}})"><i class="si si-refresh "></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveClient({{$client->id}})"><i class="si si-refresh "></i></button>
                             <a href="{{route('clients.show', $client->id)}}">
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit client">
                                     <i class="far fa-eye"></i>

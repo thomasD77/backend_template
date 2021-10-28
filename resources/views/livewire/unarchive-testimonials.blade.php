@@ -1,4 +1,5 @@
-<div>
+<div class="parent">
+    @include('admin.includes.flash')
     <table class="table table-striped table-hover table-vcenter fs-sm">
         <thead>
         <tr>
@@ -23,10 +24,10 @@
                                 <i class="far fa-eye"></i>
                             </button>
                         </a>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset Testimonial" wire:click="unArchiveTestimonial({{$testimonial->id}})"><i class="si si-refresh "></i></button>
-                        </div>
+                        <button class="btn btn-sm btn-alt-secondary"
+                                wire:click="unArchiveTestimonial({{$testimonial->id}})">
+                            <i class="si si-refresh "></i>
+                        </button>
                     </td>
                 </tr>
             @endforeach

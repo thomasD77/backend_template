@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class UnarchiveUsers extends Component

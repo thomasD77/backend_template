@@ -1,4 +1,5 @@
-<div>
+<div class="parent">
+    @include('admin.includes.flash')
     <table class="table table-striped table-hover table-vcenter fs-sm">
         <thead>
         <tr>
@@ -24,7 +25,7 @@
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
                             </a>
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive service" wire:click="archiveService({{$service->id}})"><i class="fa fa-archive"></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="archiveService({{$service->id}})"><i class="fa fa-archive"></i></button>
                             <a href="{{route('services.show', $service->id)}}">
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show service">
                                     <i class="far fa-eye"></i>

@@ -42,7 +42,7 @@
                                             <i class="fa far fa-eye"></i>
                                         </button>
                                     </a>
-                                    <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive" wire:click="archiveSub({{$submission->id}})"><i class="fa fa-archive "></i></button>
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveSub({{$submission->id}})"><i class="fa fa-archive "></i></button>
                                 </div>
                             </td>
                         </tr>

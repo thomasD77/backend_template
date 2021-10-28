@@ -1,5 +1,5 @@
-<div class="block-content block-content-full overflow-scroll">
-    <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+<div class="block-content block-content-full overflow-scroll parent">
+@include('admin.includes.flash')
     <table class="table table-striped table-hover table-vcenter fs-sm">
         <thead>
         <tr>
@@ -18,7 +18,7 @@
                     <td>{{$location->created_at ? $location->created_at->diffForHumans() : 'Not Verified'}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset location" wire:click="unArchiveLocation({{$location->id}})"><i class="si si-refresh "></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveLocation({{$location->id}})"><i class="si si-refresh "></i></button>
                         </div>
                     </td>
                 </tr>

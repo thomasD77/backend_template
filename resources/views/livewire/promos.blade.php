@@ -22,7 +22,7 @@
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
                             </a>
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive promo" wire:click="archivePromo({{$promo->id}})"><i class="fa fa-archive"></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="archivePromo({{$promo->id}})"><i class="fa fa-archive"></i></button>
                             <a href="{{route('promos.show', $promo->id)}}">
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show promo">
                                     <i class="far fa-eye"></i>

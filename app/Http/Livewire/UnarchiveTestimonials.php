@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Testimonial;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class UnarchiveTestimonials extends Component
@@ -12,8 +13,8 @@ class UnarchiveTestimonials extends Component
         $testimonial = Testimonial::findOrFail($id);
         $testimonial->archived = 0;
         $testimonial->update();
-    }
 
+    }
 
     public function render()
     {

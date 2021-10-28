@@ -24,7 +24,7 @@
                             <a href="{{route('faqs.edit', $faq->id)}}"><button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Faq">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button></a>
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive Faq" wire:click="archiveFaq({{$faq->id}})"><i class="fa fa-archive"></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="archiveFaq({{$faq->id}})"><i class="fa fa-archive"></i></button>
                         </div>
                     </td>
                 </tr>

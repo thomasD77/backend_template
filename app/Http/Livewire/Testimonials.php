@@ -14,7 +14,6 @@ class Testimonials extends Component
         $testimonial->archived = 1;
         $testimonial->update();
 
-        Session::flash('flash_message', 'success');
     }
 
     public function render()

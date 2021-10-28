@@ -40,7 +40,7 @@
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
                             </a>
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive Post" wire:click="archivePost({{$post->id}})"><i class="fa fa-archive"></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="archivePost({{$post->id}})"><i class="fa fa-archive"></i></button>
                             <a href="{{route('posts.show', $post->id)}}">
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show Post">
                                     <i class="far fa-eye"></i>

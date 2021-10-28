@@ -1,4 +1,5 @@
-<div>
+<div class="parent">
+    @include('admin.includes.flash')
 <table class="table table-striped table-hover table-vcenter fs-sm">
     <thead>
     <tr>
@@ -34,7 +35,7 @@
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </button>
                         </a>
-                        <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive User" wire:click="archiveUser({{$user->id}})"><i class="fa fa-archive"></i></button>
+                        <button class="btn btn-sm btn-alt-secondary" wire:click="archiveUser({{$user->id}})"><i class="fa fa-archive"></i></button>
                     </div>
                 </td>
                 @endcan

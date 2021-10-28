@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Service;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Services extends Component
@@ -15,6 +16,7 @@ class Services extends Component
         $service = Service::findOrFail($id);
         $service->archived = 1;
         $service->update();
+
     }
 
     public function render()

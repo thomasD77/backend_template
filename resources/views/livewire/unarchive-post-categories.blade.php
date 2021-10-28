@@ -19,7 +19,7 @@
                     <td>{{$postcategory->created_at->diffForHumans()}}</td>
                     <td>{{$postcategory->updated_at->diffForHumans()}}</td>
                     <td>
-                        <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset Category" wire:click="unArchivePostCategory({{$postcategory->id}})"><i class="si si-refresh "></i></button>
+                        <button class="btn btn-sm btn-alt-secondary" wire:click="unArchivePostCategory({{$postcategory->id}})"><i class="si si-refresh "></i></button>
                     </td>
                 </tr>
             @endforeach

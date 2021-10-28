@@ -18,7 +18,7 @@
                     <td>{{$promo->created_at ? $promo->created_at->diffForHumans() : 'Not Verified'}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset promo" wire:click="unArchivePromo({{$promo->id}})"><i class="si si-refresh "></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="unArchivePromo({{$promo->id}})"><i class="si si-refresh "></i></button>
                             <a href="{{route('promos.show', $promo->id)}}">
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit promo">
                                     <i class="far fa-eye"></i>

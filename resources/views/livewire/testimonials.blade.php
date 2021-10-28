@@ -1,25 +1,5 @@
-<div class="parent" wire:poll>
-    <style>
-        .parent {
-            position: relative;
-        }
-        #flash_message {
-            position: absolute;
-            top: 0px;
-            right: -5px;
-            opacity: 0.9;
-            color: white;
-        }
-        #flash_message:hover{
-            transform: scale(1.1);
-            opacity: 1.1;
-        }
-    </style>
-    <div style="z-index: 99;" id="flash_message">
-        @if(Session::has('flash_message'))
-            <p class="alert bg-success"><i class="fa fa-thumbs-up"></i></p>
-        @endif
-    </div>
+<div class="parent">
+    @include('admin.includes.flash')
     <table class="table table-striped table-hover table-vcenter fs-sm">
         <thead>
         <tr>
@@ -45,8 +25,6 @@
                             </button>
                         </a>
                         <button class="btn btn-sm btn-alt-secondary"
-                                data-bs-toggle="tooltip"
-                                title="Archive Testimonial"
                                 wire:click="archiveTestimonial({{$testimonial->id}})">
                                 <i class="fa fa-archive"></i>
                         </button>

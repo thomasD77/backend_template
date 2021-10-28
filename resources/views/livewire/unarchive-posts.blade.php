@@ -20,7 +20,7 @@
                     <td>{{$post->user ? $post->user->name : 'No Author'}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Reset Post" wire:click="unArchivePost({{$post->id}})"><i class="si si-refresh "></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="unArchivePost({{$post->id}})"><i class="si si-refresh "></i></button>
                             <a href="{{route('posts.show', $post->id)}}">
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Post">
                                     <i class="far fa-eye"></i>

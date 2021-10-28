@@ -115,7 +115,7 @@
     </div>
     <!-- END Page Content -->
 
-    @canany('is_admin', 'is_superAdmin', 'is_client')
+    @canany(['is_admin', 'is_superAdmin', 'is_client'])
         @include('admin.includes.dash-blocks')
     @endcanany
 

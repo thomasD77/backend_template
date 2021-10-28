@@ -26,7 +26,7 @@
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
                             </a>
-                            <button class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Archive client" wire:click="archiveClient({{$client->id}})"><i class="fa fa-archive"></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="archiveClient({{$client->id}})"><i class="fa fa-archive"></i></button>
                             <a href="{{route('clients.show', $client->id)}}">
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show client">
                                     <i class="far fa-eye"></i>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Service;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class UnarchiveServices extends Component
@@ -13,6 +14,7 @@ class UnarchiveServices extends Component
         $service = Service::findOrFail($id);
         $service->archived = 0;
         $service->update();
+
     }
 
     public function render()

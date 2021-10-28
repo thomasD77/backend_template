@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Location;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Locations extends Component
@@ -12,6 +13,7 @@ class Locations extends Component
         $location = Location::findOrFail($id);
         $location->archived = 1;
         $location->update();
+
     }
 
     public function render()
