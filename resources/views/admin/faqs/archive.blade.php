@@ -58,7 +58,7 @@
                 <h3 class="block-title">
                     Archive Faqs
                 </h3>
-                <a href="{{url()->previous()}}">
+                <a href="{{route('faqs.index')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
                         <i class="far fa-list-alt "></i>
                     </button>

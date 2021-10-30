@@ -1,7 +1,6 @@
-
 <div>
 
-@if($post->comments->isNotEmpty())
+@if(isset($comments))
     <!-- Comments -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
@@ -20,11 +19,7 @@
 
         <div class="block-content">
 
-        @php
-        $comments = $post->comments->sortByDesc("id");
-        @endphp
-
-        @if($comments)
+        @if(isset($comments))
         @foreach($comments as $comment)
                 @if($comment->reply_id == null)
                 <table class="table table-borderless">
@@ -96,9 +91,17 @@
                     </div>
                 </div>
 
+                    @php
+                        $commentReplies = \App\Models\Comment::query()
+                        ->with('user')
+                        ->where('reply_id', $comment->id)
+                        ->latest()
+                        ->get()
+                    @endphp
                     <!-- Replies on the Comments Section-->
-                    @foreach($comment->where('reply_id', $comment->id)->latest()->get() as $commentReply)
-                        @if($commentReply)
+                    @foreach($commentReplies as $commentReply)
+                        @if(isset($commentReply))
+
                             <table class="block-content w-75 mb-4">
                                 <tbody class="col-md-10 offset-md-1 w-75">
 
@@ -130,8 +133,8 @@
                             </table>
                         @endif
                     @endforeach
-                    <!-- END Replies on the Comments Section-->
 
+                    <!-- END Replies on the Comments Section-->
                 @endif
             @endforeach
             @endif
@@ -139,4 +142,7 @@
     </div>
     <!-- END Comments -->
     @endif
+    <div class="d-flex justify-content-center">
+        {{ $comments->links() }}
+    </div>
 </div>

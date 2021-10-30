@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Reply;
+
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 
-class RepliesTableSeeder extends Seeder
+class CommentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +16,6 @@ class RepliesTableSeeder extends Seeder
     public function run()
     {
         //
-        Reply::factory()->count(40)->create();
+        Comment::factory()->count(40)->create();
     }
 }

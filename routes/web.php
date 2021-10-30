@@ -63,6 +63,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //Submissions Routes
     Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
+    Route::get('/export/submissons', [App\Http\Controllers\AdminSubmissionController::class, 'export'])->name('submissions.export');
+    Route::get('archive/submissions', 'App\Http\Controllers\AdminSubmissionController@archive')->name('submission.archive');
+
 
     // BLOG Routes
     Route::get('gallery', 'App\Http\Controllers\AdminPostController@gallery')->name('post.gallery');
@@ -71,7 +74,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('archive/post-categories', 'App\Http\Controllers\AdminPostCategoryController@archive')->name('postcategories.archive');
     Route::resource('comments', App\Http\Controllers\AdminCommentController::class);
     Route::post('comments/reply', 'App\Http\Controllers\AdminCommentController@storeReply');
-    Route::get('archive/submissions', 'App\Http\Controllers\AdminSubmissionController@archive')->name('submission.archive');
     Route::get('archive/posts', 'App\Http\Controllers\AdminPostController@archive')->name('post.archive');
 
     //General Routes

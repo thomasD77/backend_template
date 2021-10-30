@@ -6,6 +6,7 @@
             <h3 class="block-title">
                 submissions
             </h3>
+            <a class="btn btn-dark me-3" href="{{route('submissions.export')}}">Export to Excel</a>
             <label class="d-flex">
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date submission" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>

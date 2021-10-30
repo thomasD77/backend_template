@@ -7,7 +7,7 @@
                 submissions
             </h3>
             <label class="d-flex">
-                <a href="{{url()->previous()}}">
+                <a href="{{route('submissions.index')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
                         <i class="far fa-list-alt "></i>
                     </button>

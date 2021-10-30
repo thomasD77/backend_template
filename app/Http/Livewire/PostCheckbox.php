@@ -15,20 +15,22 @@ class PostCheckbox extends Component
 {
     public $post;
 
-
     public $disabled = false;
-
 
     public function mount($post)
     {
         $this->post = $post;
-
     }
 
     public function render()
     {
-        $comments = Comment::paginate(2);
-        return view('livewire.post-checkbox', compact('comments'));
+        $comments = Comment::query()
+            ->with(['user'])
+            ->where('post_id', $this->post->id)
+            ->latest()
+            ->paginate(10);
+
+        return view('livewire.post-checkbox', compact('comments', ));
     }
 
 }

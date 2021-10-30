@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ContactExport;
+use App\Exports\SubmissionExport;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminSubmissionController extends Controller
 {
@@ -105,6 +108,11 @@ class AdminSubmissionController extends Controller
         $submission->archived = 0;
         $submission->update();
         return redirect()->back();
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new SubmissionExport(), 'submissions.xlsx');
     }
 
 }
