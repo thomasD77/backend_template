@@ -7,6 +7,7 @@ use App\Models\Photo;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -100,7 +101,7 @@ class AdminPostController extends Controller
         $post['slug'] = Str::slug($request->title, '-');
 
 
-        \Brian2694\Toastr\Facades\Toastr::success('Post Successfully Saved');
+        Toastr::success('Post Successfully Saved');
 
         return redirect('admin/posts');
     }
@@ -196,7 +197,7 @@ class AdminPostController extends Controller
 
         $post['slug'] = Str::slug($request->title, '-');
 
-        \Brian2694\Toastr\Facades\Toastr::success('Post Successfully Updated');
+        Toastr::success('Post Successfully Updated');
 
         return redirect('admin/posts');
     }
@@ -224,5 +225,12 @@ class AdminPostController extends Controller
     {
         $photos = Photo::where('post_id', '!=', "")->paginate(60);
         return view('admin.posts.gallery', compact('photos'));
+    }
+
+    public function frontend()
+    {
+        $post = Post::find(1);
+        return view('admin.posts.frontend', compact('post'));
+
     }
 }

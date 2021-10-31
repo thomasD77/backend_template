@@ -75,6 +75,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('comments', App\Http\Controllers\AdminCommentController::class);
     Route::post('comments/reply', 'App\Http\Controllers\AdminCommentController@storeReply');
     Route::get('archive/posts', 'App\Http\Controllers\AdminPostController@archive')->name('post.archive');
+    Route::get('frontend', 'App\Http\Controllers\AdminPostController@frontend')->name('post.frontend');
 
     //General Routes
     Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');

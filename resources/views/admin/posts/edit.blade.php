@@ -40,7 +40,7 @@
           <div class="col-12">
 
               @if(Session::has('photo_upload'))
-                  <p class="alert alert-danger my-2">{{session('photo_upload')}}</p>
+                  <p class="alert alert-danger my-2 col-6">{{session('photo_upload')}}</p>
               @endif
 
               {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminPostController@update',$post->id],'files'=>true])!!}
@@ -81,8 +81,9 @@
                       @endforeach
                   </div>
 
-                  <div class="form-group mb-4 col-4">
+                  <div class="form-group mb-4 col-6">
                       {!! Form::label('photos', 'Choose new photo(s):') !!}
+                      {!! Form::label('photos', '*If you want to change the picture, please upload it again.', ['class'=>'text-muted, mb-3']) !!}
                       {!! Form::file('photos[]',['class'=>'form-control','multiple'=>'multiple']) !!}
                   </div>
 
@@ -92,7 +93,7 @@
                   </div>
 
                   @if(Session::has('post_crop'))
-                      <p class="alert alert-danger my-2">{{session('post_crop')}}</p>
+                      <p class="alert alert-danger my-2 col-6">{{session('post_crop')}}</p>
                   @endif
 
                   <p>
