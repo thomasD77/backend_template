@@ -4,7 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Backend_template</title>
+        @php
+            $company = \App\Models\CompanyCredential::find(1)
+        @endphp
+
+        <title>{{ $company->companyName }}</title>
 
         <meta name="description" content="OneUI - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -33,10 +37,6 @@
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
         @livewireStyles
-
-        @php
-        $company = \App\Models\CompanyCredential::find(1)
-        @endphp
 
     </head>
     <body>

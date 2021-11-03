@@ -101,6 +101,12 @@ class AdminCompanyCredentialsController extends Controller
 
 
         if($file = $request->file('company_logo')){
+
+            $photos = Photo::where('credential_id', $creditential->id)->get();
+            foreach ($photos as $photo){
+                $photo->delete();
+            }
+
             $name = time(). $file->getClientOriginalName();
             $file->move('images/form_credentials', $name);
             $path =  'images/form_credentials/' . $name;
