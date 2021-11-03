@@ -18,8 +18,7 @@ require '../resources/inc/_classes/Template.php';
 
 //                               : Name, version and assets folder's name
 
-$one                             = new Template('InnovA', '5.0', 'http://backend_template.loc/');
-$company                        =   'Innova';
+$one                             = new Template('Innova', '5.0', config('custom.GET_BASE_URL'));
 
 
 // **************************************************************************************************

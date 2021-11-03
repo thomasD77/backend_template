@@ -390,7 +390,7 @@ class Template {
             $class_f .= ' ' . $class;
         }
 
-        echo '<img class="img-avatar' . $class_f . '" src="' . 'http://localhost/backend_template/public/media/avatars/avatar' . $id_f . '.jpg" alt="">'. "\n";
+        echo '<img class="img-avatar' . $class_f . '" src="' . config('custom.GET_BASE_URL') . 'public/media/avatars/avatar' . $id_f . '.jpg" alt="">'. "\n";
     }
 
     /**
@@ -400,7 +400,7 @@ class Template {
      * @param string    $class  CSS classes for the img tag
      */
     public function get_photo($id = 0, $retina = false, $class = '') {
-        echo '<img' . ($class ? ' class="' . $class . '"' : '') . ' src="' . 'http://localhost/backend_template/public//media/photos/photo' . ($id ? $id : rand(1, 25)) . ($retina ? '@2x' : '') . '.jpg" alt="">'. "\n";
+        echo '<img' . ($class ? ' class="' . $class . '"' : '') . ' src="' . config('custom.GET_BASE_URL') . 'public/media/photos/photo' . ($id ? $id : rand(1, 25)) . ($retina ? '@2x' : '') . '.jpg" alt="">'. "\n";
     }
 
     /**
