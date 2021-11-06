@@ -31,7 +31,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label" for="text_1">Text</label>
-                        <textarea class="form-control" cols="30" rows="50" name="text_1" >{{ $credential->text_1 }}</textarea>
+                        <textarea class="form-control" id="js-ckeditor5-classic" cols="30" rows="50" name="text_1" >{{ $credential->text_1 }}</textarea>
                     </div>
 
                 <div class="mb-4">
