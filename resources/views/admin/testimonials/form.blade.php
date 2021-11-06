@@ -54,7 +54,7 @@
                         <input type="checkbox" class="form-check-input" name="GDPR">
                         <label class="form-check-label" for="exampleCheck1">Ik ga akkoord met GDPR</label>
                     </div>
-                    <div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LeMQE4cAAAAAPEBoXmD3fPN-MZX4FFC9wFSfQvq"></div>
+                    <div class="g-recaptcha" id="g-recaptcha" data-sitekey="{{ config('custom.RECAPTCHA_SITE_KEY') }}"></div>
                     <div class="row">
                         <div class="d-flex justify-content-center my-5">
                             <button type="submit" class="btn btn-alt-primary"> <i class="fa fa-paper-plane me-1 opacity-50"></i>Send to Us</button>

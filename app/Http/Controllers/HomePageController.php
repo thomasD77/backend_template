@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyCredential;
+use App\Models\Content;
 use App\Models\HomePage;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Brian2694\Toastr\Facades\Toastr;
 
 class HomePageController extends Controller
 {
+    public $homeCount = 20;
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +22,17 @@ class HomePageController extends Controller
     public function index()
     {
         //
-        $credential = HomePage::latest()->first();
-        $photos = Photo::where('home_page_id', $credential->id)->get();
-        return view('admin.pages.home', compact('credential', 'photos'));
+        $credential = HomePage::query()
+            ->latest()
+            ->first();
+
+        $photos = Photo::query()
+            ->where('home_page_id', $credential->id)
+            ->get();
+
+        $contents = Content::all();
+
+        return view('admin.pages.home', compact('credential', 'photos', 'contents'));
     }
 
     /**
@@ -80,77 +90,105 @@ class HomePageController extends Controller
         //
         $creditential = HomePage::findOrFail($id);
 
-        $creditential->input_1 = $request->input_1;
-        $creditential->input_2 = $request->input_2;
-        $creditential->input_3 = $request->input_3;
-        $creditential->input_4 = $request->input_4;
-        $creditential->input_5 = $request->input_5;
-        $creditential->input_6 = $request->input_6;
-        $creditential->input_7 = $request->input_7;
-        $creditential->input_8 = $request->input_8;
-        $creditential->input_9 = $request->input_9;
-        $creditential->input_10 = $request->input_10;
-
-        $creditential->text_1 = $request->text_1;
-        $creditential->text_2 = $request->text_2;
-        $creditential->text_3 = $request->text_3;
-        $creditential->text_4 = $request->text_4;
-        $creditential->text_5 = $request->text_5;
-        $creditential->text_6 = $request->text_6;
-        $creditential->text_7 = $request->text_7;
-        $creditential->text_8 = $request->text_8;
-        $creditential->text_9 = $request->text_9;
-        $creditential->text_10 = $request->text_10;
+        for ($i = 1; $i <= $this->homeCount; $i++ )
+        {
+            $input = 'input_' . $i;                                                                                     //Update all input records
+            $creditential->$input = $request->$input;
+            $creditential->update();
+        }
 
 
-        $creditential->update();
+        for ($i = 1; $i <= $this->homeCount; $i++ )
+        {
+            $text = 'text_' . $i;                                                                                       //Update all text records
+            $creditential->$text = $request->$text;
+            $creditential->update();
+        }
 
-        $photos = Photo::where('home_page_id', $creditential->id)
+        $photos = Photo::query()                                                                                        //Get all photos from Home Page
+        ->where('home_page_id', $creditential->id)
             ->get();
 
-        if($photos->isEmpty())                                                      //When we don't have any files we make them
+        if($photos->isEmpty())                                                                                          //Script pictures for First time running
         {
-            for ($i = 1; $i <= 10; $i++ )
+            for ($i = 1; $i <= $this->homeCount; $i++ )
             {
                 if ($file = $request->file('photo_' . $i))
                 {
                     $name = time() . $file->getClientOriginalName();
-                    $file->move('images/form_credentials', $name);
-                    $path = 'images/form_credentials/' . $name;
-                    $image = Image::make($path);
-                    $image->resize(250, 250);
-                    $image->save('images/form_credentials/' . $name);
-                    Photo::create(['file' => $name, 'home_page_id' => $creditential->id]);
+                    $file->move('images/content', $name);
+
+                    $width = 'pictWidth' . $i;
+                    $height = 'pictHeight' . $i;
+
+                    if ($request->$width && $request->$height != null)                                                  //Script for customize size
+                    {
+                        $path = 'images/content/' . $name;
+                        $image = Image::make($path);
+                        $image->resize($request->$width , $request->$height);
+                        $image->save('images/content/' . $name);
+                        Photo::create([
+                            'file' => $name,
+                            'home_page_id' => $creditential->id,
+                            'WxH' => $request->$width . 'x' . $request->$height,
+                        ]);
+                    }
+                    else
+                    {
+                        Photo::create([
+                            'file' => $name,                                                                             //Script for original size
+                            'home_page_id' => $creditential->id,
+                        ]);
+                    }
+
                 }
-                elseif ($file = $request->file('photo_' . $i) == null)
+                elseif ($request->file('photo_' . $i) == null)
                 {
-                    Photo::create(['file' => 'http://placehold.it/62x62', 'home_page_id' => $creditential->id]);
-                }
+                    Photo::create(['file' => 'http://placehold.it/62x62', 'home_page_id' => $creditential->id]);         //We make default records to set the position
+                }                                                                                                       //of the pictures
             }
         }
         else
         {
-                for ($i = 1; $i <= 10; $i++)
+            for ($i = 1; $i <= $this->homeCount; $i++)                                                                  //Script pictures after first time running
+            {
+                $photo = Photo::findOrFail($i);
+                if ($file = $request->file('photo_' . $i))
                 {
-                    if ($file = $request->file('photo_' . $i))
-                    {
-                        $name = time() . $file->getClientOriginalName();
-                        $file->move('images/form_credentials', $name);
-                        $path = 'images/form_credentials/' . $name;
-                        $image = Image::make($path);
-                        $image->resize(250, 250);
-                        $image->save('images/form_credentials/' . $name);
+                    $name = time() . $file->getClientOriginalName();
+                    $file->move('images/content', $name);
 
-                        $photo = Photo::findOrFail($i);
-//                        $photo = (['file' => $name, 'home_page_id' => $creditential->id, 'id' => $i]);
-                        $photo->file = $name;
-                        $photo->home_page_id = $creditential->id;
-                        $photo->update();
+                    $width = 'pictWidth' . $i;
+                    $height = 'pictHeight' . $i;
+
+                    if ($request->$width && $request->$height != null)                                                  //Script for customize size
+                    {
+                        $path = 'images/content/' . $name;
+                        $image = Image::make($path);
+                        $image->resize($request->$width , $request->$height);
+                        $image->save('images/content/' . $name);
                     }
+                    //Update the Picture
+                    $photo->file = $name;
+                    $photo->home_page_id = $creditential->id;
+                    $photo->WxH = $request->$width . 'x' . $request->$height;
                 }
+
+                $is_active = 'is_active' . $i;                                                                          //Set status for picture
+                if($request->$is_active != null)
+                {
+                    $photo->is_active = 1;
+                }
+                else
+                {
+                    $photo->is_active = 'null';
+                }
+                $photo->update();
+            }
         }
 
         Session::flash('flash_message', 'Your Home Page Builder is Updated');
+
 
         return redirect('/admin');
     }

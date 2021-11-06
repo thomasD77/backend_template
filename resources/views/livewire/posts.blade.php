@@ -26,9 +26,9 @@
 
                     @if($post->book == null)
                         <td><i class="fa fa-dot-circle text-dark" data-toggle="tooltip" data-title="Archive Sub"></i></td>
-                    @elseif($post->book > $timeNow)
+                    @elseif($post->book > now()->addHour()->format('Y-m-d\TH:i'))
                         <td><i class="fa fa-dot-circle text-warning"></i></td>
-                    @elseif($post->book <= $timeNow)
+                    @elseif($post->book <= now()->addHour()->format('Y-m-d\TH:i'))
                         <td><i class="fa fa-dot-circle text-success"></i></td>
                     @endif
 

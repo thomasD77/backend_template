@@ -32,6 +32,9 @@ Route::view('/pages/blank', 'pages.blank');
 Route::view('/register/client', 'auth.registerClient');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Frontend Routes
+Route::get('/system/{page}', [App\Http\Controllers\SystemPageController::class, 'index'])->name('system');
+
 
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
@@ -42,6 +45,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('disclaimer', App\Http\Controllers\DisclaimerController::class);
     Route::resource('privacy', App\Http\Controllers\PrivacyController::class);
     Route::resource('cookie', App\Http\Controllers\CookieController::class);
+    Route::resource('content', App\Http\Controllers\AdminContentController::class);
 
     //User Routes
     Route::resource('users', App\Http\Controllers\AdminUsersController::class);

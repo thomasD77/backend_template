@@ -12,6 +12,7 @@ class Photo extends Model
         'file',
         'post_id',
         'credential_id',
+        'is_active',
         'home_page_id',
 
 
