@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ContactExport;
 use App\Exports\SubmissionExport;
 use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
@@ -44,6 +45,8 @@ class AdminSubmissionController extends Controller
     public function store(Request $request)
     {
         //
+
+        $user = User::where('email', config('custom.MAIL_TO_NOTIFICATION'))->first();
     }
 
     /**
