@@ -20,7 +20,7 @@
                     </div>
                     <div class="block-content">
                         <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
-                            <h1 class="h2 mb-1"><?php echo $company ; ?></h1>
+                            <h1 class="h2 mb-1"><?php echo $one->name ; ?></h1>
                             <p class="fw-medium text-muted">
                                 Please provide your account’s email and we will send you your password.
                             </p>

@@ -18,7 +18,7 @@ require '../resources/inc/_classes/Template.php';
 
 //                               : Name, version and assets folder's name
 
-$one                             = new Template('Innova', '5.0', config('custom.GET_BASE_URL'));
+$one                             = new Template(config('custom.GET_NAME'), '5.0', config('custom.GET_BASE_URL'));
 
 
 // **************************************************************************************************
