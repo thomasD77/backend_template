@@ -30,7 +30,7 @@
                 <h2>Example for Title input</h2>
                 <div class="mb-4">
                     <label class="form-label" for="text_1">Intro</label>
-                    <input type="text" class="form-control"  name="input_2" value="{{ $credential->input_1 }}" >
+                    <input type="text" class="form-control"  name="input_1" value="{{ $credential->input_1 }}" >
                 </div>
 
                 <h2>Example for Text </h2>

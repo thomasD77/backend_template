@@ -10,15 +10,17 @@ use Illuminate\Notifications\Notification;
 class ContactFormNotification extends Notification
 {
     use Queueable;
+    public $data;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
         //
+        $this->data = $data;
     }
 
     /**
@@ -42,6 +44,13 @@ class ContactFormNotification extends Notification
     {
         return (new MailMessage)
             ->line('A customer completed a new contact form on your website.')
+            ->line('Lets see who it is and what they have to say...')
+            ->line('Name:' . " " . $this->data['name'])
+            ->line('Email:' . " " . $this->data['email'])
+            ->line('Phone:' . " " . $this->data['phone'])
+            ->line('Message:' . " " . $this->data['description'])
+
+            ->line('If you want to check the message in your CMS:')
             ->action('Login here', route('admin.home'))
             ->line('Thank you checking up on your application!');
     }

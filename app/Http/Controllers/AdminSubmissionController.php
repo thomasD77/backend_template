@@ -6,6 +6,7 @@ use App\Exports\ContactExport;
 use App\Exports\SubmissionExport;
 use App\Models\Submission;
 use App\Models\User;
+use App\Notifications\ContactFormNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
@@ -46,7 +47,15 @@ class AdminSubmissionController extends Controller
     {
         //
 
-        $user = User::where('email', config('custom.MAIL_TO_NOTIFICATION'))->first();
+        $roles = ['admin', 'employee'];
+        $users = User::query()
+            ->with([ 'roles'])
+            ->whereHas('roles', function($q) use($roles) {
+                $q->whereIn('name', $roles);})
+            ->where('archived', 0)
+            ->get();
+
+        Notification::send($users, new ContactFormNotification($data));
     }
 
     /**
