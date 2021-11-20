@@ -88,30 +88,34 @@ class HomePageController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //Get page data
         $creditential = HomePage::findOrFail($id);
 
+        //Update all input records
         for ($i = 1; $i <= $this->homeCount; $i++ )
         {
-            $input = 'input_' . $i;                                                                                     //Update all input records
+            $input = 'input_' . $i;
             $creditential->$input = $request->$input;
             $creditential->update();
         }
 
-
+        //Update all text records
         for ($i = 1; $i <= $this->homeCount; $i++ )
         {
-            $text = 'text_' . $i;                                                                                       //Update all text records
+            $text = 'text_' . $i;
             $creditential->$text = $request->$text;
             $creditential->update();
         }
 
-        $photos = Photo::query()                                                                                        //Get all photos from Home Page
-        ->where('home_page_id', $creditential->id)
-            ->get();
-
-        if($photos->isEmpty())                                                                                          //Script pictures for First time running
+        //Create all photos
+        for ($i = 1; $i <= $this->homeCount; $i++ )
         {
-            for ($i = 1; $i <= $this->homeCount; $i++ )
+            $photo = Photo::query()
+                ->where('id', $i)
+                ->where('home_page_id', $creditential->id)
+                ->first();
+
+            if($photo == null)
             {
                 if ($file = $request->file('photo_' . $i))
                 {
@@ -121,7 +125,8 @@ class HomePageController extends Controller
                     $width = 'pictWidth' . $i;
                     $height = 'pictHeight' . $i;
 
-                    if ($request->$width && $request->$height != null)                                                  //Script for customize size
+                    //Script for customize size
+                    if ($request->$width && $request->$height != null)
                     {
                         $path = 'images/content/' . $name;
                         $image = Image::make($path);
@@ -133,48 +138,48 @@ class HomePageController extends Controller
                             'WxH' => $request->$width . 'x' . $request->$height,
                         ]);
                     }
+                    //Script for original size
                     else
                     {
                         Photo::create([
-                            'file' => $name,                                                                             //Script for original size
+                            'file' => $name,
                             'home_page_id' => $creditential->id,
                         ]);
                     }
-
                 }
-                elseif ($request->file('photo_' . $i) == null)
-                {
-                    Photo::create(['file' => 'http://placehold.it/62x62', 'home_page_id' => $creditential->id]);         //We make default records to set the position
-                }                                                                                                       //of the pictures
             }
         }
-        else
+
+        //Update all photos
+        for ($i = 1; $i <= $this->homeCount; $i++)
         {
-            for ($i = 1; $i <= $this->homeCount; $i++)                                                                  //Script pictures after first time running
+            //Find picture to update
+            $ex__pic = 'ex__pic' . $i;
+            if($request->$ex__pic == $i)
             {
                 $photo = Photo::findOrFail($i);
+
                 if ($file = $request->file('photo_' . $i))
                 {
                     $name = time() . $file->getClientOriginalName();
                     $file->move('images/content', $name);
-
-                    $width = 'pictWidth' . $i;
-                    $height = 'pictHeight' . $i;
-
-                    if ($request->$width && $request->$height != null)                                                  //Script for customize size
-                    {
-                        $path = 'images/content/' . $name;
-                        $image = Image::make($path);
-                        $image->resize($request->$width , $request->$height);
-                        $image->save('images/content/' . $name);
-                    }
-                    //Update the Picture
                     $photo->file = $name;
-                    $photo->home_page_id = $creditential->id;
+                }
+
+                //Script for customize size
+                $width = 'pictWidth' . $i;
+                $height = 'pictHeight' . $i;
+                if ($request->$width && $request->$height != null)
+                {
+                    $path = 'images/content/' . $photo->file;
+                    $image = Image::make($path);
+                    $image->resize($request->$width , $request->$height);
+                    $image->save('images/content/' . $photo->file);
                     $photo->WxH = $request->$width . 'x' . $request->$height;
                 }
 
-                $is_active = 'is_active' . $i;                                                                          //Set status for picture
+                //Set status for picture
+                $is_active = 'is_active' . $i;
                 if($request->$is_active != null)
                 {
                     $photo->is_active = 1;
@@ -183,12 +188,13 @@ class HomePageController extends Controller
                 {
                     $photo->is_active = 'null';
                 }
+
+                $photo->home_page_id = $creditential->id;
                 $photo->update();
             }
         }
 
         Session::flash('flash_message', 'Your Home Page Builder is Updated');
-
 
         return redirect('/admin');
     }

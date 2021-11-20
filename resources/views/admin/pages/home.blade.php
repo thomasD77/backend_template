@@ -43,6 +43,10 @@
 
                 @include('admin.includes.image', ['image_id' => 1])
 
+                @include('admin.includes.image', ['image_id' => 2])
+
+                @include('admin.includes.image', ['image_id' => 3])
+
 
                 <div class="my-4">
                     <button type="submit" class="btn btn-alt-primary">
