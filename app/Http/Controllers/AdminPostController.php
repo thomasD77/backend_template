@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Models\AccountSettings;
 use App\Models\Photo;
 use App\Models\Post;
 use App\Models\PostCategory;
@@ -39,7 +40,9 @@ class AdminPostController extends Controller
         $postcategories = PostCategory::where('archived', 0)
         ->pluck('name', 'id');
 
-        return view('admin.posts.create',compact('postcategories'));
+        $account = AccountSettings::first()->SEO;
+
+        return view('admin.posts.create',compact('postcategories', 'account'));
 
     }
 
@@ -59,6 +62,13 @@ class AdminPostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->book = $request->datePost;
         $post['slug'] = Str::slug($request->title, '-');
+
+        //SEO fields
+        $post->seo_description = $request->seo_description;
+        $post->seo_alternativeTitle = $request->seo_alternativeTitle;
+        $post->seo_keywords = $request->seo_keywords;
+        $post->seo_url = env('APP_URL') . "/" . "post" . "/" . Str::slug($request->title, '-');
+        $post->seo_wordCount = strlen($request->body . $request->title);
 
         $post->save();
 
@@ -128,10 +138,12 @@ class AdminPostController extends Controller
         //
         $post = Post::findOrFail($id);
 
+        $account = AccountSettings::first()->SEO;
+
         $postcategories = PostCategory::where('archived', 0)
             ->pluck('name', 'id');
 
-        return view('admin.posts.edit', compact('post', 'postcategories'));
+        return view('admin.posts.edit', compact('post', 'postcategories', 'account'));
 
     }
 
@@ -151,6 +163,14 @@ class AdminPostController extends Controller
         $post->postcategory_id = $request->postcategory_id;
         $post->book = $request->datePost;
         $post['slug'] = Str::slug($request->title, '-');
+
+        //SEO fields
+        $post->seo_description = $request->seo_description;
+        $post->seo_alternativeTitle = $request->seo_alternativeTitle;
+        $post->seo_keywords = $request->seo_keywords;
+        $post->seo_url = env('APP_URL') . "/" . "post" . "/" . Str::slug($request->title, '-');
+        $post->seo_wordCount = strlen($request->body . $request->title);
+
         $post->update();
 
 

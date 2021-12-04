@@ -86,6 +86,12 @@
                         </div>
 
                         <div class="mb-4">
+                            <label class="form-label" for="frontend-contact-email">Url </label>
+                            <input type="text" class="form-control" name="company_url"
+                                   value="{{ $credential->url }}">
+                        </div>
+
+                        <div class="mb-4">
                             <label class="form-label" for="frontend-contact-email">Facebook link </label>
                             <input type="text" class="form-control" name="company_facebook"
                                    value="{{ $credential->facebook }}">

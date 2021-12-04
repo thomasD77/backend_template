@@ -91,6 +91,7 @@ class AdminCompanyCredentialsController extends Controller
         $creditential->email = $request->company_email;
         $creditential->mobile = $request->company_mobile;
         $creditential->tagline = $request->company_tagline;
+        $creditential->url = $request->company_url;
         $creditential->remarks = $request->company_remarks;
         $creditential->facebook = $request->company_facebook;
         $creditential->instagram = $request->company_instagram;

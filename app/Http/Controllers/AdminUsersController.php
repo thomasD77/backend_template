@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserEditRequest;
+use App\Models\AccountSettings;
 use App\Models\Avatar;
 use App\Models\Role;
 use App\Models\ServiceCategory;
@@ -73,7 +74,8 @@ class AdminUsersController extends Controller
         $user = User::findOrfail($id);
         $roles = Role::pluck('name', 'id')
             ->all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        $seo = AccountSettings::first()->SEO;
+        return view('admin.users.edit', compact('user', 'roles', 'seo'));
     }
 
     /**

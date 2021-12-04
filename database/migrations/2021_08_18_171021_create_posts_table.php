@@ -22,6 +22,14 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->string('book')->nullable();
             $table->boolean('archived')->default(0);
+
+            //GOOGLE SEO
+            $table->string('seo_description')->nullable();
+            $table->string('seo_alternativeTitle')->nullable();
+            $table->string('seo_keywords')->nullable();
+            $table->string('seo_url')->nullable();
+            $table->integer('seo_wordCount')->default(0);
+
             $table->timestamps();
         });
     }

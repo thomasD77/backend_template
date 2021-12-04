@@ -310,6 +310,40 @@
   </div>
   <!-- END Billing Information -->
 
+  @can('is_superAdmin')
+      <!-- Account Settings -->
+          <div class="block block-rounded">
+              <div class="block-header block-header-default">
+                  <h3 class="block-title">Account Settings</h3>
+              </div>
+              <div class="block-content">
+                  <div class="row push">
+                      <div class="col-lg-4">
+                          <p class="fs-sm text-muted">
+                              Here we can Change the Account settings.
+                          </p>
+                      </div>
+                      <div class="col-lg-8 col-xl-5">
+                          {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AccountSettingsController@update', $user]]) !!}
+
+                          <div class="form-group mb-4">
+                              {!! Form::label('one-profile-edit-company', 'SEO:',['class'=>'form-label']) !!}
+                              {!! Form::select('SEO',[ 'active' => 'active', 'non-active' => 'non-active'], $seo,['class'=>'form-control',])!!}
+                          </div>
+                          <div class="d-flex justify-content-between">
+                              <div class="form-group mr-1">
+                                  {!! Form::submit('Save',['class'=>'btn btn-alt-primary']) !!}
+                              </div>
+                              {!! Form::close() !!}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- END Account Settings -->
+  @endcan
+
+
   <!-- Connections -->
 <!--  <div class="block block-rounded">
     <div class="block-header block-header-default">

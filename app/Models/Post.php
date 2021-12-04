@@ -18,6 +18,12 @@ class Post extends Model
         'body',
         'book',
         'archived',
+
+        'seo_description',
+        'seo_alternativeTitle',
+        'seo_keywords',
+        'seo_url',
+        'seo_wordCount',
     ];
 
     public function postcategory()

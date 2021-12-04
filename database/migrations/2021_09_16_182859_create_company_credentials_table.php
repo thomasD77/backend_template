@@ -27,6 +27,7 @@ class CreateCompanyCredentialsTable extends Migration
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
             $table->string('tagline')->nullable();
+            $table->string('url')->nullable();
             $table->string('remarks')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
@@ -48,6 +49,7 @@ class CreateCompanyCredentialsTable extends Migration
             'email' => "",
             'mobile' => "",
             'tagline' => "",
+            'url' => "",
             'remarks' => "",
             'facebook' => "",
             'instagram' => "",

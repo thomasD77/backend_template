@@ -21,6 +21,7 @@ class CompanyCredential extends Model
           'email',
           'mobile',
           'tagline',
+          'url',
           'remarks',
           'facebook',
           'instagram',
