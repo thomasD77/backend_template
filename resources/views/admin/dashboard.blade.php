@@ -25,10 +25,10 @@
             <div class="d-flex parent flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Dashboard
+                        {{__('custom.Dashboard')}}
                     </h1>
                     <h2 class="fs-base lh-base fw-medium text-muted mb-0">
-                        Welcome {{Auth::user()->name}}, everything looks great.
+                        {{__('custom.Welcome')}} {{Auth::user()->name}}, {{__('custom.everything looks great')}}.
                     </h2>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -37,7 +37,7 @@
                             <a class="link-fx" href="javascript:void(0)">App</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Dashboard
+                            {{__('custom.Dashboard')}}
                         </li>
                     </ol>
                 </nav>
@@ -57,7 +57,7 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Welcome</h3>
+                        <h3 class="block-title">{{__('custom.Welcome')}}</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
                         <p>
@@ -75,7 +75,7 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Company</h3>
+                        <h3 class="block-title">{{__('custom.Company')}}</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
                         @if(isset($company))
@@ -92,7 +92,7 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Logo</h3>
+                        <h3 class="block-title">{{__('custom.Logo')}}</h3>
                     </div>
                     <div class="block-content d-flex justify-content-center align-items-center">
                         @if(isset($photos))

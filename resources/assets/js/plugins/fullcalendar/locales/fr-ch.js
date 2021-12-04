@@ -19,7 +19,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'Sm',
     allDayText: 'Toute la journée',
-    moreLinkText: 'en plus',
+    moreLinkText: 'nl plus',
     noEventsText: 'Aucun événement à afficher',
   };
 

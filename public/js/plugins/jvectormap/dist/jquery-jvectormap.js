@@ -3288,7 +3288,7 @@ function(code, multiMap) {
 function(code, multiMap){
   return 'jquery-jvectormap-data-'+
          code.toLowerCase()+'-'+
-         multiMap.defaultProjection+'-en.js';
+         multiMap.defaultProjection+'-nl.js';
 }
 </pre>
  */
@@ -3406,6 +3406,6 @@ jvm.MultiMap.defaultParams = {
     return code.toLowerCase()+'_'+multiMap.defaultProjection+'_en';
   },
   mapUrlByCode: function(code, multiMap){
-    return 'jquery-jvectormap-data-'+code.toLowerCase()+'-'+multiMap.defaultProjection+'-en.js';
+    return 'jquery-jvectormap-data-'+code.toLowerCase()+'-'+multiMap.defaultProjection+'-nl.js';
   }
 }

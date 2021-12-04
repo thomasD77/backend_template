@@ -231,6 +231,21 @@
                         </div>
                         <!-- END User Dropdown -->
 
+                        <!-- Languages selection -->
+                        <div class="dropdown ms-3">
+                            <button class="btn btn-alt-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Config::get('languages')[App::getLocale()] }}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                @foreach (Config::get('languages') as $lang => $language)
+                                    @if ($lang != App::getLocale())
+                                        <li><a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a></li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- END Languages selection -->
+
                         <!-- Notifications Dropdown -->
 {{--                        <div class="dropdown d-inline-block ms-2">--}}
 {{--                            <button type="button" class="btn btn-sm btn-alt-secondary" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}

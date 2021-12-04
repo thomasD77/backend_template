@@ -18,7 +18,7 @@ $.extend( $.validator.messages, {
 	maxlength: $.validator.format( "Du f&aring;r ange h&ouml;gst {0} tecken." ),
 	minlength: $.validator.format( "Du m&aring;ste ange minst {0} tecken." ),
 	rangelength: $.validator.format( "Ange minst {0} och max {1} tecken." ),
-	email: "Ange en korrekt e-postadress.",
+	email: "Ange nl korrekt e-postadress.",
 	url: "Ange en korrekt URL.",
 	date: "Ange ett korrekt datum.",
 	dateISO: "Ange ett korrekt datum (&Aring;&Aring;&Aring;&Aring;-MM-DD).",

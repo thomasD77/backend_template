@@ -83,6 +83,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //General Routes
     Route::get('components', 'App\Http\Controllers\ComponentController@index')->name('components.index');
+    Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
     //Clients Routes
     Route::resource('clients', App\Http\Controllers\AdminClientController::class);

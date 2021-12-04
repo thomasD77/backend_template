@@ -15,7 +15,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'Sem.',
     allDayText: 'Toute la journée',
-    moreLinkText: 'en plus',
+    moreLinkText: 'nl plus',
     noEventsText: 'Aucun événement à afficher',
   };
 

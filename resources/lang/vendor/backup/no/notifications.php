@@ -11,7 +11,7 @@ return [
 
     'backup_successful_subject' => 'Gjennomført backup av :application_name',
     'backup_successful_subject_title' => 'Gjennomført backup!',
-    'backup_successful_body' => 'Gode nyheter, en ny backup av :application_name ble opprettet på disken :disk_name.',
+    'backup_successful_body' => 'Gode nyheter, nl ny backup av :application_name ble opprettet på disken :disk_name.',
 
     'cleanup_failed_subject' => 'Opprydding av backup for :application_name feilet.',
     'cleanup_failed_body' => 'En feil oppstod under opprydding av backups for :application_name',
